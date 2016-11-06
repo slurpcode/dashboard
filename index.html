@@ -11,31 +11,78 @@
         <link rel='stylesheet' href='bootstrap/css/bootstrap.min.css'>
         <!-- Optional theme -->
         <link rel='stylesheet' href='bootstrap/css/bootstrap-theme.min.css'>
+        <!--Load the AJAX API-->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+          // Load the Visualization API and the corechart package.
+          google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChartAll);
+
+          function drawChartAll() {
+              // Create the data table.
+              var data = new google.visualization.DataTable();
+              data.addColumn('string', 'Schema count');
+              data.addColumn('number', 'Values');
+              data.addRows([["folders", 5], [".css", 4], [".map", 4], [".eot", 1], [".svg", 1], [".ttf", 1], [".woff", 1], [".woff2", 1], [".js", 4], [".txt", 2], [".html", 1], [".rb", 1], [".md", 1]]);
+              // Set chart options
+              var options = {'title': 'Branch gh-pages count of files grouped by file type',
+                             is3D: true,
+                             'width': 400,
+                             'height': 330,
+                             'titleTextStyle': { 'color': 'black' } };
+              // Instantiate and draw our chart, passing in some options.
+              var chart = new google.visualization.PieChart(document.getElementById('chart_div_all'));
+              chart.draw(data, options);
+            }
+
+      </script>
     </head>
     <body>
+      <!-- Static navbar -->
+      <nav class='navbar navbar-default'>
+        <div class='container-fluid'>
+          <div class='navbar-header'>
+            <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'>
+              <span class='sr-only'>Toggle navigation</span>
+              <span class='icon-bar'></span>
+              <span class='icon-bar'></span>
+              <span class='icon-bar'></span>
+              </button>
+            <a class='navbar-brand' href='#' id='head1'>Analytics Dashboard</a>
+          </div>
+          <div id='navbar' class='navbar-collapse collapse'>
+            <ul class='nav navbar-nav'>
+              <li class=''><a href='index.html'>Home</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class='container-fluid'>
+
+      <h2>Featured Statistics</h2>
       <pre>
         <code>
           
-http://cloc.sourceforge.net v 1.64  T=0.14 s (69.1 files/s, 68045.0 lines/s)
+http://cloc.sourceforge.net v 1.64  T=0.14 s (69.7 files/s, 69677.5 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
 CSS                              4              7             24           7326
 Javascript                       4            582            205           1614
-Ruby                             1              4              2             38
-HTML                             1              3              6             33
+Ruby                             1             16             22            107
+HTML                             1              6              8             77
 -------------------------------------------------------------------------------
-SUM:                            10            596            237           9011
+SUM:                            10            611            259           9124
 -------------------------------------------------------------------------------
 
         </code>
       </pre>
       <div class='row'>
-        <div class='col-sm-6 col-md-4 col-lg-3'>
-
-        </div>
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_all'></div>
       </div>
 
+      </div>
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src='bootstrap/js/jquery.min.js'></script>
       <!-- Latest compiled and minified JavaScript -->
