@@ -72,25 +72,6 @@
           // Load the Visualization API and the corechart package.
           google.charts.load('current', {'packages':['corechart']});
 
-          google.charts.setOnLoadCallback(drawChartAll);
-
-          function drawChartAll() {
-            // Create the data table.
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Schema count');
-            data.addColumn('number', 'Values');
-            data.addRows([["folders", 5], [".css", 4], [".map", 4], [".eot", 1], [".svg", 1], [".ttf", 1], [".woff", 1], [".woff2", 1], [".js", 4], [".txt", 2], [".html", 3], [".rb", 1], [".md", 1]]);
-            // Set chart options
-            var options = {'title': 'Branch gh-pages count of files grouped by file type',
-                           is3D: true,
-                           'width': 400,
-                           'height': 330,
-                           'titleTextStyle': { 'color': 'black' } };
-            // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div_all'));
-            chart.draw(data, options);
-          }
-
       </script>
     </head>
     <body>
@@ -115,28 +96,6 @@
         </div>
       </nav>
       <div class='container-fluid'>
-
-      <h2>Featured Statistics</h2>
-      <pre>
-        <code>
-          
-http://cloc.sourceforge.net v 1.64  T=0.20 s (59.7 files/s, 51355.9 lines/s)
--------------------------------------------------------------------------------
-Language                     files          blank        comment           code
--------------------------------------------------------------------------------
-CSS                              4              7             24           7326
-Javascript                       4            582            205           1614
-HTML                             3             50             24            271
-Ruby                             1             33             24            159
--------------------------------------------------------------------------------
-SUM:                            12            672            277           9370
--------------------------------------------------------------------------------
-
-        </code>
-      </pre>
-      <div class='row'>
-        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_all'></div>
-      </div>
 
       </div>
       <footer class='footer'>
