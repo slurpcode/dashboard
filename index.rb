@@ -5,7 +5,8 @@ $width = 400; $height=330;
 extension=[]
 #page1
 complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[];
-#
+elementstring=[]; elementshort=[]; elementfloat=[]; attributestring=[];
+#loop over schema files
 Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   #puts schema
   #puts i
@@ -14,22 +15,33 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   file = File.open(schema, 'r'); data = file.read; file.close;
   #puts data
   #build stats
-  complexType   << [filename, data.scan(/<xs:complexType/).size   ]
-  element       << [filename, data.scan(/<xs:element/).size       ]
-  sequence      << [filename, data.scan(/<xs:sequence/).size      ]
-  simpleContent << [filename, data.scan(/<xs:simpleContent/).size ]
-  xsextension   << [filename, data.scan(/<xs:extension/).size     ]
-  attribute     << [filename, data.scan(/<xs:attribute/).size     ]
+  complexType     << [filename, data.scan(/<xs:complexType/).size   ]
+  element         << [filename, data.scan(/<xs:element/).size       ]
+  sequence        << [filename, data.scan(/<xs:sequence/).size      ]
+  simpleContent   << [filename, data.scan(/<xs:simpleContent/).size ]
+  xsextension     << [filename, data.scan(/<xs:extension/).size     ]
+  attribute       << [filename, data.scan(/<xs:attribute/).size     ]
+  elementstring   << [filename, data.scan(/<xs:element type="xs:string"/).size   ]
+  elementshort    << [filename, data.scan(/<xs:element type="xs:short"/).size    ]
+  elementfloat    << [filename, data.scan(/<xs:element type="xs:float"/).size    ]
+  attributestring << [filename, data.scan(/<xs:attribute type="xs:string"/).size ]
 end
-
-pageone = [ [complexType, 'complexType', 'complexType count', 'Values', 'Branch gh-pages count of xs:complexType grouped by file', 'complexType'],
-            [element, 'element', 'element count', 'Values', 'Branch gh-pages count of xs:element grouped by file', 'element'],
-            [sequence, 'sequence', 'sequence count', 'Values', 'Branch gh-pages count of xs:sequence grouped by file', 'sequence'],
-            [simpleContent, 'simpleContent', 'simpleContent count', 'Values', 'Branch gh-pages count of xs:simpleContent grouped by file', 'simpleContent'],
-            [xsextension, 'extension', 'extension count', 'Values', 'Branch gh-pages count of xs:extension grouped by file', 'xsextension'],
-            [attribute, 'attribute', 'attribute count', 'Values', 'Branch gh-pages count of xs:attribute grouped by file', 'attribute'],
+#
+def charttitle(charttype)
+  "Branch gh-pages count of #{charttype} grouped by file"
+end
+#page one data structure
+pageone = [ [complexType, 'complexType', 'complexType count', 'Values', charttitle('xs:complexType'), 'complexType'],
+            [element, 'element', 'element count', 'Values', charttitle('xs:element'), 'element'],
+            [sequence, 'sequence', 'sequence count', 'Values', charttitle('xs:sequence'), 'sequence'],
+            [simpleContent, 'simpleContent', 'simpleContent count', 'Values', charttitle('xs:simpleContent'), 'simpleContent'],
+            [xsextension, 'extension', 'extension count', 'Values', charttitle('xs:extension'), 'xsextension'],
+            [attribute, 'attribute', 'attribute count', 'Values', charttitle('xs:attribute'), 'attribute'],
+            [elementstring, 'elementstring', 'element type="xs:string"', 'Values', charttitle('xs:element type="xs:string"'), 'elementstring'],
+            [elementshort , 'elementshort', 'xs:element type="xs:short"', 'Values', charttitle('xs:element type="xs:short"'), 'elementshort'],
+            [elementfloat, 'elementfloat', 'xs:element type="xs:float"', 'Values', charttitle('xs:element type="xs:float"'), 'elementfloat'],
+            [attributestring, 'attributestring', 'xs:attribute type="xs:string"', 'Values', charttitle('xs:attribute type="xs:string"'), 'attributestring']
           ]
-
 #integrate cloc stats vai shell command
 cloc = `cloc-1.64 . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
 file = File.open('cloc.txt', 'r')

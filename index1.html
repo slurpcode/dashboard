@@ -84,6 +84,14 @@
 
           google.charts.setOnLoadCallback(drawChartattribute);
 
+          google.charts.setOnLoadCallback(drawChartelementstring);
+
+          google.charts.setOnLoadCallback(drawChartelementshort);
+
+          google.charts.setOnLoadCallback(drawChartelementfloat);
+
+          google.charts.setOnLoadCallback(drawChartattributestring);
+
           function drawChartcomplexType() {
             // Create the data table.
             var data = new google.visualization.DataTable();
@@ -186,6 +194,74 @@
             chart.draw(data, options);
           }
 
+          function drawChartelementstring() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'element type="xs:string"');
+            data.addColumn('number', 'Values');
+            data.addRows([["bookstore.xsd", 1], ["dinner-menu.xsd", 3], ["note.xsd", 5]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of xs:element type="xs:string" grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_elementstring'));
+            chart.draw(data, options);
+          }
+
+          function drawChartelementshort() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'xs:element type="xs:short"');
+            data.addColumn('number', 'Values');
+            data.addRows([["bookstore.xsd", 1], ["dinner-menu.xsd", 1], ["note.xsd", 0]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of xs:element type="xs:short" grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_elementshort'));
+            chart.draw(data, options);
+          }
+
+          function drawChartelementfloat() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'xs:element type="xs:float"');
+            data.addColumn('number', 'Values');
+            data.addRows([["bookstore.xsd", 1], ["dinner-menu.xsd", 0], ["note.xsd", 0]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of xs:element type="xs:float" grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_elementfloat'));
+            chart.draw(data, options);
+          }
+
+          function drawChartattributestring() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'xs:attribute type="xs:string"');
+            data.addColumn('number', 'Values');
+            data.addRows([["bookstore.xsd", 3], ["dinner-menu.xsd", 0], ["note.xsd", 0]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of xs:attribute type="xs:string" grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_attributestring'));
+            chart.draw(data, options);
+          }
+
       </script>
     </head>
     <body>
@@ -224,6 +300,14 @@
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_xsextension'></div>
 
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_attribute'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_elementstring'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_elementshort'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_elementfloat'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_attributestring'></div>
 
       </div>
       </div>
