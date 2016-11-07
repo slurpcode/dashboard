@@ -5,7 +5,8 @@ $width = 400; $height=330;
 extension=[]
 #page1
 complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[]; elementstring=[]; elementshort=[];
-elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[];
+elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[]; annotation=[];
+documentation=[]; xsany=[]; xsenumeration=[]; xsanyAttribute=[];
 #loop over schema files
 Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   #puts schema
@@ -30,27 +31,39 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   elementref      << [filename, data.scan(/<xs:element ref=/).size   ]
   xschoice        << [filename, data.scan(/<xs:choice/).size         ]
   complexContent  << [filename, data.scan(/<xs:complexContent/).size ]
+  annotation      << [filename, data.scan(/<xs:annotation/).size     ]
+  annotation      << [filename, data.scan(/<xs:annotation/).size     ]
+  documentation   << [filename, data.scan(/<xs:documentation/).size  ]
+  xsany           << [filename, data.scan(/<xs:any/).size            ]
+  xsenumeration   << [filename, data.scan(/<xs:enumeration/).size    ]
+  xsanyAttribute  << [filename, data.scan(/<xs:anyAttribute/).size   ]
 end
 #
 def charttitle(charttype)
   "Branch gh-pages count of #{charttype} grouped by file"
 end
 #page one data structure
+v = 'Values'
 pageone = [ [complexType, 'complexType', 'complexType count', 'Values', charttitle('xs:complexType'), 'complexType'],
-            [element, 'element', 'element count', 'Values', charttitle('xs:element'), 'element'],
-            [sequence, 'sequence', 'sequence count', 'Values', charttitle('xs:sequence'), 'sequence'],
-            [simpleContent, 'simpleContent', 'simpleContent count', 'Values', charttitle('xs:simpleContent'), 'simpleContent'],
-            [xsextension, 'extension', 'extension count', 'Values', charttitle('xs:extension'), 'xsextension'],
-            [attribute, 'attribute', 'attribute count', 'Values', charttitle('xs:attribute'), 'attribute'],
-            [elementstring, 'elementstring', 'element type="xs:string"', 'Values', charttitle('xs:element type="xs:string"'), 'elementstring'],
-            [elementshort , 'elementshort', 'xs:element type="xs:short"', 'Values', charttitle('xs:element type="xs:short"'), 'elementshort'],
-            [elementfloat, 'elementfloat', 'xs:element type="xs:float"', 'Values', charttitle('xs:element type="xs:float"'), 'elementfloat'],
-            [attributestring, 'attributestring', 'xs:attribute type="xs:string"', 'Values', charttitle('xs:attribute type="xs:string"'), 'attributestring'],
-            [elementbyte, 'elementbyte', 'xs:element type="xs:byte"', 'Values', charttitle('xs:element type="xs:byte"'), 'elementbyte'],
-            [xsimport, 'xsimport', 'xs:import', 'Values', charttitle('xs:import'), 'xsimport'],
-            [elementref, 'xselementref', 'xs:element ref=', 'Values', charttitle('xs:element ref='), 'elementref'],
-            [xschoice, 'xschoice', 'xs:choice', 'Values', charttitle('xs:choice'), 'xschoice'],
-            [complexContent, 'complexContent', 'xs:complexContent', 'Values', charttitle('xs:complexContent'), 'complexContent']
+            [element, 'element', 'element count', v, charttitle('xs:element'), 'element'],
+            [sequence, 'sequence', 'sequence count', v, charttitle('xs:sequence'), 'sequence'],
+            [simpleContent, 'simpleContent', 'simpleContent count', v, charttitle('xs:simpleContent'), 'simpleContent'],
+            [xsextension, 'extension', 'extension count', v, charttitle('xs:extension'), 'xsextension'],
+            [attribute, 'attribute', 'attribute count', v, charttitle('xs:attribute'), 'attribute'],
+            [elementstring, 'elementstring', 'element type="xs:string"', v, charttitle('xs:element type="xs:string"'), 'elementstring'],
+            [elementshort , 'elementshort', 'xs:element type="xs:short"', v, charttitle('xs:element type="xs:short"'), 'elementshort'],
+            [elementfloat, 'elementfloat', 'xs:element type="xs:float"', v, charttitle('xs:element type="xs:float"'), 'elementfloat'],
+            [attributestring, 'attributestring', 'xs:attribute type="xs:string"', v, charttitle('xs:attribute type="xs:string"'), 'attributestring'],
+            [elementbyte, 'elementbyte', 'xs:element type="xs:byte"', v, charttitle('xs:element type="xs:byte"'), 'elementbyte'],
+            [xsimport, 'xsimport', 'xs:import', v, charttitle('xs:import'), 'xsimport'],
+            [elementref, 'xselementref', 'xs:element ref=', v, charttitle('xs:element ref='), 'elementref'],
+            [xschoice, 'xschoice', 'xs:choice', v, charttitle('xs:choice'), 'xschoice'],
+            [complexContent, 'complexContent', 'xs:complexContent', v, charttitle('xs:complexContent'), 'complexContent'],
+            [annotation, 'annotation', 'xs:annotation', v, charttitle('xs:annotation'), 'annotation'],
+            [documentation, 'documentation', 'xs:documentation', v, charttitle('xs:documentation'), 'documentation'],
+            [xsany, 'any', 'xs:any', v, charttitle('xs:any'), 'xsany'],
+            [xsenumeration, 'xsenumeration', 'xs:enumeration', v, charttitle('xs:enumeration'), 'xsenumeration'],
+            [xsanyAttribute, 'xsanyAttribute', 'xs:anyAttribute', v, charttitle('xs:anyAttribute'), 'xs:anyAttribute']
           ]
 #integrate cloc stats vai shell command
 cloc = `cloc-1.64 . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
