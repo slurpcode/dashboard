@@ -4,8 +4,8 @@ $width = 400; $height=330;
 #home page
 extension=[]
 #page1
-complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[];
-elementstring=[]; elementshort=[]; elementfloat=[]; attributestring=[];
+complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[]; elementstring=[]; elementshort=[];
+elementfloat=[]; attributestring=[]; elementbyte=[];
 #loop over schema files
 Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   #puts schema
@@ -25,6 +25,7 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   elementshort    << [filename, data.scan(/<xs:element type="xs:short"/).size    ]
   elementfloat    << [filename, data.scan(/<xs:element type="xs:float"/).size    ]
   attributestring << [filename, data.scan(/<xs:attribute type="xs:string"/).size ]
+  elementbyte     << [filename, data.scan(/<xs:element type="xs:byte"/).size     ]
 end
 #
 def charttitle(charttype)
@@ -40,7 +41,8 @@ pageone = [ [complexType, 'complexType', 'complexType count', 'Values', charttit
             [elementstring, 'elementstring', 'element type="xs:string"', 'Values', charttitle('xs:element type="xs:string"'), 'elementstring'],
             [elementshort , 'elementshort', 'xs:element type="xs:short"', 'Values', charttitle('xs:element type="xs:short"'), 'elementshort'],
             [elementfloat, 'elementfloat', 'xs:element type="xs:float"', 'Values', charttitle('xs:element type="xs:float"'), 'elementfloat'],
-            [attributestring, 'attributestring', 'xs:attribute type="xs:string"', 'Values', charttitle('xs:attribute type="xs:string"'), 'attributestring']
+            [attributestring, 'attributestring', 'xs:attribute type="xs:string"', 'Values', charttitle('xs:attribute type="xs:string"'), 'attributestring'],
+            [elementbyte, 'elementbyte', 'xs:element type="xs:byte"', 'Values', charttitle('xs:element type="xs:byte"'), 'elementbyte']
           ]
 #integrate cloc stats vai shell command
 cloc = `cloc-1.64 . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
