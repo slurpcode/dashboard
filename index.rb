@@ -5,7 +5,7 @@ $width = 400; $height=330;
 extension=[]
 #page1
 complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[]; elementstring=[]; elementshort=[];
-elementfloat=[]; attributestring=[]; elementbyte=[];
+elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[];
 #loop over schema files
 Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   #puts schema
@@ -21,11 +21,15 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   simpleContent   << [filename, data.scan(/<xs:simpleContent/).size ]
   xsextension     << [filename, data.scan(/<xs:extension/).size     ]
   attribute       << [filename, data.scan(/<xs:attribute/).size     ]
-  elementstring   << [filename, data.scan(/<xs:element type="xs:string"/).size   ]
+  elementstring   << [filename, data.scan(/<xs:element .*?type="xs:string"/).size]
   elementshort    << [filename, data.scan(/<xs:element type="xs:short"/).size    ]
   elementfloat    << [filename, data.scan(/<xs:element type="xs:float"/).size    ]
   attributestring << [filename, data.scan(/<xs:attribute type="xs:string"/).size ]
   elementbyte     << [filename, data.scan(/<xs:element type="xs:byte"/).size     ]
+  xsimport        << [filename, data.scan(/<xs:import/).size         ]
+  elementref      << [filename, data.scan(/<xs:element ref=/).size   ]
+  xschoice        << [filename, data.scan(/<xs:choice/).size         ]
+  complexContent  << [filename, data.scan(/<xs:complexContent/).size ]
 end
 #
 def charttitle(charttype)
@@ -42,7 +46,11 @@ pageone = [ [complexType, 'complexType', 'complexType count', 'Values', charttit
             [elementshort , 'elementshort', 'xs:element type="xs:short"', 'Values', charttitle('xs:element type="xs:short"'), 'elementshort'],
             [elementfloat, 'elementfloat', 'xs:element type="xs:float"', 'Values', charttitle('xs:element type="xs:float"'), 'elementfloat'],
             [attributestring, 'attributestring', 'xs:attribute type="xs:string"', 'Values', charttitle('xs:attribute type="xs:string"'), 'attributestring'],
-            [elementbyte, 'elementbyte', 'xs:element type="xs:byte"', 'Values', charttitle('xs:element type="xs:byte"'), 'elementbyte']
+            [elementbyte, 'elementbyte', 'xs:element type="xs:byte"', 'Values', charttitle('xs:element type="xs:byte"'), 'elementbyte'],
+            [xsimport, 'xsimport', 'xs:import', 'Values', charttitle('xs:import'), 'xsimport'],
+            [elementref, 'xselementref', 'xs:element ref=', 'Values', charttitle('xs:element ref='), 'elementref'],
+            [xschoice, 'xschoice', 'xs:choice', 'Values', charttitle('xs:choice'), 'xschoice'],
+            [complexContent, 'complexContent', 'xs:complexContent', 'Values', charttitle('xs:complexContent'), 'complexContent']
           ]
 #integrate cloc stats vai shell command
 cloc = `cloc-1.64 . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
