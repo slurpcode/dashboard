@@ -12,3 +12,4 @@
 ./bootstrap/js: zero sized file
 ./cloc.txt: zero sized file
 ./ignored.txt: listed in $Not_Code_Extension{txt}
+./schema: zero sized file

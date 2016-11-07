@@ -1,7 +1,34 @@
 #chart size global variables
 $width = 400; $height=330;
 #declare variables
-extension = []
+#home page
+extension=[]
+#page1
+complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[];
+#
+Dir.glob("schema/*.xsd").map.with_index do |schema, i|
+  #puts schema
+  #puts i
+  filename = schema.split('/').last
+  #puts filename
+  file = File.open(schema, 'r'); data = file.read; file.close;
+  #puts data
+  #build stats
+  complexType   << [filename, data.scan(/<xs:complexType/).size   ]
+  element       << [filename, data.scan(/<xs:element/).size       ]
+  sequence      << [filename, data.scan(/<xs:sequence/).size      ]
+  simpleContent << [filename, data.scan(/<xs:simpleContent/).size ]
+  xsextension   << [filename, data.scan(/<xs:extension/).size     ]
+  attribute     << [filename, data.scan(/<xs:attribute/).size     ]
+end
+
+pageone = [ [complexType, 'complexType', 'complexType count', 'Values', 'Branch gh-pages count of xs:complexType grouped by file', 'complexType'],
+            [element, 'element', 'element count', 'Values', 'Branch gh-pages count of xs:element grouped by file', 'element'],
+            [sequence, 'sequence', 'sequence count', 'Values', 'Branch gh-pages count of xs:sequence grouped by file', 'sequence'],
+            [simpleContent, 'simpleContent', 'simpleContent count', 'Values', 'Branch gh-pages count of xs:simpleContent grouped by file', 'simpleContent'],
+            [xsextension, 'extension', 'extension count', 'Values', 'Branch gh-pages count of xs:extension grouped by file', 'xsextension'],
+            [attribute, 'attribute', 'attribute count', 'Values', 'Branch gh-pages count of xs:attribute grouped by file', 'attribute'],
+          ]
 
 #integrate cloc stats vai shell command
 cloc = `cloc-1.64 . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
@@ -102,7 +129,7 @@ $pagetemp = <<-EOS
           google.charts.load('current', {'packages':['corechart']});
 EOS
 
-def drawChart(whichChart, data, chartstring, chartnumber, charttitle)
+def drawChart(whichChart, data, chartstring, chartnumber, charttitle, chartdiv)
         "
           function drawChart#{whichChart}() {
             // Create the data table.
@@ -117,7 +144,7 @@ def drawChart(whichChart, data, chartstring, chartnumber, charttitle)
                            'height': #{$height},
                            'titleTextStyle': { 'color': 'black' } };
             // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div_all'));
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_#{chartdiv}'));
             chart.draw(data, options);
           }\n"
 end
@@ -130,12 +157,20 @@ def pagebuild
 end
 #
 pagebuild
-
-@page += "
+#set the JavaScript Callback
+@page  += "
           google.charts.setOnLoadCallback(drawChartAll);\n";
-
-@page += drawChart('All', allFiles, 'Schema count', 'Values', 'Branch gh-pages count of files grouped by file type')
-
+##create JavaScript chart function for home page
+@page  += drawChart('All', allFiles, 'Schema count', 'Values', 'Branch gh-pages count of files grouped by file type', 'all')
+#set the JavaScript Callback
+pageone.map.with_index do |chart, i|
+  @page1  += "
+          google.charts.setOnLoadCallback(drawChart#{chart[1]});\n";
+end
+#create JavaScript chart functions for page 1
+pageone.map do |chart|
+    @page1 += drawChart("#{chart[1]}", chart[0], "#{chart[2]}", "#{chart[3]}", "#{chart[4]}", "#{chart[5]}")
+end
 #continue common page
 $pagetemp = "
       </script>
@@ -156,23 +191,19 @@ $pagetemp = "
           <div id='navbar' class='navbar-collapse collapse'>
             <ul class='nav navbar-nav'>
               <li class=''><a href='index.html'>Home</a></li>
-              <li class=''><a href='index1.html'>Page 2</a></li>
+              <li class=''><a href='index1.html'>Charts</a></li>
             </ul>
           </div>
         </div>
       </nav>
       <div class='container-fluid'>\n"
-
-
 =begin
       <div class='row'>
         <div class='col-sm-6 col-md-4 col-lg-3'>
-
         </div>
       </div>
 =end
 pagebuild
-
 #homepage
 @page += "
       <h2>Featured Statistics</h2>
@@ -184,7 +215,16 @@ pagebuild
       <div class='row'>
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_all'></div>
       </div>\n"
-
+#
+@page1 += "
+      <div class='row'>\n"
+#add chart divs to page 1
+pageone.map do |chart|
+  @page1 += "
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_#{chart[5]}'></div>\n"
+end
+@page1 += "
+      </div>"
 #finish common page region.
 $pagetemp = "
       </div>
@@ -193,7 +233,7 @@ $pagetemp = "
           <ul class='list-unstyled'>
             <li><a href='#head1'>Back to top</a></li>
             <li><a href='index.html'>Home</a></li>
-            <li><a href='index1.html'>Page 2</a></li>
+            <li><a href='index1.html'>Charts</a></li>
           </ul>
         </div>
       </footer>
@@ -203,11 +243,8 @@ $pagetemp = "
       <script src='bootstrap/js/bootstrap.min.js'></script>
     </body>
 </html>"
-
 #finish building all the pages
 pagebuild
-
-#write HTML page to files
 #write all the HTML pages to files
 (0..1).map do |i|
   file = File.open("index#{i > 0 ? i : ''}.html", 'w')

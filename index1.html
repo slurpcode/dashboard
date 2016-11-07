@@ -72,6 +72,120 @@
           // Load the Visualization API and the corechart package.
           google.charts.load('current', {'packages':['corechart']});
 
+          google.charts.setOnLoadCallback(drawChartcomplexType);
+
+          google.charts.setOnLoadCallback(drawChartelement);
+
+          google.charts.setOnLoadCallback(drawChartsequence);
+
+          google.charts.setOnLoadCallback(drawChartsimpleContent);
+
+          google.charts.setOnLoadCallback(drawChartextension);
+
+          google.charts.setOnLoadCallback(drawChartattribute);
+
+          function drawChartcomplexType() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'complexType count');
+            data.addColumn('number', 'Values');
+            data.addRows([["bookstore.xsd", 3], ["dinner-menu.xsd", 2], ["note.xsd", 1]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of xs:complexType grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_complexType'));
+            chart.draw(data, options);
+          }
+
+          function drawChartelement() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'element count');
+            data.addColumn('number', 'Values');
+            data.addRows([["bookstore.xsd", 6], ["dinner-menu.xsd", 6], ["note.xsd", 6]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of xs:element grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_element'));
+            chart.draw(data, options);
+          }
+
+          function drawChartsequence() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'sequence count');
+            data.addColumn('number', 'Values');
+            data.addRows([["bookstore.xsd", 2], ["dinner-menu.xsd", 2], ["note.xsd", 1]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of xs:sequence grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_sequence'));
+            chart.draw(data, options);
+          }
+
+          function drawChartsimpleContent() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'simpleContent count');
+            data.addColumn('number', 'Values');
+            data.addRows([["bookstore.xsd", 1], ["dinner-menu.xsd", 0], ["note.xsd", 0]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of xs:simpleContent grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_simpleContent'));
+            chart.draw(data, options);
+          }
+
+          function drawChartextension() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'extension count');
+            data.addColumn('number', 'Values');
+            data.addRows([["bookstore.xsd", 1], ["dinner-menu.xsd", 0], ["note.xsd", 0]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of xs:extension grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_xsextension'));
+            chart.draw(data, options);
+          }
+
+          function drawChartattribute() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'attribute count');
+            data.addColumn('number', 'Values');
+            data.addRows([["bookstore.xsd", 3], ["dinner-menu.xsd", 0], ["note.xsd", 0]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of xs:attribute grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_attribute'));
+            chart.draw(data, options);
+          }
+
       </script>
     </head>
     <body>
@@ -90,20 +204,35 @@
           <div id='navbar' class='navbar-collapse collapse'>
             <ul class='nav navbar-nav'>
               <li class=''><a href='index.html'>Home</a></li>
-              <li class=''><a href='index1.html'>Page 2</a></li>
+              <li class=''><a href='index1.html'>Charts</a></li>
             </ul>
           </div>
         </div>
       </nav>
       <div class='container-fluid'>
 
+      <div class='row'>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_complexType'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_element'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_sequence'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_simpleContent'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_xsextension'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_attribute'></div>
+
+      </div>
       </div>
       <footer class='footer'>
         <div class='container'>
           <ul class='list-unstyled'>
             <li><a href='#head1'>Back to top</a></li>
             <li><a href='index.html'>Home</a></li>
-            <li><a href='index1.html'>Page 2</a></li>
+            <li><a href='index1.html'>Charts</a></li>
           </ul>
         </div>
       </footer>

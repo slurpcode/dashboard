@@ -79,7 +79,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Schema count');
             data.addColumn('number', 'Values');
-            data.addRows([["folders", 5], [".css", 4], [".map", 4], [".eot", 1], [".svg", 1], [".ttf", 1], [".woff", 1], [".woff2", 1], [".js", 4], [".txt", 2], [".html", 3], [".rb", 1], [".md", 1]]);
+            data.addRows([["folders", 6], [".css", 4], [".map", 4], [".eot", 1], [".svg", 1], [".ttf", 1], [".woff", 1], [".woff2", 1], [".js", 4], [".txt", 2], [".html", 2], [".rb", 1], [".md", 1], [".xsd", 3]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of files grouped by file type',
                            is3D: true,
@@ -109,7 +109,7 @@
           <div id='navbar' class='navbar-collapse collapse'>
             <ul class='nav navbar-nav'>
               <li class=''><a href='index.html'>Home</a></li>
-              <li class=''><a href='index1.html'>Page 2</a></li>
+              <li class=''><a href='index1.html'>Charts</a></li>
             </ul>
           </div>
         </div>
@@ -120,16 +120,17 @@
       <pre>
         <code>
           
-http://cloc.sourceforge.net v 1.64  T=0.20 s (59.7 files/s, 51355.9 lines/s)
+http://cloc.sourceforge.net v 1.64  T=0.15 s (92.9 files/s, 69536.5 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
 CSS                              4              7             24           7326
 Javascript                       4            582            205           1614
-HTML                             3             50             24            271
-Ruby                             1             33             24            159
+HTML                             2             62             16            323
+Ruby                             1             24             37            192
+XSD                              3              0              0             62
 -------------------------------------------------------------------------------
-SUM:                            12            672            277           9370
+SUM:                            14            675            282           9517
 -------------------------------------------------------------------------------
 
         </code>
@@ -144,7 +145,7 @@ SUM:                            12            672            277           9370
           <ul class='list-unstyled'>
             <li><a href='#head1'>Back to top</a></li>
             <li><a href='index.html'>Home</a></li>
-            <li><a href='index1.html'>Page 2</a></li>
+            <li><a href='index1.html'>Charts</a></li>
           </ul>
         </div>
       </footer>
