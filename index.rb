@@ -7,7 +7,8 @@ extension=[]
 version=[]; xmlns=[]; complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[]; elementstring=[]; elementshort=[];
 elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[]; annotation=[]; documentation=[];
 xsany=[]; xsenumeration=[]; xsanyAttribute=[]; minOccurs0=[]; minOccurs1=[]; maxOccursunbounded=[]; useoptional=[]; userequired=[]; typeanyURI=[];
-typebase64Binary=[]; mixedtrue=[]; typeID=[]; processContentslax=[]; namespace=[]; abstracttrue=[]; typedateTime=[]; typeNCName=[];
+typebase64Binary=[]; mixedtrue=[]; typeID=[]; processContentslax=[]; namespace=[]; abstracttrue=[]; typedateTime=[]; typeNCName=[]; restriction=[];
+attributeGroup=[];
 #loop over schema files
 Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   #puts schema
@@ -55,6 +56,8 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   abstracttrue     << [filename, data.scan(/abstract="true"/).size        ]
   typedateTime     << [filename, data.scan(/type="dateTime"/).size        ]
   typeNCName       << [filename, data.scan(/type="NCName"/).size          ]
+  restriction      << [filename, data.scan(/<xs:restriction/).size        ]
+  attributeGroup   << [filename, data.scan(/<xs:attributeGroup/).size     ]
 end
 version = version.group_by{|x| x}.map{|k, v| [k, v.size]}
 #puts version
@@ -71,6 +74,7 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [element, 'element', 'element count', v, charttitle('xs:element'), 'element'],
             [sequence, 'sequence', 'sequence count', v, charttitle('xs:sequence'), 'sequence'],
             [simpleContent, 'simpleContent', 'simpleContent count', v, charttitle('xs:simpleContent'), 'simpleContent'],
+            [attributeGroup, 'attributeGroup', 'attributeGroup count', v, charttitle('xs:attributeGroup'), 'attributeGroup'],
             [xsextension, 'extension', 'extension count', v, charttitle('xs:extension'), 'xsextension'],
             [attribute, 'attribute', 'attribute count', v, charttitle('xs:attribute'), 'attribute'],
             [elementstring, 'elementstring', 'element type="xs:string"', v, charttitle('xs:element type="xs:string"'), 'elementstring'],
@@ -100,7 +104,8 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [namespace, 'namespace', 'namespace="..."', v, charttitle('namespace="..."'), 'namespace'],
             [abstracttrue, 'abstracttrue', 'abstract="true"', v, charttitle('abstract="true"'), 'abstracttrue'],
             [typedateTime, 'typedateTime', 'type="dateTime"', v, charttitle('type="dateTime"'), 'typedateTime'],
-            [typeNCName, 'typeNCName', 'type="NCName"', v, charttitle('type="NCName"'), 'typeNCName']
+            [typeNCName, 'typeNCName', 'type="NCName"', v, charttitle('type="NCName"'), 'typeNCName'],
+            [restriction, 'restriction', 'xs:restriction', v, charttitle('xs:restriction'), 'restriction']
           ]
 #integrate cloc stats vai shell command
 cloc = `cloc-1.64 . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
