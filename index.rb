@@ -4,7 +4,7 @@ $width = 400; $height=330;
 #home page
 extension=[]
 #page1
-complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[]; elementstring=[]; elementshort=[];
+version=[]; xmlns=[]; complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[]; elementstring=[]; elementshort=[];
 elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[]; annotation=[];
 documentation=[]; xsany=[]; xsenumeration=[]; xsanyAttribute=[];
 #loop over schema files
@@ -16,6 +16,9 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   file = File.open(schema, 'r'); data = file.read; file.close;
   #puts data
   #build stats
+  version         << data.gsub(/(.*<xs:schema.*version=")(.*?)(">.*<\/xs:schema>)/m,'\2').strip
+  #puts version
+  xmlns           << [filename, data.scan(/xmlns(=|:)/).size ]
   complexType     << [filename, data.scan(/<xs:complexType/).size   ]
   element         << [filename, data.scan(/<xs:element/).size       ]
   sequence        << [filename, data.scan(/<xs:sequence/).size      ]
@@ -37,14 +40,20 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   xsany           << [filename, data.scan(/<xs:any/).size            ]
   xsenumeration   << [filename, data.scan(/<xs:enumeration/).size    ]
   xsanyAttribute  << [filename, data.scan(/<xs:anyAttribute/).size   ]
+
 end
+version = version.group_by{|x| x}.map{|k, v| [k, v.size]}
+#puts version
 #
 def charttitle(charttype)
   "Branch gh-pages count of #{charttype} grouped by file"
 end
+
 #page one data structure
 v = 'Values'
-pageone = [ [complexType, 'complexType', 'complexType count', 'Values', charttitle('xs:complexType'), 'complexType'],
+pageone = [ [version, 'version', 'version count', v, 'Branch count of schema grouped by version', 'version'],
+            [xmlns, 'xmlns', 'xmlns count', v, charttitle('xmlns'), 'xmlns'],
+            [complexType, 'complexType', 'complexType count', v, charttitle('xs:complexType'), 'complexType'],
             [element, 'element', 'element count', v, charttitle('xs:element'), 'element'],
             [sequence, 'sequence', 'sequence count', v, charttitle('xs:sequence'), 'sequence'],
             [simpleContent, 'simpleContent', 'simpleContent count', v, charttitle('xs:simpleContent'), 'simpleContent'],

@@ -10,12 +10,12 @@
    <!ENTITY % s ''>
   ]>
 
-<xs:schema xmlns='http://www.w3.org/2001/XMLSchema' version='1.0'
+<xs:schema xmlns='http://www.w3.org/2001/XMLSchema'
         xmlns:xenc='http://www.w3.org/2001/04/xmlenc#'
         xmlns:ds='http://www.w3.org/2000/09/xmldsig#'
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
         targetNamespace='http://www.w3.org/2001/04/xmlenc#'
-        elementFormDefault='qualified'>
+        elementFormDefault='qualified' version="1.0">
 
   <xs:import namespace='http://www.w3.org/2000/09/xmldsig#'
           schemaLocation='xmldsig_schema.xsd'/>
