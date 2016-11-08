@@ -116,6 +116,16 @@
 
           google.charts.setOnLoadCallback(drawChartxsanyAttribute);
 
+          google.charts.setOnLoadCallback(drawChartminOccurs0);
+
+          google.charts.setOnLoadCallback(drawChartuseoptional);
+
+          google.charts.setOnLoadCallback(drawChartuserequired);
+
+          google.charts.setOnLoadCallback(drawCharttypeanyURI);
+
+          google.charts.setOnLoadCallback(drawCharttypebase64Binary);
+
           function drawChartversion() {
             // Create the data table.
             var data = new google.visualization.DataTable();
@@ -486,7 +496,92 @@
                            'height': 330,
                            'titleTextStyle': { 'color': 'black' } };
             // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div_xs:anyAttribute'));
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_xsanyAttribute'));
+            chart.draw(data, options);
+          }
+
+          function drawChartminOccurs0() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'minOccurs="0"');
+            data.addColumn('number', 'Values');
+            data.addRows([["bookstore.xsd", 2], ["dinner-menu.xsd", 1], ["note.xsd", 0], ["note2.xsd", 0], ["saml20protocol_schema.xsd", 24], ["xenc_schema.xsd", 15]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of minOccurs="0" grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_minOccurs0'));
+            chart.draw(data, options);
+          }
+
+          function drawChartuseoptional() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'use="optional"');
+            data.addColumn('number', 'Values');
+            data.addRows([["bookstore.xsd", 3], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20protocol_schema.xsd", 22], ["xenc_schema.xsd", 8]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of use="optional" grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_useoptional'));
+            chart.draw(data, options);
+          }
+
+          function drawChartuserequired() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'use="required"');
+            data.addColumn('number', 'Values');
+            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20protocol_schema.xsd", 9], ["xenc_schema.xsd", 4]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of use="required" grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_userequired'));
+            chart.draw(data, options);
+          }
+
+          function drawCharttypeanyURI() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'type="anyURI"');
+            data.addColumn('number', 'Values');
+            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20protocol_schema.xsd", 13], ["xenc_schema.xsd", 7]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of type="anyURI" grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_typeanyURI'));
+            chart.draw(data, options);
+          }
+
+          function drawCharttypebase64Binary() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'type="base64Binary"');
+            data.addColumn('number', 'Values');
+            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 3]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of type="base64Binary" grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_typebase64Binary'));
             chart.draw(data, options);
           }
 
@@ -559,7 +654,17 @@
 
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_xsenumeration'></div>
 
-        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_xs:anyAttribute'></div>
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_xsanyAttribute'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_minOccurs0'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_useoptional'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_userequired'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_typeanyURI'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_typebase64Binary'></div>
 
       </div>
       </div>

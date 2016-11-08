@@ -5,8 +5,8 @@ $width = 400; $height=330;
 extension=[]
 #page1
 version=[]; xmlns=[]; complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[]; elementstring=[]; elementshort=[];
-elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[]; annotation=[];
-documentation=[]; xsany=[]; xsenumeration=[]; xsanyAttribute=[];
+elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[]; annotation=[]; documentation=[];
+xsany=[]; xsenumeration=[]; xsanyAttribute=[]; minOccurs0=[]; useoptional=[]; userequired=[]; typeanyURI=[]; typebase64Binary=[];
 #loop over schema files
 Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   #puts schema
@@ -18,29 +18,33 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   #build stats
   version         << data.gsub(/(.*<xs:schema.*version=")(.*?)(">.*<\/xs:schema>)/m,'\2').strip
   #puts version
-  xmlns           << [filename, data.scan(/xmlns(=|:)/).size ]
-  complexType     << [filename, data.scan(/<xs:complexType/).size   ]
-  element         << [filename, data.scan(/<xs:element/).size       ]
-  sequence        << [filename, data.scan(/<xs:sequence/).size      ]
-  simpleContent   << [filename, data.scan(/<xs:simpleContent/).size ]
-  xsextension     << [filename, data.scan(/<xs:extension/).size     ]
-  attribute       << [filename, data.scan(/<xs:attribute/).size     ]
-  elementstring   << [filename, data.scan(/<xs:element .*?type="xs:string"/).size]
-  elementshort    << [filename, data.scan(/<xs:element type="xs:short"/).size    ]
-  elementfloat    << [filename, data.scan(/<xs:element type="xs:float"/).size    ]
-  attributestring << [filename, data.scan(/<xs:attribute type="xs:string"/).size ]
-  elementbyte     << [filename, data.scan(/<xs:element type="xs:byte"/).size     ]
-  xsimport        << [filename, data.scan(/<xs:import/).size         ]
-  elementref      << [filename, data.scan(/<xs:element ref=/).size   ]
-  xschoice        << [filename, data.scan(/<xs:choice/).size         ]
-  complexContent  << [filename, data.scan(/<xs:complexContent/).size ]
-  annotation      << [filename, data.scan(/<xs:annotation/).size     ]
-  annotation      << [filename, data.scan(/<xs:annotation/).size     ]
-  documentation   << [filename, data.scan(/<xs:documentation/).size  ]
-  xsany           << [filename, data.scan(/<xs:any/).size            ]
-  xsenumeration   << [filename, data.scan(/<xs:enumeration/).size    ]
-  xsanyAttribute  << [filename, data.scan(/<xs:anyAttribute/).size   ]
-
+  xmlns            << [filename, data.scan(/xmlns(=|:)/).size        ]
+  complexType      << [filename, data.scan(/<xs:complexType/).size   ]
+  element          << [filename, data.scan(/<xs:element/).size       ]
+  sequence         << [filename, data.scan(/<xs:sequence/).size      ]
+  simpleContent    << [filename, data.scan(/<xs:simpleContent/).size ]
+  xsextension      << [filename, data.scan(/<xs:extension/).size     ]
+  attribute        << [filename, data.scan(/<xs:attribute/).size     ]
+  elementstring    << [filename, data.scan(/<xs:element .*?type="xs:string"/).size]
+  elementshort     << [filename, data.scan(/<xs:element type="xs:short"/).size    ]
+  elementfloat     << [filename, data.scan(/<xs:element type="xs:float"/).size    ]
+  attributestring  << [filename, data.scan(/<xs:attribute type="xs:string"/).size ]
+  elementbyte      << [filename, data.scan(/<xs:element type="xs:byte"/).size     ]
+  xsimport         << [filename, data.scan(/<xs:import/).size         ]
+  elementref       << [filename, data.scan(/<xs:element ref=/).size   ]
+  xschoice         << [filename, data.scan(/<xs:choice/).size         ]
+  complexContent   << [filename, data.scan(/<xs:complexContent/).size ]
+  annotation       << [filename, data.scan(/<xs:annotation/).size     ]
+  annotation       << [filename, data.scan(/<xs:annotation/).size     ]
+  documentation    << [filename, data.scan(/<xs:documentation/).size  ]
+  xsany            << [filename, data.scan(/<xs:any/).size            ]
+  xsenumeration    << [filename, data.scan(/<xs:enumeration/).size    ]
+  xsanyAttribute   << [filename, data.scan(/<xs:anyAttribute/).size   ]
+  minOccurs0       << [filename, data.scan(/minOccurs="0"/).size      ]
+  useoptional      << [filename, data.scan(/use="optional"/).size     ]
+  userequired      << [filename, data.scan(/use="required"/).size     ]
+  typeanyURI       << [filename, data.scan(/type="anyURI"/).size      ]
+  typebase64Binary << [filename, data.scan(/type="base64Binary"/).size]
 end
 version = version.group_by{|x| x}.map{|k, v| [k, v.size]}
 #puts version
@@ -72,7 +76,12 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [documentation, 'documentation', 'xs:documentation', v, charttitle('xs:documentation'), 'documentation'],
             [xsany, 'any', 'xs:any', v, charttitle('xs:any'), 'xsany'],
             [xsenumeration, 'xsenumeration', 'xs:enumeration', v, charttitle('xs:enumeration'), 'xsenumeration'],
-            [xsanyAttribute, 'xsanyAttribute', 'xs:anyAttribute', v, charttitle('xs:anyAttribute'), 'xs:anyAttribute']
+            [xsanyAttribute, 'xsanyAttribute', 'xs:anyAttribute', v, charttitle('xs:anyAttribute'), 'xsanyAttribute'],
+            [minOccurs0, 'minOccurs0', 'minOccurs="0"', v, charttitle('minOccurs="0"'), 'minOccurs0'],
+            [useoptional, 'useoptional', 'use="optional"', v, charttitle('use="optional"'), 'useoptional'],
+            [userequired, 'userequired', 'use="required"', v, charttitle('use="required"'), 'userequired'],
+            [typeanyURI, 'typeanyURI', 'type="anyURI"', v , charttitle('type="anyURI"'), 'typeanyURI'],
+            [typebase64Binary, 'typebase64Binary', 'type="base64Binary"', v, charttitle('type="base64Binary"'), 'typebase64Binary']
           ]
 #integrate cloc stats vai shell command
 cloc = `cloc-1.64 . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
