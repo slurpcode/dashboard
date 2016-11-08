@@ -6,7 +6,8 @@ extension=[]
 #page1
 version=[]; xmlns=[]; complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[]; elementstring=[]; elementshort=[];
 elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[]; annotation=[]; documentation=[];
-xsany=[]; xsenumeration=[]; xsanyAttribute=[]; minOccurs0=[]; useoptional=[]; userequired=[]; typeanyURI=[]; typebase64Binary=[];
+xsany=[]; xsenumeration=[]; xsanyAttribute=[]; minOccurs0=[]; minOccurs1=[]; maxOccursunbounded=[]; useoptional=[]; userequired=[]; typeanyURI=[];
+typebase64Binary=[]; mixedtrue=[]; typeID=[]; processContentslax=[]; namespace=[]; abstracttrue=[]; typedateTime=[]; typeNCName=[];
 #loop over schema files
 Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   #puts schema
@@ -41,10 +42,19 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   xsenumeration    << [filename, data.scan(/<xs:enumeration/).size    ]
   xsanyAttribute   << [filename, data.scan(/<xs:anyAttribute/).size   ]
   minOccurs0       << [filename, data.scan(/minOccurs="0"/).size      ]
-  useoptional      << [filename, data.scan(/use="optional"/).size     ]
-  userequired      << [filename, data.scan(/use="required"/).size     ]
-  typeanyURI       << [filename, data.scan(/type="anyURI"/).size      ]
-  typebase64Binary << [filename, data.scan(/type="base64Binary"/).size]
+  minOccurs1       << [filename, data.scan(/minOccurs="1"/).size      ]
+  maxOccursunbounded << [filename, data.scan(/maxOccurs="unbounded"/).size]
+  useoptional      << [filename, data.scan(/use="optional"/).size         ]
+  userequired      << [filename, data.scan(/use="required"/).size         ]
+  typeanyURI       << [filename, data.scan(/type="anyURI"/).size          ]
+  typebase64Binary << [filename, data.scan(/type="base64Binary"/).size    ]
+  mixedtrue        << [filename, data.scan(/mixed="true"/).size           ]
+  typeID           << [filename, data.scan(/type="ID"/).size              ]
+  processContentslax << [filename, data.scan(/processContents="lax"/).size]
+  namespace        << [filename, data.scan(/namespace="/).size            ]
+  abstracttrue     << [filename, data.scan(/abstract="true"/).size        ]
+  typedateTime     << [filename, data.scan(/type="dateTime"/).size        ]
+  typeNCName       << [filename, data.scan(/type="NCName"/).size          ]
 end
 version = version.group_by{|x| x}.map{|k, v| [k, v.size]}
 #puts version
@@ -78,10 +88,19 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [xsenumeration, 'xsenumeration', 'xs:enumeration', v, charttitle('xs:enumeration'), 'xsenumeration'],
             [xsanyAttribute, 'xsanyAttribute', 'xs:anyAttribute', v, charttitle('xs:anyAttribute'), 'xsanyAttribute'],
             [minOccurs0, 'minOccurs0', 'minOccurs="0"', v, charttitle('minOccurs="0"'), 'minOccurs0'],
+            [minOccurs1, 'minOccurs1', 'minOccurs="1"', v, charttitle('minOccurs="1"'), 'minOccurs1'],
+            [maxOccursunbounded, 'maxOccursunbounded', 'maxOccurs="unbounded"', v, charttitle('maxOccurs="unbounded"'), 'maxOccursunbounded'],
             [useoptional, 'useoptional', 'use="optional"', v, charttitle('use="optional"'), 'useoptional'],
             [userequired, 'userequired', 'use="required"', v, charttitle('use="required"'), 'userequired'],
             [typeanyURI, 'typeanyURI', 'type="anyURI"', v , charttitle('type="anyURI"'), 'typeanyURI'],
-            [typebase64Binary, 'typebase64Binary', 'type="base64Binary"', v, charttitle('type="base64Binary"'), 'typebase64Binary']
+            [typebase64Binary, 'typebase64Binary', 'type="base64Binary"', v, charttitle('type="base64Binary"'), 'typebase64Binary'],
+            [mixedtrue, 'mixedtrue', 'mixed="true"', v, charttitle('mixed="true"'), 'mixedtrue'],
+            [typeID, 'typeID', 'type="ID"', v, charttitle('type="ID"'), 'typeID'],
+            [processContentslax, 'processContentslax', 'processContents="lax"', v, charttitle('processContents="lax"'), 'processContentslax'],
+            [namespace, 'namespace', 'namespace="..."', v, charttitle('namespace="..."'), 'namespace'],
+            [abstracttrue, 'abstracttrue', 'abstract="true"', v, charttitle('abstract="true"'), 'abstracttrue'],
+            [typedateTime, 'typedateTime', 'type="dateTime"', v, charttitle('type="dateTime"'), 'typedateTime'],
+            [typeNCName, 'typeNCName', 'type="NCName"', v, charttitle('type="NCName"'), 'typeNCName']
           ]
 #integrate cloc stats vai shell command
 cloc = `cloc-1.64 . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
