@@ -120,8 +120,6 @@
 
           google.charts.setOnLoadCallback(drawChartminOccurs0);
 
-          google.charts.setOnLoadCallback(drawChartminOccurs1);
-
           google.charts.setOnLoadCallback(drawChartmaxOccursunbounded);
 
           google.charts.setOnLoadCallback(drawChartuseoptional);
@@ -148,12 +146,18 @@
 
           google.charts.setOnLoadCallback(drawChartrestriction);
 
+          google.charts.setOnLoadCallback(drawCharttargetNamespace);
+
+          google.charts.setOnLoadCallback(drawChartelementFormDefault);
+
+          google.charts.setOnLoadCallback(drawChartattributeFormDefault);
+
           function drawChartversion() {
             // Create the data table.
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'version count');
             data.addColumn('number', 'Values');
-            data.addRows([["1.0", 5], ["2.0", 2]]);
+            data.addRows([["1.0", 8], ["2.0", 2], ["0.1", 1]]);
             // Set chart options
             var options = {'title': 'Branch count of schema grouped by version',
                            is3D: true,
@@ -170,7 +174,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'xmlns count');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 1], ["dinner-menu.xsd", 1], ["note.xsd", 1], ["note2.xsd", 1], ["saml20assertion_schema.xsd", 5], ["saml20protocol_schema.xsd", 5], ["xenc_schema.xsd", 6]]);
+            data.addRows([["bar.xsd", 1], ["bookstore.xsd", 1], ["dinner-menu.xsd", 1], ["foo.xsd", 1], ["note.xsd", 1], ["note2.xsd", 1], ["po.xsd", 1], ["saml20assertion_schema.xsd", 4], ["saml20protocol_schema.xsd", 4], ["xenc_schema.xsd", 5], ["xmldsig_schema.xsd", 3]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xmlns grouped by file',
                            is3D: true,
@@ -187,7 +191,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'complexType count');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 3], ["dinner-menu.xsd", 2], ["note.xsd", 1], ["note2.xsd", 2], ["saml20assertion_schema.xsd", 23], ["saml20protocol_schema.xsd", 25], ["xenc_schema.xsd", 12]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 3], ["dinner-menu.xsd", 2], ["foo.xsd", 0], ["note.xsd", 1], ["note2.xsd", 2], ["po.xsd", 4], ["saml20assertion_schema.xsd", 23], ["saml20protocol_schema.xsd", 25], ["xenc_schema.xsd", 12], ["xmldsig_schema.xsd", 22]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:complexType grouped by file',
                            is3D: true,
@@ -204,7 +208,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'element count');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 6], ["dinner-menu.xsd", 6], ["note.xsd", 6], ["note2.xsd", 7], ["saml20assertion_schema.xsd", 81], ["saml20protocol_schema.xsd", 78], ["xenc_schema.xsd", 27]]);
+            data.addRows([["bar.xsd", 1], ["bookstore.xsd", 6], ["dinner-menu.xsd", 6], ["foo.xsd", 0], ["note.xsd", 6], ["note2.xsd", 7], ["po.xsd", 17], ["saml20assertion_schema.xsd", 81], ["saml20protocol_schema.xsd", 78], ["xenc_schema.xsd", 27], ["xmldsig_schema.xsd", 69]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:element grouped by file',
                            is3D: true,
@@ -221,7 +225,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'sequence count');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 2], ["dinner-menu.xsd", 2], ["note.xsd", 1], ["note2.xsd", 2], ["saml20assertion_schema.xsd", 13], ["saml20protocol_schema.xsd", 19], ["xenc_schema.xsd", 7]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 2], ["dinner-menu.xsd", 2], ["foo.xsd", 0], ["note.xsd", 1], ["note2.xsd", 2], ["po.xsd", 4], ["saml20assertion_schema.xsd", 13], ["saml20protocol_schema.xsd", 19], ["xenc_schema.xsd", 7], ["xmldsig_schema.xsd", 20]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:sequence grouped by file',
                            is3D: true,
@@ -238,7 +242,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'simpleContent count');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 1], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 2], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 1], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 2], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 1]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:simpleContent grouped by file',
                            is3D: true,
@@ -255,7 +259,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'attributeGroup count');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 3], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 3], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:attributeGroup grouped by file',
                            is3D: true,
@@ -272,7 +276,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'extension count');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 1], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 8], ["saml20protocol_schema.xsd", 13], ["xenc_schema.xsd", 2]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 1], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 8], ["saml20protocol_schema.xsd", 13], ["xenc_schema.xsd", 2], ["xmldsig_schema.xsd", 1]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:extension grouped by file',
                            is3D: true,
@@ -289,7 +293,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'attribute count');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 3], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 30], ["saml20protocol_schema.xsd", 31], ["xenc_schema.xsd", 12]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 3], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 3], ["saml20assertion_schema.xsd", 30], ["saml20protocol_schema.xsd", 31], ["xenc_schema.xsd", 12], ["xmldsig_schema.xsd", 20]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:attribute grouped by file',
                            is3D: true,
@@ -306,7 +310,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'element type="xs:string"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 1], ["dinner-menu.xsd", 3], ["note.xsd", 5], ["note2.xsd", 2], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 1], ["dinner-menu.xsd", 3], ["foo.xsd", 0], ["note.xsd", 5], ["note2.xsd", 2], ["po.xsd", 6], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 4], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:element type="xs:string" grouped by file',
                            is3D: true,
@@ -323,7 +327,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'xs:element type="xs:short"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 1], ["dinner-menu.xsd", 1], ["note.xsd", 0], ["note2.xsd", 1], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 1], ["dinner-menu.xsd", 1], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 1], ["po.xsd", 0], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:element type="xs:short" grouped by file',
                            is3D: true,
@@ -340,7 +344,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'xs:element type="xs:float"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 1], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 1], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:element type="xs:float" grouped by file',
                            is3D: true,
@@ -357,7 +361,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'xs:attribute type="xs:string"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 3], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 3], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:attribute type="xs:string" grouped by file',
                            is3D: true,
@@ -374,7 +378,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'xs:element type="xs:byte"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 2], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 2], ["po.xsd", 0], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:element type="xs:byte" grouped by file',
                            is3D: true,
@@ -391,7 +395,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'xs:import');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 2], ["saml20protocol_schema.xsd", 2], ["xenc_schema.xsd", 1]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 2], ["saml20protocol_schema.xsd", 2], ["xenc_schema.xsd", 1], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:import grouped by file',
                            is3D: true,
@@ -408,7 +412,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'xs:element ref=');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 48], ["saml20protocol_schema.xsd", 46], ["xenc_schema.xsd", 8]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 2], ["saml20assertion_schema.xsd", 48], ["saml20protocol_schema.xsd", 46], ["xenc_schema.xsd", 8], ["xmldsig_schema.xsd", 23]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:element ref= grouped by file',
                            is3D: true,
@@ -425,7 +429,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'xs:choice');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 11], ["saml20protocol_schema.xsd", 7], ["xenc_schema.xsd", 4]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 11], ["saml20protocol_schema.xsd", 7], ["xenc_schema.xsd", 4], ["xmldsig_schema.xsd", 6]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:choice grouped by file',
                            is3D: true,
@@ -442,7 +446,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'xs:complexContent');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 8], ["saml20protocol_schema.xsd", 13], ["xenc_schema.xsd", 2]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 8], ["saml20protocol_schema.xsd", 13], ["xenc_schema.xsd", 2], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:complexContent grouped by file',
                            is3D: true,
@@ -459,7 +463,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'xs:annotation');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 1], ["saml20assertion_schema.xsd", 1], ["saml20protocol_schema.xsd", 1], ["saml20protocol_schema.xsd", 1], ["xenc_schema.xsd", 0], ["xenc_schema.xsd", 0]]);
+            data.addRows([["bar.xsd", 0], ["bar.xsd", 0], ["bookstore.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["note2.xsd", 0], ["po.xsd", 1], ["po.xsd", 1], ["saml20assertion_schema.xsd", 1], ["saml20assertion_schema.xsd", 1], ["saml20protocol_schema.xsd", 1], ["saml20protocol_schema.xsd", 1], ["xenc_schema.xsd", 0], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:annotation grouped by file',
                            is3D: true,
@@ -476,7 +480,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'xs:documentation');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 1], ["saml20protocol_schema.xsd", 1], ["xenc_schema.xsd", 0]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 1], ["saml20assertion_schema.xsd", 1], ["saml20protocol_schema.xsd", 1], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:documentation grouped by file',
                            is3D: true,
@@ -493,7 +497,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'xs:any');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 4], ["saml20protocol_schema.xsd", 3], ["xenc_schema.xsd", 5]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 4], ["saml20protocol_schema.xsd", 3], ["xenc_schema.xsd", 5], ["xmldsig_schema.xsd", 12]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:any grouped by file',
                            is3D: true,
@@ -510,7 +514,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'xs:enumeration');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 3], ["saml20protocol_schema.xsd", 4], ["xenc_schema.xsd", 0]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 3], ["saml20protocol_schema.xsd", 4], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:enumeration grouped by file',
                            is3D: true,
@@ -527,7 +531,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'xs:anyAttribute');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 2], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 1]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 2], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 1], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:anyAttribute grouped by file',
                            is3D: true,
@@ -544,7 +548,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'minOccurs="0"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 2], ["dinner-menu.xsd", 1], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 18], ["saml20protocol_schema.xsd", 24], ["xenc_schema.xsd", 15]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 2], ["dinner-menu.xsd", 1], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 4], ["saml20assertion_schema.xsd", 18], ["saml20protocol_schema.xsd", 24], ["xenc_schema.xsd", 5], ["xmldsig_schema.xsd", 18]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of minOccurs="0" grouped by file',
                            is3D: true,
@@ -556,29 +560,12 @@
             chart.draw(data, options);
           }
 
-          function drawChartminOccurs1() {
-            // Create the data table.
-            var data = new google.visualization.DataTable();
-            data.addColumn('string', 'minOccurs="1"');
-            data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 1]]);
-            // Set chart options
-            var options = {'title': 'Branch gh-pages count of minOccurs="1" grouped by file',
-                           is3D: true,
-                           'width': 400,
-                           'height': 330,
-                           'titleTextStyle': { 'color': 'black' } };
-            // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div_minOccurs1'));
-            chart.draw(data, options);
-          }
-
           function drawChartmaxOccursunbounded() {
             // Create the data table.
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'maxOccurs="unbounded"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 2], ["dinner-menu.xsd", 1], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 15], ["saml20protocol_schema.xsd", 11], ["xenc_schema.xsd", 7]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 2], ["dinner-menu.xsd", 1], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 1], ["saml20assertion_schema.xsd", 15], ["saml20protocol_schema.xsd", 11], ["xenc_schema.xsd", 1], ["xmldsig_schema.xsd", 16]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of maxOccurs="unbounded" grouped by file',
                            is3D: true,
@@ -595,7 +582,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'use="optional"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 3], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 18], ["saml20protocol_schema.xsd", 22], ["xenc_schema.xsd", 8]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 3], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 18], ["saml20protocol_schema.xsd", 22], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 14]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of use="optional" grouped by file',
                            is3D: true,
@@ -612,7 +599,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'use="required"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 9], ["saml20protocol_schema.xsd", 9], ["xenc_schema.xsd", 4]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 1], ["saml20assertion_schema.xsd", 9], ["saml20protocol_schema.xsd", 9], ["xenc_schema.xsd", 1], ["xmldsig_schema.xsd", 5]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of use="required" grouped by file',
                            is3D: true,
@@ -629,7 +616,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'type="anyURI"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 11], ["saml20protocol_schema.xsd", 13], ["xenc_schema.xsd", 7]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 11], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 1], ["xmldsig_schema.xsd", 10]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of type="anyURI" grouped by file',
                            is3D: true,
@@ -646,7 +633,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'type="base64Binary"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 3]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 1], ["xmldsig_schema.xsd", 7]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of type="base64Binary" grouped by file',
                            is3D: true,
@@ -663,7 +650,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'mixed="true"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 1], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 3]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 1], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 1], ["xmldsig_schema.xsd", 8]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of mixed="true" grouped by file',
                            is3D: true,
@@ -680,7 +667,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'type="ID"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 1], ["saml20protocol_schema.xsd", 2], ["xenc_schema.xsd", 3]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 1], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 9]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of type="ID" grouped by file',
                            is3D: true,
@@ -697,7 +684,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'processContents="lax"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 4], ["saml20protocol_schema.xsd", 3], ["xenc_schema.xsd", 1]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 4], ["saml20protocol_schema.xsd", 3], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 10]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of processContents="lax" grouped by file',
                            is3D: true,
@@ -714,7 +701,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'namespace="..."');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 6], ["saml20protocol_schema.xsd", 5], ["xenc_schema.xsd", 6]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 6], ["saml20protocol_schema.xsd", 5], ["xenc_schema.xsd", 2], ["xmldsig_schema.xsd", 12]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of namespace="..." grouped by file',
                            is3D: true,
@@ -731,7 +718,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'abstract="true"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 3], ["saml20protocol_schema.xsd", 2], ["xenc_schema.xsd", 1]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 3], ["saml20protocol_schema.xsd", 2], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of abstract="true" grouped by file',
                            is3D: true,
@@ -748,7 +735,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'type="dateTime"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 7], ["saml20protocol_schema.xsd", 3], ["xenc_schema.xsd", 0]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 7], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of type="dateTime" grouped by file',
                            is3D: true,
@@ -765,7 +752,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'type="NCName"');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 2], ["saml20protocol_schema.xsd", 1], ["xenc_schema.xsd", 0]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 2], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of type="NCName" grouped by file',
                            is3D: true,
@@ -782,7 +769,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'xs:restriction');
             data.addColumn('number', 'Values');
-            data.addRows([["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["saml20assertion_schema.xsd", 3], ["saml20protocol_schema.xsd", 1], ["xenc_schema.xsd", 1]]);
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 2], ["saml20assertion_schema.xsd", 3], ["saml20protocol_schema.xsd", 1], ["xenc_schema.xsd", 1], ["xmldsig_schema.xsd", 3]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of xs:restriction grouped by file',
                            is3D: true,
@@ -791,6 +778,57 @@
                            'titleTextStyle': { 'color': 'black' } };
             // Instantiate and draw our chart, passing in some options.
             var chart = new google.visualization.PieChart(document.getElementById('chart_div_restriction'));
+            chart.draw(data, options);
+          }
+
+          function drawCharttargetNamespace() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'targetNamespace');
+            data.addColumn('number', 'Values');
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 1], ["saml20protocol_schema.xsd", 1], ["xenc_schema.xsd", 1], ["xmldsig_schema.xsd", 1]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of targetNamespace grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_targetNamespace'));
+            chart.draw(data, options);
+          }
+
+          function drawChartelementFormDefault() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'elementFormDefault');
+            data.addColumn('number', 'Values');
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 1], ["dinner-menu.xsd", 1], ["foo.xsd", 0], ["note.xsd", 1], ["note2.xsd", 1], ["po.xsd", 0], ["saml20assertion_schema.xsd", 1], ["saml20protocol_schema.xsd", 1], ["xenc_schema.xsd", 1], ["xmldsig_schema.xsd", 1]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of elementFormDefault grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_elementFormDefault'));
+            chart.draw(data, options);
+          }
+
+          function drawChartattributeFormDefault() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'attributeFormDefault');
+            data.addColumn('number', 'Values');
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 1], ["dinner-menu.xsd", 1], ["foo.xsd", 0], ["note.xsd", 1], ["note2.xsd", 1], ["po.xsd", 0], ["saml20assertion_schema.xsd", 1], ["saml20protocol_schema.xsd", 1], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of attributeFormDefault grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_attributeFormDefault'));
             chart.draw(data, options);
           }
 
@@ -869,8 +907,6 @@
 
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_minOccurs0'></div>
 
-        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_minOccurs1'></div>
-
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_maxOccursunbounded'></div>
 
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_useoptional'></div>
@@ -896,6 +932,12 @@
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_typeNCName'></div>
 
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_restriction'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_targetNamespace'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_elementFormDefault'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_attributeFormDefault'></div>
 
       </div>
       </div>

@@ -12,4 +12,5 @@
 ./bootstrap/js: zero sized file
 ./cloc.txt: zero sized file
 ./ignored.txt: listed in $Not_Code_Extension{txt}
+./newProject.xpr: language unknown (#3)
 ./schema: zero sized file

@@ -8,7 +8,7 @@ version=[]; xmlns=[]; complexType=[]; element=[]; sequence=[]; simpleContent=[];
 elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[]; annotation=[]; documentation=[];
 xsany=[]; xsenumeration=[]; xsanyAttribute=[]; minOccurs0=[]; minOccurs1=[]; maxOccursunbounded=[]; useoptional=[]; userequired=[]; typeanyURI=[];
 typebase64Binary=[]; mixedtrue=[]; typeID=[]; processContentslax=[]; namespace=[]; abstracttrue=[]; typedateTime=[]; typeNCName=[]; restriction=[];
-attributeGroup=[];
+attributeGroup=[]; targetNamespace=[]; elementFormDefault=[]; attributeFormDefault=[];
 #loop over schema files
 Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   #puts schema
@@ -18,7 +18,7 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   file = File.open(schema, 'r'); data = file.read; file.close;
   #puts data
   #build stats
-  version         << data.gsub(/(.*<xs:schema.*version=")(.*?)(">.*<\/xs:schema>)/m,'\2').strip
+  version         << data.gsub(/(.*<xs:schema.*?version=")(.*?)(">.*<\/xs:schema>)/m,'\2').strip
   #puts version
   xmlns            << [filename, data.scan(/xmlns(=|:)/).size        ]
   complexType      << [filename, data.scan(/<xs:complexType/).size   ]
@@ -43,7 +43,7 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   xsenumeration    << [filename, data.scan(/<xs:enumeration/).size    ]
   xsanyAttribute   << [filename, data.scan(/<xs:anyAttribute/).size   ]
   minOccurs0       << [filename, data.scan(/minOccurs="0"/).size      ]
-  minOccurs1       << [filename, data.scan(/minOccurs="1"/).size      ]
+  #minOccurs1       << [filename, data.scan(/minOccurs="1"/).size      ]
   maxOccursunbounded << [filename, data.scan(/maxOccurs="unbounded"/).size]
   useoptional      << [filename, data.scan(/use="optional"/).size         ]
   userequired      << [filename, data.scan(/use="required"/).size         ]
@@ -58,6 +58,9 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   typeNCName       << [filename, data.scan(/type="NCName"/).size          ]
   restriction      << [filename, data.scan(/<xs:restriction/).size        ]
   attributeGroup   << [filename, data.scan(/<xs:attributeGroup/).size     ]
+  targetNamespace  << [filename, data.scan(/targetNamespace/).size        ]
+  elementFormDefault << [filename, data.scan(/elementFormDefault/).size   ]
+  attributeFormDefault << [filename, data.scan(/attributeFormDefault/).size ]
 end
 version = version.group_by{|x| x}.map{|k, v| [k, v.size]}
 #puts version
@@ -92,7 +95,7 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [xsenumeration, 'xsenumeration', 'xs:enumeration', v, charttitle('xs:enumeration'), 'xsenumeration'],
             [xsanyAttribute, 'xsanyAttribute', 'xs:anyAttribute', v, charttitle('xs:anyAttribute'), 'xsanyAttribute'],
             [minOccurs0, 'minOccurs0', 'minOccurs="0"', v, charttitle('minOccurs="0"'), 'minOccurs0'],
-            [minOccurs1, 'minOccurs1', 'minOccurs="1"', v, charttitle('minOccurs="1"'), 'minOccurs1'],
+            #[minOccurs1, 'minOccurs1', 'minOccurs="1"', v, charttitle('minOccurs="1"'), 'minOccurs1'],
             [maxOccursunbounded, 'maxOccursunbounded', 'maxOccurs="unbounded"', v, charttitle('maxOccurs="unbounded"'), 'maxOccursunbounded'],
             [useoptional, 'useoptional', 'use="optional"', v, charttitle('use="optional"'), 'useoptional'],
             [userequired, 'userequired', 'use="required"', v, charttitle('use="required"'), 'userequired'],
@@ -105,7 +108,10 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [abstracttrue, 'abstracttrue', 'abstract="true"', v, charttitle('abstract="true"'), 'abstracttrue'],
             [typedateTime, 'typedateTime', 'type="dateTime"', v, charttitle('type="dateTime"'), 'typedateTime'],
             [typeNCName, 'typeNCName', 'type="NCName"', v, charttitle('type="NCName"'), 'typeNCName'],
-            [restriction, 'restriction', 'xs:restriction', v, charttitle('xs:restriction'), 'restriction']
+            [restriction, 'restriction', 'xs:restriction', v, charttitle('xs:restriction'), 'restriction'],
+            [targetNamespace, 'targetNamespace', 'targetNamespace', v, charttitle('targetNamespace'), 'targetNamespace'],
+            [elementFormDefault, 'elementFormDefault', 'elementFormDefault', v, charttitle('elementFormDefault'), 'elementFormDefault'],
+            [attributeFormDefault, 'attributeFormDefault', 'attributeFormDefault', v, charttitle('attributeFormDefault'), 'attributeFormDefault']
           ]
 #integrate cloc stats vai shell command
 cloc = `cloc-1.64 . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`

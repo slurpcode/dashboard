@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema
     targetNamespace="urn:oasis:names:tc:SAML:2.0:protocol"
-    xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol"
     xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
     xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
     elementFormDefault="qualified"
     attributeFormDefault="unqualified"
     blockDefault="substitution"
@@ -33,11 +32,11 @@
             <xs:element ref="ds:Signature" minOccurs="0"/>
             <xs:element ref="samlp:Extensions" minOccurs="0"/>
         </xs:sequence>
-        <xs:attribute name="ID" type="ID" use="required"/>
-        <xs:attribute name="Version" type="string" use="required"/>
-        <xs:attribute name="IssueInstant" type="dateTime" use="required"/>
-        <xs:attribute name="Destination" type="anyURI" use="optional"/>
-    	<xs:attribute name="Consent" type="anyURI" use="optional"/>
+        <xs:attribute name="ID" type="xs:ID" use="required"/>
+        <xs:attribute name="Version" type="xs:string" use="required"/>
+        <xs:attribute name="IssueInstant" type="xs:dateTime" use="required"/>
+        <xs:attribute name="Destination" type="xs:anyURI" use="optional"/>
+    	<xs:attribute name="Consent" type="xs:anyURI" use="optional"/>
     </xs:complexType>
     <xs:element name="Extensions" type="samlp:ExtensionsType"/>
     <xs:complexType name="ExtensionsType">
@@ -52,12 +51,12 @@
             <xs:element ref="samlp:Extensions" minOccurs="0"/>
             <xs:element ref="samlp:Status"/>
     	</xs:sequence>
-    	<xs:attribute name="ID" type="ID" use="required"/>
-    	<xs:attribute name="InResponseTo" type="NCName" use="optional"/>
-    	<xs:attribute name="Version" type="string" use="required"/>
-    	<xs:attribute name="IssueInstant" type="dateTime" use="required"/>
-    	<xs:attribute name="Destination" type="anyURI" use="optional"/>
-    	<xs:attribute name="Consent" type="anyURI" use="optional"/>
+    	<xs:attribute name="ID" type="xs:ID" use="required"/>
+    	<xs:attribute name="InResponseTo" type="xs:NCName" use="optional"/>
+    	<xs:attribute name="Version" type="xs:string" use="required"/>
+    	<xs:attribute name="IssueInstant" type="xs:dateTime" use="required"/>
+    	<xs:attribute name="Destination" type="xs:anyURI" use="optional"/>
+    	<xs:attribute name="Consent" type="xs:anyURI" use="optional"/>
     </xs:complexType>
     <xs:element name="Status" type="samlp:StatusType"/>
     <xs:complexType name="StatusType">
@@ -72,9 +71,9 @@
         <xs:sequence>
             <xs:element ref="samlp:StatusCode" minOccurs="0"/>
         </xs:sequence>
-        <xs:attribute name="Value" type="anyURI" use="required"/>
+        <xs:attribute name="Value" type="xs:anyURI" use="required"/>
     </xs:complexType>
-    <xs:element name="StatusMessage" type="string"/>
+    <xs:element name="StatusMessage" type="xs:string"/>
     <xs:element name="StatusDetail" type="samlp:StatusDetailType"/>
     <xs:complexType name="StatusDetailType">
         <xs:sequence>
@@ -108,7 +107,7 @@
                 <xs:sequence>
                     <xs:element ref="samlp:RequestedAuthnContext" minOccurs="0"/>
                 </xs:sequence>
-                <xs:attribute name="SessionIndex" type="string" use="optional"/>
+                <xs:attribute name="SessionIndex" type="xs:string" use="optional"/>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
@@ -121,7 +120,7 @@
         <xs:attribute name="Comparison" type="samlp:AuthnContextComparisonType" use="optional"/>
     </xs:complexType>
     <xs:simpleType name="AuthnContextComparisonType">
-        <xs:restriction base="string">
+        <xs:restriction base="xs:string">
             <xs:enumeration value="exact"/>
             <xs:enumeration value="minimum"/>
             <xs:enumeration value="maximum"/>
@@ -146,7 +145,7 @@
                     <xs:element ref="saml:Action" maxOccurs="unbounded"/>
                     <xs:element ref="saml:Evidence" minOccurs="0"/>
                 </xs:sequence>
-                <xs:attribute name="Resource" type="anyURI" use="required"/>
+                <xs:attribute name="Resource" type="xs:anyURI" use="required"/>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
@@ -161,21 +160,21 @@
                     <xs:element ref="samlp:RequestedAuthnContext" minOccurs="0"/>
                     <xs:element ref="samlp:Scoping" minOccurs="0"/>
                 </xs:sequence>
-                <xs:attribute name="ForceAuthn" type="boolean" use="optional"/>
-                <xs:attribute name="IsPassive" type="boolean" use="optional"/>
-                <xs:attribute name="ProtocolBinding" type="anyURI" use="optional"/>
-                <xs:attribute name="AssertionConsumerServiceIndex" type="unsignedShort" use="optional"/>
-                <xs:attribute name="AssertionConsumerServiceURL" type="anyURI" use="optional"/>
-                <xs:attribute name="AttributeConsumingServiceIndex" type="unsignedShort" use="optional"/>
-                <xs:attribute name="ProviderName" type="string" use="optional"/>
+                <xs:attribute name="ForceAuthn" type="xs:boolean" use="optional"/>
+                <xs:attribute name="IsPassive" type="xs:boolean" use="optional"/>
+                <xs:attribute name="ProtocolBinding" type="xs:anyURI" use="optional"/>
+                <xs:attribute name="AssertionConsumerServiceIndex" type="xs:unsignedShort" use="optional"/>
+                <xs:attribute name="AssertionConsumerServiceURL" type="xs:anyURI" use="optional"/>
+                <xs:attribute name="AttributeConsumingServiceIndex" type="xs:unsignedShort" use="optional"/>
+                <xs:attribute name="ProviderName" type="xs:string" use="optional"/>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
     <xs:element name="NameIDPolicy" type="samlp:NameIDPolicyType"/>
     <xs:complexType name="NameIDPolicyType">
-        <xs:attribute name="Format" type="anyURI" use="optional"/>
-        <xs:attribute name="SPNameQualifier" type="string" use="optional"/>
-        <xs:attribute name="AllowCreate" type="boolean" use="optional"/>
+        <xs:attribute name="Format" type="xs:anyURI" use="optional"/>
+        <xs:attribute name="SPNameQualifier" type="xs:string" use="optional"/>
+        <xs:attribute name="AllowCreate" type="xs:boolean" use="optional"/>
     </xs:complexType>
     <xs:element name="Scoping" type="samlp:ScopingType"/>
     <xs:complexType name="ScopingType">
@@ -183,9 +182,9 @@
             <xs:element ref="samlp:IDPList" minOccurs="0"/>
             <xs:element ref="samlp:RequesterID" minOccurs="0" maxOccurs="unbounded"/>
         </xs:sequence>
-        <xs:attribute name="ProxyCount" type="nonNegativeInteger" use="optional"/>
+        <xs:attribute name="ProxyCount" type="xs:nonNegativeInteger" use="optional"/>
     </xs:complexType>
-    <xs:element name="RequesterID" type="anyURI"/>
+    <xs:element name="RequesterID" type="xs:anyURI"/>
     <xs:element name="IDPList" type="samlp:IDPListType"/>
     <xs:complexType name="IDPListType">
         <xs:sequence>
@@ -195,11 +194,11 @@
     </xs:complexType>
     <xs:element name="IDPEntry" type="samlp:IDPEntryType"/>
     <xs:complexType name="IDPEntryType">
-        <xs:attribute name="ProviderID" type="anyURI" use="required"/>
-        <xs:attribute name="Name" type="string" use="optional"/>
-        <xs:attribute name="Loc" type="anyURI" use="optional"/>
+        <xs:attribute name="ProviderID" type="xs:anyURI" use="required"/>
+        <xs:attribute name="Name" type="xs:string" use="optional"/>
+        <xs:attribute name="Loc" type="xs:anyURI" use="optional"/>
     </xs:complexType>
-    <xs:element name="GetComplete" type="anyURI"/>
+    <xs:element name="GetComplete" type="xs:anyURI"/>
     <xs:element name="Response" type="samlp:ResponseType"/>
     <xs:complexType name="ResponseType">
     	<xs:complexContent>
@@ -221,7 +220,7 @@
             </xs:extension>
     	</xs:complexContent>
     </xs:complexType>
-    <xs:element name="Artifact" type="string"/>
+    <xs:element name="Artifact" type="xs:string"/>
     <xs:element name="ArtifactResponse" type="samlp:ArtifactResponseType"/>
     <xs:complexType name="ArtifactResponseType">
     	<xs:complexContent>
@@ -250,7 +249,7 @@
             </xs:extension>
     	</xs:complexContent>
     </xs:complexType>
-    <xs:element name="NewID" type="string"/>
+    <xs:element name="NewID" type="xs:string"/>
     <xs:element name="NewEncryptedID" type="saml:EncryptedElementType"/>
     <xs:element name="Terminate" type="samlp:TerminateType"/>
     <xs:complexType name="TerminateType"/>
@@ -267,12 +266,12 @@
                     </xs:choice>
                     <xs:element ref="samlp:SessionIndex" minOccurs="0" maxOccurs="unbounded"/>
                 </xs:sequence>
-                <xs:attribute name="Reason" type="string" use="optional"/>
-                <xs:attribute name="NotOnOrAfter" type="dateTime" use="optional"/>
+                <xs:attribute name="Reason" type="xs:string" use="optional"/>
+                <xs:attribute name="NotOnOrAfter" type="xs:dateTime" use="optional"/>
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
-    <xs:element name="SessionIndex" type="string"/>
+    <xs:element name="SessionIndex" type="xs:string"/>
     <xs:element name="LogoutResponse" type="samlp:StatusResponseType"/>
     <xs:element name="NameIDMappingRequest" type="samlp:NameIDMappingRequestType"/>
     <xs:complexType name="NameIDMappingRequestType">

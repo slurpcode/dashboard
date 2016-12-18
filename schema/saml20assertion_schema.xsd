@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="US-ASCII"?>
 <xs:schema
     targetNamespace="urn:oasis:names:tc:SAML:2.0:assertion"
-    xmlns="http://www.w3.org/2001/XMLSchema"
     xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion"
     xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
     xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    elementFormDefault="qualified"
+    elementFormDefault="unqualified"
     attributeFormDefault="unqualified"
     blockDefault="substitution"
     version="2.0">

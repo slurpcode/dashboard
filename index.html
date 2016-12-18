@@ -79,7 +79,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Schema count');
             data.addColumn('number', 'Values');
-            data.addRows([["folders", 6], [".css", 4], [".map", 4], [".eot", 1], [".svg", 1], [".ttf", 1], [".woff", 1], [".woff2", 1], [".js", 4], [".txt", 2], [".html", 2], [".rb", 1], [".md", 1], [".xsd", 7]]);
+            data.addRows([["folders", 6], [".css", 4], [".map", 4], [".eot", 1], [".svg", 1], [".ttf", 1], [".woff", 1], [".woff2", 1], [".js", 4], [".txt", 2], [".html", 2], [".rb", 1], [".xpr", 1], [".md", 1], [".xsd", 11]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of files grouped by file type',
                            is3D: true,
@@ -120,17 +120,17 @@
       <pre>
         <code>
           
-http://cloc.sourceforge.net v 1.64  T=0.16 s (112.3 files/s, 74562.2 lines/s)
+http://cloc.sourceforge.net v 1.64  T=0.15 s (144.9 files/s, 81474.0 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
 CSS                              4              7             24           7326
 Javascript                       4            582            205           1614
-HTML                             2            155             16            881
-XSD                              7             20              3            792
-Ruby                             1             23             41            266
+XSD                             11             82             18           1105
+HTML                             2            158             16            899
+Ruby                             1             23             43            270
 -------------------------------------------------------------------------------
-SUM:                            18            787            289          10879
+SUM:                            22            852            306          11214
 -------------------------------------------------------------------------------
 
         </code>
