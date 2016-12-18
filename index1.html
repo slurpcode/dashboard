@@ -158,6 +158,10 @@
 
           google.charts.setOnLoadCallback(drawChartentity);
 
+          google.charts.setOnLoadCallback(drawChartbasebase64Binary);
+
+          google.charts.setOnLoadCallback(drawChartblockDefaultsubstitution);
+
           function drawChartversion() {
             // Create the data table.
             var data = new google.visualization.DataTable();
@@ -889,6 +893,40 @@
             chart.draw(data, options);
           }
 
+          function drawChartbasebase64Binary() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'base="base64Binary"');
+            data.addColumn('number', 'Values');
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 3]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of base="base64Binary" grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_basebase64Binary'));
+            chart.draw(data, options);
+          }
+
+          function drawChartblockDefaultsubstitution() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'blockDefault="substitution"');
+            data.addColumn('number', 'Values');
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 1], ["saml20protocol_schema.xsd", 1], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of blockDefault="substitution" grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_blockDefaultsubstitution'));
+            chart.draw(data, options);
+          }
+
       </script>
     </head>
     <body>
@@ -1001,6 +1039,10 @@
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_attlist'></div>
 
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_entity'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_basebase64Binary'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_blockDefaultsubstitution'></div>
 
       </div>
       </div>
