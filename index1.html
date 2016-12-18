@@ -152,6 +152,12 @@
 
           google.charts.setOnLoadCallback(drawChartattributeFormDefault);
 
+          google.charts.setOnLoadCallback(drawChartdoctype);
+
+          google.charts.setOnLoadCallback(drawChartattlist);
+
+          google.charts.setOnLoadCallback(drawChartentity);
+
           function drawChartversion() {
             // Create the data table.
             var data = new google.visualization.DataTable();
@@ -832,6 +838,57 @@
             chart.draw(data, options);
           }
 
+          function drawChartdoctype() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'doctype');
+            data.addColumn('number', 'Values');
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 1], ["xmldsig_schema.xsd", 1]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of <!DOCTYPE grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_doctype'));
+            chart.draw(data, options);
+          }
+
+          function drawChartattlist() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'attlist');
+            data.addColumn('number', 'Values');
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 1], ["xmldsig_schema.xsd", 1]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of <!ATTLIST grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_attlist'));
+            chart.draw(data, options);
+          }
+
+          function drawChartentity() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'entity');
+            data.addColumn('number', 'Values');
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 0], ["xenc_schema.xsd", 3], ["xmldsig_schema.xsd", 3]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of <!ENTITY grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_entity'));
+            chart.draw(data, options);
+          }
+
       </script>
     </head>
     <body>
@@ -938,6 +995,12 @@
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_elementFormDefault'></div>
 
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_attributeFormDefault'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_doctype'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_attlist'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_entity'></div>
 
       </div>
       </div>

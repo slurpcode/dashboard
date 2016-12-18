@@ -8,7 +8,9 @@ version=[]; xmlns=[]; complexType=[]; element=[]; sequence=[]; simpleContent=[];
 elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[]; annotation=[]; documentation=[];
 xsany=[]; xsenumeration=[]; xsanyAttribute=[]; minOccurs0=[]; minOccurs1=[]; maxOccursunbounded=[]; useoptional=[]; userequired=[]; typeanyURI=[];
 typebase64Binary=[]; mixedtrue=[]; typeID=[]; processContentslax=[]; namespace=[]; abstracttrue=[]; typedateTime=[]; typeNCName=[]; restriction=[];
-attributeGroup=[]; targetNamespace=[]; elementFormDefault=[]; attributeFormDefault=[];
+attributeGroup=[]; targetNamespace=[]; elementFormDefault=[]; attributeFormDefault=[]; doctype=[];
+attlist=[]; entity=[];
+
 #loop over schema files
 Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   #puts schema
@@ -61,6 +63,9 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   targetNamespace  << [filename, data.scan(/targetNamespace/).size        ]
   elementFormDefault << [filename, data.scan(/elementFormDefault/).size   ]
   attributeFormDefault << [filename, data.scan(/attributeFormDefault/).size ]
+  doctype << [filename, data.scan(/<!DOCTYPE/).size ]
+  attlist << [filename, data.scan(/<!ATTLIST/).size]
+  entity << [filename, data.scan(/<!ENTITY/).size ]
 end
 version = version.group_by{|x| x}.map{|k, v| [k, v.size]}
 #puts version
@@ -111,7 +116,10 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [restriction, 'restriction', 'xs:restriction', v, charttitle('xs:restriction'), 'restriction'],
             [targetNamespace, 'targetNamespace', 'targetNamespace', v, charttitle('targetNamespace'), 'targetNamespace'],
             [elementFormDefault, 'elementFormDefault', 'elementFormDefault', v, charttitle('elementFormDefault'), 'elementFormDefault'],
-            [attributeFormDefault, 'attributeFormDefault', 'attributeFormDefault', v, charttitle('attributeFormDefault'), 'attributeFormDefault']
+            [attributeFormDefault, 'attributeFormDefault', 'attributeFormDefault', v, charttitle('attributeFormDefault'), 'attributeFormDefault'],
+            [doctype, 'doctype', 'doctype', v, charttitle('<!DOCTYPE'), 'doctype'],
+            [attlist, 'attlist', 'attlist', v, charttitle('<!ATTLIST'), 'attlist'],
+            [entity, 'entity', 'entity', v, charttitle('<!ENTITY'), 'entity']
           ]
 #integrate cloc stats vai shell command
 cloc = `cloc-1.64 . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
