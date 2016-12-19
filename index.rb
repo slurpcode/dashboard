@@ -9,7 +9,7 @@ elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[];
 xsany=[]; xsenumeration=[]; xsanyAttribute=[]; minOccurs0=[]; minOccurs1=[]; maxOccursunbounded=[]; useoptional=[]; userequired=[]; typeanyURI=[];
 typebase64Binary=[]; mixedtrue=[]; typeID=[]; processContentslax=[]; namespace=[]; abstracttrue=[]; typedateTime=[]; typeNCName=[]; restriction=[];
 attributeGroup=[]; targetNamespace=[]; elementFormDefault=[]; attributeFormDefault=[]; doctype=[];
-attlist=[]; entity=[]; basebase64Binary=[]; blockDefaultsubstitution=[];
+attlist=[]; entity=[]; basebase64Binary=[]; blockDefaultsubstitution=[]; typedsKeyInfoType=[];
 
 #loop over schema files
 Dir.glob("schema/*.xsd").map.with_index do |schema, i|
@@ -68,6 +68,7 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   entity << [filename, data.scan(/<!ENTITY/).size ]
   basebase64Binary << [filename, data.scan(/base="base64Binary"/).size ]
   blockDefaultsubstitution << [filename, data.scan(/blockDefault="substitution"/).size ]
+  typedsKeyInfoType << [filename, data.scan(/type="ds:KeyInfoType"/).size ]
 end
 version = version.group_by{|x| x}.map{|k, v| [k, v.size]}
 #puts version
@@ -123,7 +124,8 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [attlist, 'attlist', 'attlist', v, charttitle('<!ATTLIST'), 'attlist'],
             [entity, 'entity', 'entity', v, charttitle('<!ENTITY'), 'entity'],
             [basebase64Binary, 'basebase64Binary', 'base="base64Binary"', v, charttitle('base="base64Binary"'), 'basebase64Binary'],
-            [blockDefaultsubstitution, 'blockDefaultsubstitution', 'blockDefault="substitution"', v, charttitle('blockDefault="substitution"'), 'blockDefaultsubstitution']
+            [blockDefaultsubstitution, 'blockDefaultsubstitution', 'blockDefault="substitution"', v, charttitle('blockDefault="substitution"'), 'blockDefaultsubstitution'],
+            [typedsKeyInfoType, 'typedsKeyInfoType', 'type="ds:KeyInfoType"', v, charttitle('type="ds:KeyInfoType"')]
           ]
 #integrate cloc stats vai shell command
 cloc = `cloc-1.64 . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
