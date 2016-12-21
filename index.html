@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other
+             head content must come *after* these tags -->
+        <title>Analytics Dashboard</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel='stylesheet' href='bootstrap/css/bootstrap.min.css'>
+        <!-- Optional theme -->
+        <link rel='stylesheet' href='bootstrap/css/bootstrap-theme.min.css'>
+        <style>
+          h2 { text-align: center; font-size: 19pt; background-color: rgba(49,37,152,0.8);
+               color: #fff; border-radius: 1pt 1pt 1pt 1pt; padding: 14px; }
+
+          .container-fluid { padding: 0px; }
+
+          .navbar, .navbar-default { padding: 5pt; background-color: rgba(49,37,152,0.8) !important;
+             color: #fff !important; font-size: 12pt; border-color: #none !important; }
+
+          .navbar, .navbar-default li hover { color: #fff !important; }
+
+          .navbar, .navbar-default li a { color: #000000 !important; }
+
+          .navbar-default .navbar-brand { color: #fff; font-size: 15pt; }
+
+          .navbar-default .navbar-nav > .active > a,
+          .navbar-default .navbar-nav > .active > a:hover,
+          .navbar-default .navbar-nav > .active > a:focus {
+            background-color: transparent !important; }
+
+          .navbar-default .navbar-nav > .open > a,
+          .navbar-default .navbar-nav > .open > a:focus,
+          .navbar-default .navbar-nav > .open > a:hover {
+          	color: #555; background-color: #ff0000; font-weight: bold; }
+
+          .navbar-default .navbar-brand:hover,
+          .navbar-default .navbar-brand:focus {
+            color: #fff; background-color: transparent; }
+
+          .navbar-default .navbar-text { color: #000; }
+
+          .nav { padding-right: 300px; }
+
+          .dropdown-menu > li > a { display: block; padding: 3px 20px; clear: both;
+            font-weight: 600; line-height: 1.42857143; color: #333; white-space: nowrap; }
+
+          div[id^="chart_div"] > div > div { margin: auto; }
+
+          .chartNumber { color: purple; font-size: 22pt; }
+
+          .overview { font-size: 14pt;  }
+
+         .footer { background-color: rgba(49,37,152,0.8);
+           min-height: 200px; color: #fff !important; }
+
+         .footer ul a { color: #fff !important; }
+
+         pre { white-space: pre-wrap; //css3
+             white-space: moz-pre-wrap; //firefox
+             white-space: -pre-wrap; //opera 4-6
+             white-space: -o-pre-wrap; //opera 7
+             word-wrap: break-word; //internet explorer
+         }
+        </style>
+        <!--Load the AJAX API-->
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+          // Load the Visualization API and the corechart package.
+          google.charts.load('current', {'packages':['corechart']});
+
+          google.charts.setOnLoadCallback(drawChartAll);
+
+          function drawChartAll() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Schema count');
+            data.addColumn('number', 'Values');
+            data.addRows([["folders", 6], [".css", 4], [".map", 4], [".eot", 1], [".svg", 1], [".ttf", 1], [".woff", 1], [".woff2", 1], [".js", 4], [".txt", 2], [".html", 2], [".rb", 1], [".xpr", 1], [".md", 1], [".xsd", 11]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of files grouped by file type',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_all'));
+            chart.draw(data, options);
+          }
+
+      </script>
+    </head>
+    <body>
+      <!-- Static navbar -->
+      <nav class='navbar navbar-default'>
+        <div class='container-fluid'>
+          <div class='navbar-header'>
+            <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'>
+              <span class='sr-only'>Toggle navigation</span>
+              <span class='icon-bar'></span>
+              <span class='icon-bar'></span>
+              <span class='icon-bar'></span>
+              </button>
+            <a class='navbar-brand' href='#' id='head1'>Analytics Dashboard</a>
+          </div>
+          <div id='navbar' class='navbar-collapse collapse'>
+            <ul class='nav navbar-nav'>
+              <li class=''><a href='index.html'>Home</a></li>
+              <li class=''><a href='index1.html'>Charts</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class='container-fluid'>
+
+      <h2>Featured Statistics</h2>
+      <pre>
+        <code>
+          
+http://cloc.sourceforge.net v 1.64  T=0.24 s (92.3 files/s, 52738.4 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+CSS                              4              7             24           7326
+Javascript                       4            582            205           1614
+XSD                             11             81             41           1082
+HTML                             2            185             16           1061
+Ruby                             1             24             43            285
+-------------------------------------------------------------------------------
+SUM:                            22            879            329          11368
+-------------------------------------------------------------------------------
+
+        </code>
+      </pre>
+      <div class='row'>
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_all'></div>
+      </div>
+
+      </div>
+      <footer class='footer'>
+        <div class='container'>
+          <ul class='list-unstyled'>
+            <li><a href='#head1'>Back to top</a></li>
+            <li><a href='index.html'>Home</a></li>
+            <li><a href='index1.html'>Charts</a></li>
+          </ul>
+        </div>
+      </footer>
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src='bootstrap/js/jquery.min.js'></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src='bootstrap/js/bootstrap.min.js'></script>
+    </body>
+</html>
