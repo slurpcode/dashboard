@@ -164,6 +164,8 @@
 
           google.charts.setOnLoadCallback(drawCharttypedsKeyInfoType);
 
+          google.charts.setOnLoadCallback(drawChartelementrefsamlp);
+
           function drawChartversion() {
             // Create the data table.
             var data = new google.visualization.DataTable();
@@ -946,6 +948,23 @@
             chart.draw(data, options);
           }
 
+          function drawChartelementrefsamlp() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'element=ref"samlp:');
+            data.addColumn('number', 'Values');
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 21], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of element=ref"samlp: grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_'));
+            chart.draw(data, options);
+          }
+
       </script>
     </head>
     <body>
@@ -1062,6 +1081,8 @@
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_basebase64Binary'></div>
 
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_blockDefaultsubstitution'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_'></div>
 
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_'></div>
 
