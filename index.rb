@@ -18,10 +18,8 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   filename = schema.split('/').last
   #puts filename
   file = File.open(schema, 'r'); data = file.read; file.close;
-  #puts data
-  #build stats
-  version         << data.gsub(/(.*<xs:schema.*?version=")(.*?)(">.*<\/xs:schema>)/m,'\2').strip
-  #puts version
+  
+  version         << data.gsub(/(.*<xs:schema.*?version=")(.*?)(">.*<\/xs:schema>)/m,'\2').strip  
   xmlns            << [filename, data.scan(/xmlns(=|:)/).size        ]
   complexType      << [filename, data.scan(/<xs:complexType/).size   ]
   element          << [filename, data.scan(/<xs:element/).size       ]
@@ -70,6 +68,7 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   blockDefaultsubstitution << [filename, data.scan(/blockDefault="substitution"/).size ]
   typedsKeyInfoType << [filename, data.scan(/type="ds:KeyInfoType"/).size ]
   elementrefsamlp << [filename, data.scan(/xs:element ref="samlp:/).size ]
+  elementrefsaml = [filename, data.scan(/<xs:element ref="saml:/).size ]
 end
 version = version.group_by{|x| x}.map{|k, v| [k, v.size]}
 #puts version
@@ -127,7 +126,8 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [basebase64Binary, 'basebase64Binary', 'base="base64Binary"', v, charttitle('base="base64Binary"'), 'basebase64Binary'],
             [blockDefaultsubstitution, 'blockDefaultsubstitution', 'blockDefault="substitution"', v, charttitle('blockDefault="substitution"'), 'blockDefaultsubstitution'],
             [typedsKeyInfoType, 'typedsKeyInfoType', 'type="ds:KeyInfoType"', v, charttitle('type="ds:KeyInfoType"')],
-            [elementrefsamlp, 'elementrefsamlp', 'element=ref"samlp:', v, charttitle('element=ref"samlp:')]
+            [elementrefsamlp, 'elementrefsamlp', 'element=ref"samlp:', v, charttitle('element=ref"samlp:')],
+            [elementrefsaml, 'elementrefsaml', '<xs:element ref="saml:', v, charttitle('<xs:element ref="saml:')]
           ]
 #integrate cloc stats vai shell command
 cloc = `cloc-1.64 . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
