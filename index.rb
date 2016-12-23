@@ -10,65 +10,63 @@ xsany=[]; xsenumeration=[]; xsanyAttribute=[]; minOccurs0=[]; minOccurs1=[]; max
 typebase64Binary=[]; mixedtrue=[]; typeID=[]; processContentslax=[]; namespace=[]; abstracttrue=[]; typedateTime=[]; typeNCName=[]; restriction=[];
 attributeGroup=[]; targetNamespace=[]; elementFormDefault=[]; attributeFormDefault=[]; doctype=[];
 attlist=[]; entity=[]; basebase64Binary=[]; blockDefaultsubstitution=[]; typedsKeyInfoType=[]; elementrefsamlp=[];
+elementrefsaml=[];
 
 #loop over schema files
 Dir.glob("schema/*.xsd").map.with_index do |schema, i|
-  #puts schema
-  #puts i
   filename = schema.split('/').last
-  #puts filename
   file = File.open(schema, 'r'); data = file.read; file.close;
-  
-  version         << data.gsub(/(.*<xs:schema.*?version=")(.*?)(">.*<\/xs:schema>)/m,'\2').strip  
-  xmlns            << [filename, data.scan(/xmlns(=|:)/).size        ]
-  complexType      << [filename, data.scan(/<xs:complexType/).size   ]
-  element          << [filename, data.scan(/<xs:element/).size       ]
-  sequence         << [filename, data.scan(/<xs:sequence/).size      ]
-  simpleContent    << [filename, data.scan(/<xs:simpleContent/).size ]
-  xsextension      << [filename, data.scan(/<xs:extension/).size     ]
-  attribute        << [filename, data.scan(/<xs:attribute/).size     ]
-  elementstring    << [filename, data.scan(/<xs:element .*?type="xs:string"/).size]
-  elementshort     << [filename, data.scan(/<xs:element type="xs:short"/).size    ]
-  elementfloat     << [filename, data.scan(/<xs:element type="xs:float"/).size    ]
-  attributestring  << [filename, data.scan(/<xs:attribute type="xs:string"/).size ]
-  elementbyte      << [filename, data.scan(/<xs:element type="xs:byte"/).size     ]
-  xsimport         << [filename, data.scan(/<xs:import/).size         ]
-  elementref       << [filename, data.scan(/<xs:element ref=/).size   ]
-  xschoice         << [filename, data.scan(/<xs:choice/).size         ]
-  complexContent   << [filename, data.scan(/<xs:complexContent/).size ]
-  annotation       << [filename, data.scan(/<xs:annotation/).size     ]
-  annotation       << [filename, data.scan(/<xs:annotation/).size     ]
-  documentation    << [filename, data.scan(/<xs:documentation/).size  ]
-  xsany            << [filename, data.scan(/<xs:any/).size            ]
-  xsenumeration    << [filename, data.scan(/<xs:enumeration/).size    ]
-  xsanyAttribute   << [filename, data.scan(/<xs:anyAttribute/).size   ]
-  minOccurs0       << [filename, data.scan(/minOccurs="0"/).size      ]
-  #minOccurs1       << [filename, data.scan(/minOccurs="1"/).size      ]
-  maxOccursunbounded << [filename, data.scan(/maxOccurs="unbounded"/).size]
-  useoptional      << [filename, data.scan(/use="optional"/).size         ]
-  userequired      << [filename, data.scan(/use="required"/).size         ]
-  typeanyURI       << [filename, data.scan(/type="anyURI"/).size          ]
-  typebase64Binary << [filename, data.scan(/type="base64Binary"/).size    ]
-  mixedtrue        << [filename, data.scan(/mixed="true"/).size           ]
-  typeID           << [filename, data.scan(/type="ID"/).size              ]
-  processContentslax << [filename, data.scan(/processContents="lax"/).size]
-  namespace        << [filename, data.scan(/namespace="/).size            ]
-  abstracttrue     << [filename, data.scan(/abstract="true"/).size        ]
-  typedateTime     << [filename, data.scan(/type="dateTime"/).size        ]
-  typeNCName       << [filename, data.scan(/type="NCName"/).size          ]
-  restriction      << [filename, data.scan(/<xs:restriction/).size        ]
-  attributeGroup   << [filename, data.scan(/<xs:attributeGroup/).size     ]
-  targetNamespace  << [filename, data.scan(/targetNamespace/).size        ]
-  elementFormDefault << [filename, data.scan(/elementFormDefault/).size   ]
+
+  version            << data.gsub(/(.*<xs:schema.*?version=")(.*?)(">.*<\/xs:schema>)/m,'\2').strip
+  xmlns              << [filename, data.scan(/xmlns(=|:)/).size        ]
+  complexType        << [filename, data.scan(/<xs:complexType/).size   ]
+  element            << [filename, data.scan(/<xs:element/).size       ]
+  sequence           << [filename, data.scan(/<xs:sequence/).size      ]
+  simpleContent      << [filename, data.scan(/<xs:simpleContent/).size ]
+  xsextension        << [filename, data.scan(/<xs:extension/).size     ]
+  attribute          << [filename, data.scan(/<xs:attribute/).size     ]
+  elementstring      << [filename, data.scan(/<xs:element .*?type="xs:string"/).size]
+  elementshort       << [filename, data.scan(/<xs:element type="xs:short"/).size    ]
+  elementfloat       << [filename, data.scan(/<xs:element type="xs:float"/).size    ]
+  attributestring    << [filename, data.scan(/<xs:attribute type="xs:string"/).size ]
+  elementbyte        << [filename, data.scan(/<xs:element type="xs:byte"/).size     ]
+  xsimport           << [filename, data.scan(/<xs:import/).size         ]
+  elementref         << [filename, data.scan(/<xs:element ref=/).size   ]
+  xschoice           << [filename, data.scan(/<xs:choice/).size         ]
+  complexContent     << [filename, data.scan(/<xs:complexContent/).size ]
+  annotation         << [filename, data.scan(/<xs:annotation/).size     ]
+  annotation         << [filename, data.scan(/<xs:annotation/).size     ]
+  documentation      << [filename, data.scan(/<xs:documentation/).size  ]
+  xsany              << [filename, data.scan(/<xs:any/).size            ]
+  xsenumeration      << [filename, data.scan(/<xs:enumeration/).size    ]
+  xsanyAttribute     << [filename, data.scan(/<xs:anyAttribute/).size       ]
+  minOccurs0         << [filename, data.scan(/minOccurs="0"/).size          ]
+  #minOccurs1        << [filename, data.scan(/minOccurs="1"/).size          ]
+  maxOccursunbounded << [filename, data.scan(/maxOccurs="unbounded"/).size  ]
+  useoptional        << [filename, data.scan(/use="optional"/).size         ]
+  userequired        << [filename, data.scan(/use="required"/).size         ]
+  typeanyURI         << [filename, data.scan(/type="anyURI"/).size          ]
+  typebase64Binary   << [filename, data.scan(/type="base64Binary"/).size    ]
+  mixedtrue          << [filename, data.scan(/mixed="true"/).size           ]
+  typeID             << [filename, data.scan(/type="ID"/).size              ]
+  processContentslax << [filename, data.scan(/processContents="lax"/).size  ]
+  namespace          << [filename, data.scan(/namespace="/).size            ]
+  abstracttrue       << [filename, data.scan(/abstract="true"/).size        ]
+  typedateTime       << [filename, data.scan(/type="dateTime"/).size        ]
+  typeNCName         << [filename, data.scan(/type="NCName"/).size          ]
+  restriction        << [filename, data.scan(/<xs:restriction/).size        ]
+  attributeGroup     << [filename, data.scan(/<xs:attributeGroup/).size     ]
+  targetNamespace    << [filename, data.scan(/targetNamespace/).size        ]
+  elementFormDefault << [filename, data.scan(/elementFormDefault/).size     ]
   attributeFormDefault << [filename, data.scan(/attributeFormDefault/).size ]
-  doctype << [filename, data.scan(/<!DOCTYPE/).size ]
-  attlist << [filename, data.scan(/<!ATTLIST/).size]
-  entity << [filename, data.scan(/<!ENTITY/).size ]
-  basebase64Binary << [filename, data.scan(/base="base64Binary"/).size ]
+  doctype                  << [filename, data.scan(/<!DOCTYPE/).size        ]
+  attlist                  << [filename, data.scan(/<!ATTLIST/).size        ]
+  entity                   << [filename, data.scan(/<!ENTITY/).size         ]
+  basebase64Binary         << [filename, data.scan(/base="base64Binary"/).size ]
   blockDefaultsubstitution << [filename, data.scan(/blockDefault="substitution"/).size ]
-  typedsKeyInfoType << [filename, data.scan(/type="ds:KeyInfoType"/).size ]
-  elementrefsamlp << [filename, data.scan(/xs:element ref="samlp:/).size ]
-  elementrefsaml = [filename, data.scan(/<xs:element ref="saml:/).size ]
+  typedsKeyInfoType        << [filename, data.scan(/type="ds:KeyInfoType"/).size ]
+  elementrefsamlp          << [filename, data.scan(/xs:element ref="samlp:/).size ]
+  elementrefsaml           << [filename, data.scan(/<xs:element ref="saml:/).size ]
 end
 version = version.group_by{|x| x}.map{|k, v| [k, v.size]}
 #puts version
@@ -125,9 +123,9 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [entity, 'entity', 'entity', v, charttitle('<!ENTITY'), 'entity'],
             [basebase64Binary, 'basebase64Binary', 'base="base64Binary"', v, charttitle('base="base64Binary"'), 'basebase64Binary'],
             [blockDefaultsubstitution, 'blockDefaultsubstitution', 'blockDefault="substitution"', v, charttitle('blockDefault="substitution"'), 'blockDefaultsubstitution'],
-            [typedsKeyInfoType, 'typedsKeyInfoType', 'type="ds:KeyInfoType"', v, charttitle('type="ds:KeyInfoType"')],
-            [elementrefsamlp, 'elementrefsamlp', 'element=ref"samlp:', v, charttitle('element=ref"samlp:')],
-            [elementrefsaml, 'elementrefsaml', '<xs:element ref="saml:', v, charttitle('<xs:element ref="saml:')]
+            [typedsKeyInfoType, 'typedsKeyInfoType', 'type="ds:KeyInfoType"', v, charttitle('type="ds:KeyInfoType"'), 'typedsKeyInfoType' ],
+            [elementrefsamlp, 'elementrefsamlp', '<xs:element=ref"samlp:', v, charttitle('<xs:element ref"samlp:'), 'elementrefsamlp'],
+            [elementrefsaml, 'elementrefsaml', '<xs:element ref="saml:', v, charttitle('<xs:element ref="saml:'), 'elementrefsaml']
           ]
 #integrate cloc stats vai shell command
 cloc = `cloc-1.64 . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`

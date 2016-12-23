@@ -166,6 +166,8 @@
 
           google.charts.setOnLoadCallback(drawChartelementrefsamlp);
 
+          google.charts.setOnLoadCallback(drawChartelementrefsaml);
+
           function drawChartversion() {
             // Create the data table.
             var data = new google.visualization.DataTable();
@@ -944,24 +946,41 @@
                            'height': 330,
                            'titleTextStyle': { 'color': 'black' } };
             // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div_'));
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_typedsKeyInfoType'));
             chart.draw(data, options);
           }
 
           function drawChartelementrefsamlp() {
             // Create the data table.
             var data = new google.visualization.DataTable();
-            data.addColumn('string', 'element=ref"samlp:');
+            data.addColumn('string', '<xs:element=ref"samlp:');
             data.addColumn('number', 'Values');
             data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 21], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
             // Set chart options
-            var options = {'title': 'Branch gh-pages count of element=ref"samlp: grouped by file',
+            var options = {'title': 'Branch gh-pages count of <xs:element ref"samlp: grouped by file',
                            is3D: true,
                            'width': 400,
                            'height': 330,
                            'titleTextStyle': { 'color': 'black' } };
             // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div_'));
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_elementrefsamlp'));
+            chart.draw(data, options);
+          }
+
+          function drawChartelementrefsaml() {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', '<xs:element ref="saml:');
+            data.addColumn('number', 'Values');
+            data.addRows([["bar.xsd", 0], ["bookstore.xsd", 0], ["dinner-menu.xsd", 0], ["foo.xsd", 0], ["note.xsd", 0], ["note2.xsd", 0], ["po.xsd", 0], ["saml20assertion_schema.xsd", 44], ["saml20protocol_schema.xsd", 23], ["xenc_schema.xsd", 0], ["xmldsig_schema.xsd", 0]]);
+            // Set chart options
+            var options = {'title': 'Branch gh-pages count of <xs:element ref="saml: grouped by file',
+                           is3D: true,
+                           'width': 400,
+                           'height': 330,
+                           'titleTextStyle': { 'color': 'black' } };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div_elementrefsaml'));
             chart.draw(data, options);
           }
 
@@ -1082,9 +1101,11 @@
 
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_blockDefaultsubstitution'></div>
 
-        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_'></div>
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_typedsKeyInfoType'></div>
 
-        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_'></div>
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_elementrefsamlp'></div>
+
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_elementrefsaml'></div>
 
       </div>
       </div>
