@@ -8,10 +8,8 @@ version=[]; xmlns=[]; complexType=[]; element=[]; sequence=[]; simpleContent=[];
 elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[]; annotation=[]; documentation=[];
 xsany=[]; xsenumeration=[]; xsanyAttribute=[]; minOccurs0=[]; minOccurs1=[]; maxOccursunbounded=[]; useoptional=[]; userequired=[]; typeanyURI=[];
 typebase64Binary=[]; mixedtrue=[]; typeID=[]; processContentslax=[]; namespace=[]; abstracttrue=[]; typedateTime=[]; typeNCName=[]; restriction=[];
-attributeGroup=[]; targetNamespace=[]; elementFormDefault=[]; attributeFormDefault=[]; doctype=[];
-attlist=[]; entity=[]; basebase64Binary=[]; blockDefaultsubstitution=[]; typedsKeyInfoType=[]; elementrefsamlp=[];
-elementrefsaml=[];
-
+attributeGroup=[]; targetNamespace=[]; elementFormDefault=[]; attributeFormDefault=[]; doctype=[]; attlist=[]; entity=[]; basebase64Binary=[];
+blockDefaultsubstitution=[]; typedsKeyInfoType=[]; elementrefsamlp=[]; elementrefsaml=[]; xmlnsds=[];
 #loop over schema files
 Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   filename = schema.split('/').last
@@ -19,6 +17,7 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
 
   version            << data.gsub(/(.*<xs:schema.*?version=")(.*?)(">.*<\/xs:schema>)/m,'\2').strip
   xmlns              << [filename, data.scan(/xmlns(=|:)/).size        ]
+  xmlnsds            << [filename, data.scan(/xmlns:ds=/).size         ]
   complexType        << [filename, data.scan(/<xs:complexType/).size   ]
   element            << [filename, data.scan(/<xs:element/).size       ]
   sequence           << [filename, data.scan(/<xs:sequence/).size      ]
@@ -125,7 +124,8 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [blockDefaultsubstitution, 'blockDefaultsubstitution', 'blockDefault="substitution"', v, charttitle('blockDefault="substitution"'), 'blockDefaultsubstitution'],
             [typedsKeyInfoType, 'typedsKeyInfoType', 'type="ds:KeyInfoType"', v, charttitle('type="ds:KeyInfoType"'), 'typedsKeyInfoType' ],
             [elementrefsamlp, 'elementrefsamlp', '<xs:element=ref"samlp:', v, charttitle('<xs:element ref"samlp:'), 'elementrefsamlp'],
-            [elementrefsaml, 'elementrefsaml', '<xs:element ref="saml:', v, charttitle('<xs:element ref="saml:'), 'elementrefsaml']
+            [elementrefsaml, 'elementrefsaml', '<xs:element ref="saml:', v, charttitle('<xs:element ref="saml:'), 'elementrefsaml'],
+            [xmlnsds, 'xmlnsds', 'xmlns:ds=', v, charttitle('xmlns:ds='), 'xmlnsds']
           ]
 #integrate cloc stats vai shell command
 cloc = `cloc-1.64 . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
