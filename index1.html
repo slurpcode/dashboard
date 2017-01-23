@@ -955,11 +955,11 @@
           function drawChartelementrefsamlp() {
             // Create the data table.
             var data = new google.visualization.DataTable();
-            data.addColumn('string', '<xs:element=ref"samlp:');
+            data.addColumn('string', '<xs:element ref="samlp:');
             data.addColumn('number', 'Values');
             data.addRows([["saml20assertion_schema.xsd", 0], ["saml20protocol_schema.xsd", 21], ["bookstore.xsd", 0], ["note2.xsd", 0], ["xenc_schema.xsd", 0], ["note.xsd", 0], ["dinner-menu.xsd", 0], ["xmldsig_schema.xsd", 0], ["bar.xsd", 0], ["foo.xsd", 0]]);
             // Set chart options
-            var options = {'title': 'Branch gh-pages count of <xs:element ref"samlp: grouped by file',
+            var options = {'title': 'Branch gh-pages count of <xs:element ref="samlp: grouped by file',
                            is3D: true,
                            'width': 400,
                            'height': 330,

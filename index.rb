@@ -125,7 +125,7 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [basebase64Binary, 'basebase64Binary', 'base="base64Binary"', v, charttitle('base="base64Binary"'), 'basebase64Binary'],
             [blockDefaultsubstitution, 'blockDefaultsubstitution', 'blockDefault="substitution"', v, charttitle('blockDefault="substitution"'), 'blockDefaultsubstitution'],
             [typedsKeyInfoType, 'typedsKeyInfoType', 'type="ds:KeyInfoType"', v, charttitle('type="ds:KeyInfoType"'), 'typedsKeyInfoType' ],
-            [elementrefsamlp, 'elementrefsamlp', '<xs:element=ref"samlp:', v, charttitle('<xs:element ref"samlp:'), 'elementrefsamlp'],
+            [elementrefsamlp, 'elementrefsamlp', '<xs:element ref="samlp:', v, charttitle('<xs:element ref="samlp:'), 'elementrefsamlp'],
             [elementrefsaml, 'elementrefsaml', '<xs:element ref="saml:', v, charttitle('<xs:element ref="saml:'), 'elementrefsaml'],
             [xmlnsds, 'xmlnsds', 'xmlns:ds=', v, charttitle('xmlns:ds='), 'xmlnsds']
           ]

@@ -1,3 +1,4 @@
+./.git/COMMIT_EDITMSG: --exclude-dir=.git
 ./.git/HEAD: --exclude-dir=.git
 ./.git/branches: --exclude-dir=.git
 ./.git/config: --exclude-dir=.git
@@ -23,7 +24,22 @@
 ./.git/logs/refs/remotes: --exclude-dir=.git
 ./.git/logs/refs/remotes/origin: --exclude-dir=.git
 ./.git/logs/refs/remotes/origin/HEAD: --exclude-dir=.git
+./.git/logs/refs/remotes/origin/gh-pages: --exclude-dir=.git
 ./.git/objects: --exclude-dir=.git
+./.git/objects/02: --exclude-dir=.git
+./.git/objects/02/9b859146d9efead84188a5728339fb61febaac: --exclude-dir=.git
+./.git/objects/35: --exclude-dir=.git
+./.git/objects/35/6978b96c698623b1f6dd2e7954c9250a540e91: --exclude-dir=.git
+./.git/objects/90: --exclude-dir=.git
+./.git/objects/90/81de9dd2d5193e0f007f52b494e408c9432bcd: --exclude-dir=.git
+./.git/objects/bb: --exclude-dir=.git
+./.git/objects/bb/85f1c9fd431bc2922ce07cb99cb69b6ebf5847: --exclude-dir=.git
+./.git/objects/c4: --exclude-dir=.git
+./.git/objects/c4/a19201ae487977296d1dea56962cfff5feb4bc: --exclude-dir=.git
+./.git/objects/cf: --exclude-dir=.git
+./.git/objects/cf/39f6020e49f4a56a8984cb81abaa281be0be98: --exclude-dir=.git
+./.git/objects/f0: --exclude-dir=.git
+./.git/objects/f0/ef03995ab45c61fad562566fbc3f1e6818f533: --exclude-dir=.git
 ./.git/objects/info: --exclude-dir=.git
 ./.git/objects/pack: --exclude-dir=.git
 ./.git/objects/pack/pack-6235ab02796aa2711ddd133831f2f9fbd63dcb86.idx: --exclude-dir=.git
@@ -35,6 +51,7 @@
 ./.git/refs/remotes: --exclude-dir=.git
 ./.git/refs/remotes/origin: --exclude-dir=.git
 ./.git/refs/remotes/origin/HEAD: --exclude-dir=.git
+./.git/refs/remotes/origin/gh-pages: --exclude-dir=.git
 ./.git/refs/tags: --exclude-dir=.git
 ./LICENSE: language unknown (#3)
 ./README.md: language unknown (#3)
