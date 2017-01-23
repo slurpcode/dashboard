@@ -12,7 +12,11 @@ Ruby instance variables are being used for each [HTML 5](https://developer.mozil
 
 [Ruby global variables](https://www.tutorialspoint.com/ruby/ruby_variables.htm) are being used for the width and height of each chart.
 
-I am using [Cloc](https://github.com/AlDanial/cloc) to display statistics on the homepage and since this project has been developed  primarily on Windows you will need to add it to your Windows path.
+I am using [Cloc](https://github.com/AlDanial/cloc) to display statistics on the homepage and this project is now being  developed on Ubuntu so cloc is easily installed by apt-get as seen below:
+
+```
+sudo apt-get install cloc
+```
 
 
 #Contributions
