@@ -79,7 +79,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Schema count');
             data.addColumn('number', 'Values');
-            data.addRows([["folders", 6], [".css", 4], [".map", 4], [".eot", 1], [".svg", 1], [".ttf", 1], [".woff", 1], [".woff2", 1], [".js", 4], [".txt", 2], [".html", 2], [".rb", 1], [".xpr", 1], [".md", 1], [".xsd", 10]]);
+            data.addRows([[".md", 1], [".txt", 2], [".html", 2], [".rb", 1], ["folders", 6], [".css", 4], [".map", 4], [".svg", 1], [".woff2", 1], [".ttf", 1], [".woff", 1], [".eot", 1], [".js", 4], [".xsd", 10]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of files grouped by file type',
                            is3D: true,
@@ -120,17 +120,17 @@
       <pre>
         <code>
           
-http://cloc.sourceforge.net v 1.64  T=0.23 s (93.2 files/s, 55580.7 lines/s)
+http://cloc.sourceforge.net v 1.60  T=0.11 s (191.9 files/s, 114691.9 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
 CSS                              4              7             24           7326
 Javascript                       4            582            205           1614
-HTML                             2            188             16           1079
+HTML                             2            191             16           1097
 XSD                             10             73             40           1025
-Ruby                             1             24             37            289
+Ruby                             1             25             37            290
 -------------------------------------------------------------------------------
-SUM:                            21            874            322          11333
+SUM:                            21            878            322          11352
 -------------------------------------------------------------------------------
 
         </code>

@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 #chart size global variables
 $width = 400; $height=330;
 #declare variables
@@ -128,7 +130,7 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [xmlnsds, 'xmlnsds', 'xmlns:ds=', v, charttitle('xmlns:ds='), 'xmlnsds']
           ]
 #integrate cloc stats vai shell command
-cloc = `cloc-1.64 . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
+cloc = `cloc . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
 file = File.open('cloc.txt', 'r')
 clocdata = file.read
 file.close

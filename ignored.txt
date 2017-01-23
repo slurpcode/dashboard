@@ -1,16 +1,47 @@
-.: --exclude-dir=1
+./.git/HEAD: --exclude-dir=.git
+./.git/branches: --exclude-dir=.git
+./.git/config: --exclude-dir=.git
+./.git/description: --exclude-dir=.git
+./.git/hooks: --exclude-dir=.git
+./.git/hooks/applypatch-msg.sample: --exclude-dir=.git
+./.git/hooks/commit-msg.sample: --exclude-dir=.git
+./.git/hooks/post-update.sample: --exclude-dir=.git
+./.git/hooks/pre-applypatch.sample: --exclude-dir=.git
+./.git/hooks/pre-commit.sample: --exclude-dir=.git
+./.git/hooks/pre-push.sample: --exclude-dir=.git
+./.git/hooks/pre-rebase.sample: --exclude-dir=.git
+./.git/hooks/prepare-commit-msg.sample: --exclude-dir=.git
+./.git/hooks/update.sample: --exclude-dir=.git
+./.git/index: --exclude-dir=.git
+./.git/info: --exclude-dir=.git
+./.git/info/exclude: --exclude-dir=.git
+./.git/logs: --exclude-dir=.git
+./.git/logs/HEAD: --exclude-dir=.git
+./.git/logs/refs: --exclude-dir=.git
+./.git/logs/refs/heads: --exclude-dir=.git
+./.git/logs/refs/heads/gh-pages: --exclude-dir=.git
+./.git/logs/refs/remotes: --exclude-dir=.git
+./.git/logs/refs/remotes/origin: --exclude-dir=.git
+./.git/logs/refs/remotes/origin/HEAD: --exclude-dir=.git
+./.git/objects: --exclude-dir=.git
+./.git/objects/info: --exclude-dir=.git
+./.git/objects/pack: --exclude-dir=.git
+./.git/objects/pack/pack-6235ab02796aa2711ddd133831f2f9fbd63dcb86.idx: --exclude-dir=.git
+./.git/objects/pack/pack-6235ab02796aa2711ddd133831f2f9fbd63dcb86.pack: --exclude-dir=.git
+./.git/packed-refs: --exclude-dir=.git
+./.git/refs: --exclude-dir=.git
+./.git/refs/heads: --exclude-dir=.git
+./.git/refs/heads/gh-pages: --exclude-dir=.git
+./.git/refs/remotes: --exclude-dir=.git
+./.git/refs/remotes/origin: --exclude-dir=.git
+./.git/refs/remotes/origin/HEAD: --exclude-dir=.git
+./.git/refs/tags: --exclude-dir=.git
 ./LICENSE: language unknown (#3)
 ./README.md: language unknown (#3)
-./bootstrap: zero sized file
-./bootstrap/css: zero sized file
 ./bootstrap/css/bootstrap-theme.css.map: language unknown (#3)
 ./bootstrap/css/bootstrap-theme.min.css.map: language unknown (#3)
 ./bootstrap/css/bootstrap.css.map: language unknown (#3)
 ./bootstrap/css/bootstrap.min.css.map: language unknown (#3)
-./bootstrap/fonts: zero sized file
 ./bootstrap/fonts/glyphicons-halflings-regular.svg: language unknown (#3)
-./bootstrap/js: zero sized file
 ./cloc.txt: zero sized file
 ./ignored.txt: listed in $Not_Code_Extension{txt}
-./newProject.xpr: language unknown (#3)
-./schema: zero sized file
