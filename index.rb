@@ -129,7 +129,7 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [elementrefsaml, 'elementrefsaml', '<xs:element ref="saml:', v, charttitle('<xs:element ref="saml:'), 'elementrefsaml'],
             [xmlnsds, 'xmlnsds', 'xmlns:ds=', v, charttitle('xmlns:ds='), 'xmlnsds']
           ]
-#integrate cloc stats vai shell command
+#integrate cloc stats via shell command
 cloc = `cloc . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
 file = File.open('cloc.txt', 'r')
 clocdata = file.read
