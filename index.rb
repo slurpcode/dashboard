@@ -134,6 +134,13 @@ cloc = `cloc . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
 file = File.open('cloc.txt', 'r')
 clocdata = file.read
 file.close
+#create git log for histogram on homepage
+log = `git log --pretty=format:"%ad" --date=short > log.txt`
+file = File.open('log.txt', 'r')
+logdata = file.read
+file.close
+logdata = logdata.lines.group_by{|x| x.strip}.map{|k,v| [k,v.size]}
+logdata.unshift(['Date', 'Amount'])
 #
 Dir.glob("**/*").map do |x|
   ext = File.extname(x)
@@ -248,6 +255,19 @@ def drawChart(whichChart, data, chartstring, chartnumber, charttitle, chartdiv)
           }\n"
 end
 
+def drawChartHistogram(data)
+        "
+          function drawChartHistogram(){
+            var data = google.visualization.arrayToDataTable(#{data});
+            var options = {
+              title: 'Histogram of commits by amount',
+              legend: { position: 'top', maxLines: 2 },
+            };
+            var chart = new google.visualization.Histogram(document.getElementById('chart_div_hist'));
+            chart.draw(data, options);
+        }\n"
+end
+
 #buld all the website pages
 def pagebuild
   (0..1).map do |i|
@@ -256,11 +276,15 @@ def pagebuild
 end
 #
 pagebuild
+#create JavaScript chart function for home page
 #set the JavaScript Callback
 @page  += "
           google.charts.setOnLoadCallback(drawChartAll);\n";
-##create JavaScript chart function for home page
 @page  += drawChart('All', allFiles, 'Schema count', 'Values', 'Branch gh-pages count of files grouped by file type', 'all')
+#histogram
+@page  += "
+          google.charts.setOnLoadCallback(drawChartHistogram);\n";
+@page += drawChartHistogram(logdata)
 #set the JavaScript Callback
 pageone.map.with_index do |chart, i|
   @page1  += "
@@ -313,6 +337,7 @@ pagebuild
       </pre>
       <div class='row'>
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_all'></div>
+        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_hist' style='width: 600px; height: 400px;'></div>
       </div>\n"
 #
 @page1 += "
