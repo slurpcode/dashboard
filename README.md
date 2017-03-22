@@ -1,4 +1,4 @@
-#Analytics Dashboard
+# Analytics Dashboard
 
 This project is using [Ruby](https://www.ruby-lang.org/en/) to build a high powered analytics dashboard website using [Google Charts](https://developers.google.com/chart/) [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) library which is being hosted on [GitHub Pages](https://pages.github.com/).
 
@@ -19,6 +19,6 @@ sudo apt-get install cloc
 ```
 
 
-#Contributions
+# Contributions
 
 Fork and pull request. Simple.
