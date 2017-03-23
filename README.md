@@ -17,6 +17,10 @@ I am using [Cloc](https://github.com/AlDanial/cloc) to display statistics on the
 ```
 sudo apt-get install cloc
 ```
+For Mac OS you can use [Homebrew](https://brew.sh/) to install cloc:
+```
+brew install cloc
+```
 
 
 # Contributions
