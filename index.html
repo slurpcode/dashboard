@@ -79,7 +79,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Schema count');
             data.addColumn('number', 'Values');
-            data.addRows([[".md", 1], [".txt", 3], [".html", 2], [".rb", 1], ["folders", 6], [".css", 4], [".map", 4], [".svg", 1], [".woff2", 1], [".ttf", 1], [".woff", 1], [".eot", 1], [".js", 4], [".xsd", 10]]);
+            data.addRows([["folders", 6], [".css", 4], [".map", 4], [".eot", 1], [".svg", 1], [".ttf", 1], [".woff", 1], [".woff2", 1], [".js", 4], [".txt", 3], [".html", 2], [".rb", 1], [".md", 1], [".xsd", 10]]);
             // Set chart options
             var options = {'title': 'Branch gh-pages count of files grouped by file type',
                            is3D: true,
@@ -94,7 +94,7 @@
           google.charts.setOnLoadCallback(drawChartHistogram);
 
           function drawChartHistogram(){
-            var data = google.visualization.arrayToDataTable([["Date", "Amount"], ["2017-01-24", 4], ["2016-12-25", 1], ["2016-12-24", 1], ["2016-12-22", 5], ["2016-12-20", 1], ["2016-12-19", 4], ["2016-12-18", 1], ["2016-11-09", 2], ["2016-11-08", 14], ["2016-11-07", 4]]);
+            var data = google.visualization.arrayToDataTable([["Date", "Amount"], ["2017-03-22", 1], ["2017-02-11", 2], ["2017-01-27", 1], ["2017-01-24", 4], ["2016-12-25", 1], ["2016-12-24", 1], ["2016-12-22", 5], ["2016-12-20", 1], ["2016-12-19", 4], ["2016-12-18", 1], ["2016-11-09", 2], ["2016-11-08", 14], ["2016-11-07", 4]]);
             var options = {
               title: 'Histogram of commits by amount',
               legend: { position: 'top', maxLines: 2 },
@@ -132,17 +132,18 @@
       <pre>
         <code>
           
-http://cloc.sourceforge.net v 1.60  T=0.11 s (183.1 files/s, 109788.5 lines/s)
+github.com/AlDanial/cloc v 1.72  T=0.26 s (84.9 files/s, 48694.3 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
 CSS                              4              7             24           7326
-Javascript                       4            582            205           1614
-HTML                             2            193             16           1108
+JavaScript                       4            582            205           1614
+HTML                             2            193             16           1109
 XSD                             10             73             40           1025
 Ruby                             1             26             39            312
+Markdown                         1             11              0             13
 -------------------------------------------------------------------------------
-SUM:                            21            881            324          11385
+SUM:                            22            892            324          11399
 -------------------------------------------------------------------------------
 
         </code>
