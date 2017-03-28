@@ -35,7 +35,6 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   xschoice           << [filename, data.scan(/<xs:choice/).size         ]
   complexContent     << [filename, data.scan(/<xs:complexContent/).size ]
   annotation         << [filename, data.scan(/<xs:annotation/).size     ]
-  annotation         << [filename, data.scan(/<xs:annotation/).size     ]
   documentation      << [filename, data.scan(/<xs:documentation/).size  ]
   xsany              << [filename, data.scan(/<xs:any/).size            ]
   xsenumeration      << [filename, data.scan(/<xs:enumeration/).size    ]
