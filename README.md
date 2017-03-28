@@ -12,7 +12,7 @@ Ruby instance variables are being used for each HTML page via the [instance_vari
 
 [Ruby global variables](https://www.tutorialspoint.com/ruby/ruby_variables.htm) are being used for the width and height of each chart.
 
-I am using [Cloc](https://github.com/AlDanial/cloc), to display statistics about languages and lines of code at the top of the homepage.
+I am using [cloc](https://github.com/AlDanial/cloc), to display statistics about languages and lines of code at the top of the homepage.
 
 On Ubuntu you can install cloc as seen below:
 ```
