@@ -14,7 +14,7 @@
     <xs:import namespace="http://www.w3.org/2001/04/xmlenc#"
         schemaLocation="xenc_schema.xsd"/>
     <xs:annotation>
-        <xs:documentation>
+        <xs:documentation xml:lang="en">
             Document identifier: saml-schema-assertion-2.0
             Location: http://docs.oasis-open.org/security/saml/v2.0/
             Revision history:

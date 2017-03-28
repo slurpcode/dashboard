@@ -10,7 +10,7 @@ elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[];
 xsany=[]; xsenumeration=[]; xsanyAttribute=[]; minOccurs0=[]; minOccurs1=[]; maxOccursunbounded=[]; useoptional=[]; userequired=[]; typeanyURI=[];
 typebase64Binary=[]; mixedtrue=[]; typeID=[]; processContentslax=[]; namespace=[]; abstracttrue=[]; typedateTime=[]; typeNCName=[]; restriction=[];
 attributeGroup=[]; targetNamespace=[]; elementFormDefault=[]; attributeFormDefault=[]; doctype=[]; attlist=[]; entity=[]; basebase64Binary=[];
-blockDefaultsubstitution=[]; typedsKeyInfoType=[]; elementrefsamlp=[]; elementrefsaml=[]; xmlnsds=[];
+blockDefaultsubstitution=[]; typedsKeyInfoType=[]; elementrefsamlp=[]; elementrefsaml=[]; xmlnsds=[]; xmllangen=[];
 #loop over schema files
 Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   filename = schema.split('/').last
