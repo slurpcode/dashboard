@@ -3,9 +3,8 @@
 #chart size global variables
 $width = 400; $height=330;
 #declare variables
-#home page
 extension=[]
-#page1
+
 version=[]; xmlns=[]; complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[]; elementstring=[]; elementshort=[];
 elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[]; annotation=[]; documentation=[];
 xsany=[]; xsenumeration=[]; xsanyAttribute=[]; minOccurs0=[]; minOccurs1=[]; maxOccursunbounded=[]; useoptional=[]; userequired=[]; typeanyURI=[];
@@ -18,7 +17,7 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   file = File.open(schema, 'r'); data = file.read; file.close;
 
   version            << data.gsub(/(.*<xs:schema.*?version=")(.*?)(">.*<\/xs:schema>)/m,'\2').strip
-  xmlns              << [filename, data.scan(/xmlns(=|:)/).size        ]
+  xmlns              << [filename, data.scan(/xmlns[=:]/).size         ]
   xmlnsds            << [filename, data.scan(/xmlns:ds=/).size         ]
   complexType        << [filename, data.scan(/<xs:complexType/).size   ]
   element            << [filename, data.scan(/<xs:element/).size       ]
@@ -63,11 +62,11 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   doctype                  << [filename, data.scan(/<!DOCTYPE/).size        ]
   attlist                  << [filename, data.scan(/<!ATTLIST/).size        ]
   entity                   << [filename, data.scan(/<!ENTITY/).size         ]
-  basebase64Binary         << [filename, data.scan(/base="base64Binary"/).size ]
+  basebase64Binary         << [filename, data.scan(/base="base64Binary"/).size         ]
   blockDefaultsubstitution << [filename, data.scan(/blockDefault="substitution"/).size ]
-  typedsKeyInfoType        << [filename, data.scan(/type="ds:KeyInfoType"/).size ]
-  elementrefsamlp          << [filename, data.scan(/xs:element ref="samlp:/).size ]
-  elementrefsaml           << [filename, data.scan(/<xs:element ref="saml:/).size ]
+  typedsKeyInfoType        << [filename, data.scan(/type="ds:KeyInfoType"/).size       ]
+  elementrefsamlp          << [filename, data.scan(/xs:element ref="samlp:/).size      ]
+  elementrefsaml           << [filename, data.scan(/<xs:element ref="saml:/).size      ]
 end
 version = version.group_by{|x| x}.map{|k, v| [k, v.size]}
 #puts version
@@ -75,7 +74,6 @@ version = version.group_by{|x| x}.map{|k, v| [k, v.size]}
 def charttitle(charttype)
   "Branch gh-pages count of #{charttype} grouped by file"
 end
-
 #page one data structure
 v = 'Values'
 pageone = [ [version, 'version', 'version count', v, 'Branch count of schema grouped by version', 'version'],
