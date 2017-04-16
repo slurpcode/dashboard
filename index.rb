@@ -1,17 +1,15 @@
 #!/usr/bin/env ruby
 
-#chart size global variables
+# chart size global variables
 $width = 400; $height=330;
 #declare variables
-extension=[]
-
-version=[]; xmlns=[]; complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[]; elementstring=[]; elementshort=[];
+extension=[]; version=[]; xmlns=[]; complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[]; elementstring=[]; elementshort=[];
 elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[]; annotation=[]; documentation=[];
 xsany=[]; xsenumeration=[]; xsanyAttribute=[]; minOccurs0=[]; minOccurs1=[]; maxOccursunbounded=[]; useoptional=[]; userequired=[]; typeanyURI=[];
 typebase64Binary=[]; mixedtrue=[]; typeID=[]; processContentslax=[]; namespace=[]; abstracttrue=[]; typedateTime=[]; typeNCName=[]; restriction=[];
 attributeGroup=[]; targetNamespace=[]; elementFormDefault=[]; attributeFormDefault=[]; doctype=[]; attlist=[]; entity=[]; basebase64Binary=[];
 blockDefaultsubstitution=[]; typedsKeyInfoType=[]; elementrefsamlp=[]; elementrefsaml=[]; xmlnsds=[]; xmllangen=[];
-#loop over schema files
+# loop over schema files
 Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   filename = schema.split('/').last
   file = File.open(schema, 'r'); data = file.read; file.close;
@@ -68,12 +66,11 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   elementrefsaml           << [filename, data.scan(/<xs:element ref="saml:/).size      ]
 end
 version = version.group_by{|x| x}.map{|k, v| [k, v.size]}
-#puts version
 #
 def charttitle(charttype)
   "Branch gh-pages count of #{charttype} grouped by file"
 end
-#page one data structure
+# page one data structure
 v = 'Values'
 pageone = [ [version, 'version', 'version count', v, 'Branch count of schema grouped by version', 'version'],
             [xmlns, 'xmlns', 'xmlns count', v, charttitle('xmlns'), 'xmlns'],
@@ -126,12 +123,12 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [elementrefsaml, 'elementrefsaml', '<xs:element ref="saml:', v, charttitle('<xs:element ref="saml:'), 'elementrefsaml'],
             [xmlnsds, 'xmlnsds', 'xmlns:ds=', v, charttitle('xmlns:ds='), 'xmlnsds']
           ]
-#integrate cloc stats via shell command
+# integrate cloc stats via shell command
 cloc = `cloc . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
 file = File.open('cloc.txt', 'r')
 clocdata = file.read
 file.close
-#create git log for histogram on homepage
+# create git log for histogram on homepage
 log = `git log --pretty=format:"%ad" --date=short > log.txt`
 file = File.open('log.txt', 'r')
 logdata = file.read
@@ -145,17 +142,14 @@ Dir.glob("**/*").map do |x|
     ext = 'folders'
   end
   extension << ext
-  #sz = File.size(x)
-  #sizes << sz
+  # sz = File.size(x)
+  # sizes << sz
 end
-
 #
 allFiles = extension.flatten.group_by{|x| x}.map{|k, v| [k, v.size]}
-
-#Create pages
+# Create pages
 @page=''; @page1='';
-
-#start common page region
+# start common page region
 $pagetemp = <<-EOS
 <!DOCTYPE html>
 <html lang="en">
@@ -173,50 +167,31 @@ $pagetemp = <<-EOS
         <style>
           h2 { text-align: center; font-size: 19pt; background-color: rgba(49,37,152,0.8);
                color: #fff; border-radius: 1pt 1pt 1pt 1pt; padding: 14px; }
-
           .container-fluid { padding: 0px; }
-
           .navbar, .navbar-default { padding: 5pt; background-color: rgba(49,37,152,0.8) !important;
              color: #fff !important; font-size: 12pt; border-color: #none !important; }
-
           .navbar, .navbar-default li hover { color: #fff !important; }
-
           .navbar, .navbar-default li a { color: #000000 !important; }
-
           .navbar-default .navbar-brand { color: #fff; font-size: 15pt; }
-
           .navbar-default .navbar-nav > .active > a,
           .navbar-default .navbar-nav > .active > a:hover,
           .navbar-default .navbar-nav > .active > a:focus {
             background-color: transparent !important; }
-
           .navbar-default .navbar-nav > .open > a,
           .navbar-default .navbar-nav > .open > a:focus,
           .navbar-default .navbar-nav > .open > a:hover {
           	color: #555; background-color: #ff0000; font-weight: bold; }
-
           .navbar-default .navbar-brand:hover,
           .navbar-default .navbar-brand:focus {
             color: #fff; background-color: transparent; }
-
           .navbar-default .navbar-text { color: #000; }
-
           .nav { padding-right: 300px; }
-
           .dropdown-menu > li > a { display: block; padding: 3px 20px; clear: both;
             font-weight: 600; line-height: 1.42857143; color: #333; white-space: nowrap; }
-
           div[id^="chart_div"] > div > div { margin: auto; }
-
-          .chartNumber { color: purple; font-size: 22pt; }
-
-          .overview { font-size: 14pt;  }
-
          .footer { background-color: rgba(49,37,152,0.8);
            min-height: 200px; color: #fff !important; }
-
          .footer ul a { color: #fff !important; }
-
          pre { white-space: pre-wrap; //css3
              white-space: moz-pre-wrap; //firefox
              white-space: -pre-wrap; //opera 4-6
@@ -265,7 +240,7 @@ def drawChartHistogram(data)
         }\n"
 end
 
-#buld all the website pages
+# buld all the website pages
 def pagebuild
   (0..1).map do |i|
     instance_variable_set("@page#{i > 0 ? i : ''}", instance_variable_get("@page#{i > 0 ? i : ''}") + $pagetemp)
@@ -273,25 +248,25 @@ def pagebuild
 end
 #
 pagebuild
-#create JavaScript chart function for home page
-#set the JavaScript Callback
+# create JavaScript chart function for home page
+# set the JavaScript Callback
 @page  += "
           google.charts.setOnLoadCallback(drawChartAll);\n";
 @page  += drawChart('All', allFiles, 'Schema count', 'Values', 'Branch gh-pages count of files grouped by file type', 'all')
-#histogram
+# histogram
 @page  += "
           google.charts.setOnLoadCallback(drawChartHistogram);\n";
 @page += drawChartHistogram(logdata)
-#set the JavaScript Callback
+# set the JavaScript Callback
 pageone.map.with_index do |chart, i|
   @page1  += "
           google.charts.setOnLoadCallback(drawChart#{chart[1]});\n";
 end
-#create JavaScript chart functions for page 1
+# create JavaScript chart functions for page 1
 pageone.map do |chart|
     @page1 += drawChart("#{chart[1]}", chart[0], "#{chart[2]}", "#{chart[3]}", "#{chart[4]}", "#{chart[5]}")
 end
-#continue common page
+# continue common page
 $pagetemp = "
       </script>
     </head>
@@ -317,14 +292,8 @@ $pagetemp = "
         </div>
       </nav>
       <div class='container-fluid'>\n"
-=begin
-      <div class='row'>
-        <div class='col-sm-6 col-md-4 col-lg-3'>
-        </div>
-      </div>
-=end
 pagebuild
-#homepage
+# homepage
 @page += "
       <h2>Featured Statistics</h2>
       <pre>
@@ -339,14 +308,14 @@ pagebuild
 #
 @page1 += "
       <div class='row'>\n"
-#add chart divs to page 1
+# add chart divs to page 1
 pageone.map do |chart|
   @page1 += "
         <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_#{chart[5]}'></div>\n"
 end
 @page1 += "
       </div>"
-#finish common page region.
+# finish common page region.
 $pagetemp = "
       </div>
       <footer class='footer'>
@@ -364,9 +333,9 @@ $pagetemp = "
       <script src='bootstrap/js/bootstrap.min.js'></script>
     </body>
 </html>"
-#finish building all the pages
+# finish building all the pages
 pagebuild
-#write all the HTML pages to files
+# write all the HTML pages to files
 (0..1).map do |i|
   file = File.open("index#{i > 0 ? i : ''}.html", 'w')
   file.write(instance_variable_get("@page#{i > 0 ? i : ''}"))
