@@ -124,17 +124,17 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [xmlnsds, 'xmlnsds', 'xmlns:ds=', v, charttitle('xmlns:ds='), 'xmlnsds']
           ]
 # integrate cloc stats via shell command
-cloc = `cloc . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
+`cloc . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
 file = File.open('cloc.txt', 'r')
 clocdata = file.read
 file.close
 # create git log for histogram on homepage
-log = `git log --pretty=format:"%ad" --date=short > log.txt`
+`git log --pretty=format:"%ad" --date=short > log.txt`
 file = File.open('log.txt', 'r')
 logdata = file.read
 file.close
 logdata = logdata.lines.group_by{|x| x.strip}.map{|k, v| [k, v.size]}
-logdata.unshift(['Date', 'Amount'])
+logdata.unshift(%w[Date Amount])
 #
 Dir.glob('**/*').map do |x|
   ext = File.extname(x)
