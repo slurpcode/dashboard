@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-# chart size global variables
-$width = 400; $height=330;
+# chart size variables
+width = 400; height=330;
 # declare variables
 extension=[]; version=[]; xmlns=[]; complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[]; elementstring=[]; elementshort=[];
 elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[]; annotation=[]; documentation=[];
@@ -169,28 +169,15 @@ $pagetemp = <<-EOS
                color: #fff; border-radius: 1pt 1pt 1pt 1pt; padding: 14px; }
           .container-fluid { padding: 0px; }
           .navbar, .navbar-default { padding: 5pt; background-color: rgba(49,37,152,0.8) !important;
-             color: #fff !important; font-size: 12pt; border-color: #none !important; }
-          .navbar, .navbar-default li hover { color: #fff !important; }
-          .navbar, .navbar-default li a { color: #000000 !important; }
+             color: #fff !important; font-size: 12pt; }
+          .navbar, .navbar-default li:hover { color: red !important; }
+          .navbar, .navbar-default li a { color: #000 !important; }
           .navbar-default .navbar-brand { color: #fff; font-size: 15pt; }
-          .navbar-default .navbar-nav > .active > a,
-          .navbar-default .navbar-nav > .active > a:hover,
-          .navbar-default .navbar-nav > .active > a:focus {
-            background-color: transparent !important; }
-          .navbar-default .navbar-nav > .open > a,
-          .navbar-default .navbar-nav > .open > a:focus,
-          .navbar-default .navbar-nav > .open > a:hover {
-          	color: #555; background-color: #ff0000; font-weight: bold; }
           .navbar-default .navbar-brand:hover,
-          .navbar-default .navbar-brand:focus {
-            color: #fff; background-color: transparent; }
-          .navbar-default .navbar-text { color: #000; }
+          .navbar-default .navbar-brand:focus { color: #fff; background-color: transparent; }
           .nav { padding-right: 300px; }
-          .dropdown-menu > li > a { display: block; padding: 3px 20px; clear: both;
-            font-weight: 600; line-height: 1.42857143; color: #333; white-space: nowrap; }
           div[id^="chart_div"] > div > div { margin: auto; }
-         .footer { background-color: rgba(49,37,152,0.8);
-           min-height: 200px; color: #fff !important; }
+         .footer { background-color: rgba(49,37,152,0.8); min-height: 200px; color: #fff !important; }
          .footer ul a { color: #fff !important; }
          pre { white-space: pre-wrap; //css3
              white-space: moz-pre-wrap; //firefox
@@ -207,7 +194,7 @@ $pagetemp = <<-EOS
           google.charts.load('current', {'packages':['corechart']});
 EOS
 
-def drawChart(whichChart, data, chartstring, chartnumber, charttitle, chartdiv)
+def drawChart(whichChart, data, chartstring, chartnumber, charttitle, chartdiv, width, height)
         "
           function drawChart#{whichChart}() {
             // Create the data table.
@@ -218,8 +205,8 @@ def drawChart(whichChart, data, chartstring, chartnumber, charttitle, chartdiv)
             // Set chart options
             var options = {'title': '#{charttitle}',
                            is3D: true,
-                           'width': #{$width},
-                           'height': #{$height},
+                           'width': #{width},
+                           'height': #{height},
                            'titleTextStyle': { 'color': 'black' } };
             // Instantiate and draw our chart, passing in some options.
             var chart = new google.visualization.PieChart(document.getElementById('chart_div_#{chartdiv}'));
@@ -252,7 +239,7 @@ pagebuild
 # set the JavaScript Callback
 @page  += "
           google.charts.setOnLoadCallback(drawChartAll);\n"
-@page  += drawChart('All', allFiles, 'Schema count', 'Values', 'Branch gh-pages count of files grouped by file type', 'all')
+@page  += drawChart('All', allFiles, 'Schema count', 'Values', 'Branch gh-pages count of files grouped by file type', 'all', width, height)
 # histogram
 @page  += "
           google.charts.setOnLoadCallback(drawChartHistogram);\n"
@@ -264,7 +251,7 @@ pageone.map.with_index do |chart, i|
 end
 # create JavaScript chart functions for page 1
 pageone.map do |chart|
-    @page1 += drawChart("#{chart[1]}", chart[0], "#{chart[2]}", "#{chart[3]}", "#{chart[4]}", "#{chart[5]}")
+    @page1 += drawChart("#{chart[1]}", chart[0], "#{chart[2]}", "#{chart[3]}", "#{chart[4]}", "#{chart[5]}", width, height)
 end
 # continue common page
 $pagetemp = "
