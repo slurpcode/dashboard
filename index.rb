@@ -2,7 +2,7 @@
 
 # chart size global variables
 $width = 400; $height=330;
-#declare variables
+# declare variables
 extension=[]; version=[]; xmlns=[]; complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[]; elementstring=[]; elementshort=[];
 elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[]; annotation=[]; documentation=[];
 xsany=[]; xsenumeration=[]; xsanyAttribute=[]; minOccurs0=[]; minOccurs1=[]; maxOccursunbounded=[]; useoptional=[]; userequired=[]; typeanyURI=[];
@@ -10,7 +10,7 @@ typebase64Binary=[]; mixedtrue=[]; typeID=[]; processContentslax=[]; namespace=[
 attributeGroup=[]; targetNamespace=[]; elementFormDefault=[]; attributeFormDefault=[]; doctype=[]; attlist=[]; entity=[]; basebase64Binary=[];
 blockDefaultsubstitution=[]; typedsKeyInfoType=[]; elementrefsamlp=[]; elementrefsaml=[]; xmlnsds=[]; xmllangen=[];
 # loop over schema files
-Dir.glob("schema/*.xsd").map.with_index do |schema, i|
+Dir.glob('schema/*.xsd').map.with_index do |schema, i|
   filename = schema.split('/').last
   file = File.open(schema, 'r'); data = file.read; file.close;
 
@@ -38,7 +38,7 @@ Dir.glob("schema/*.xsd").map.with_index do |schema, i|
   xsenumeration      << [filename, data.scan(/<xs:enumeration/).size    ]
   xsanyAttribute     << [filename, data.scan(/<xs:anyAttribute/).size       ]
   minOccurs0         << [filename, data.scan(/minOccurs="0"/).size          ]
-  #minOccurs1        << [filename, data.scan(/minOccurs="1"/).size          ]
+  # minOccurs1       << [filename, data.scan(/minOccurs="1"/).size          ]
   maxOccursunbounded << [filename, data.scan(/maxOccurs="unbounded"/).size  ]
   useoptional        << [filename, data.scan(/use="optional"/).size         ]
   userequired        << [filename, data.scan(/use="required"/).size         ]
@@ -96,7 +96,7 @@ pageone = [ [version, 'version', 'version count', v, 'Branch count of schema gro
             [xsenumeration, 'xsenumeration', 'xs:enumeration', v, charttitle('xs:enumeration'), 'xsenumeration'],
             [xsanyAttribute, 'xsanyAttribute', 'xs:anyAttribute', v, charttitle('xs:anyAttribute'), 'xsanyAttribute'],
             [minOccurs0, 'minOccurs0', 'minOccurs="0"', v, charttitle('minOccurs="0"'), 'minOccurs0'],
-            #[minOccurs1, 'minOccurs1', 'minOccurs="1"', v, charttitle('minOccurs="1"'), 'minOccurs1'],
+            # [minOccurs1, 'minOccurs1', 'minOccurs="1"', v, charttitle('minOccurs="1"'), 'minOccurs1'],
             [maxOccursunbounded, 'maxOccursunbounded', 'maxOccurs="unbounded"', v, charttitle('maxOccurs="unbounded"'), 'maxOccursunbounded'],
             [useoptional, 'useoptional', 'use="optional"', v, charttitle('use="optional"'), 'useoptional'],
             [userequired, 'userequired', 'use="required"', v, charttitle('use="required"'), 'userequired'],
@@ -133,10 +133,10 @@ log = `git log --pretty=format:"%ad" --date=short > log.txt`
 file = File.open('log.txt', 'r')
 logdata = file.read
 file.close
-logdata = logdata.lines.group_by{|x| x.strip}.map{|k, v| [k,v.size]}
+logdata = logdata.lines.group_by{|x| x.strip}.map{|k, v| [k, v.size]}
 logdata.unshift(['Date', 'Amount'])
 #
-Dir.glob("**/*").map do |x|
+Dir.glob('**/*').map do |x|
   ext = File.extname(x)
   if ext == ''
     ext = 'folders'
@@ -148,7 +148,7 @@ end
 #
 allFiles = extension.flatten.group_by{|x| x}.map{|k, v| [k, v.size]}
 # Create pages
-@page=''; @page1='';
+@page = ''; @page1 = '';
 # start common page region
 $pagetemp = <<-EOS
 <!DOCTYPE html>
