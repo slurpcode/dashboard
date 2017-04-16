@@ -234,16 +234,16 @@ end
 pagebuild
 # create JavaScript chart function for home page
 # set the JavaScript Callback
-@page  += "
+@page += "
           google.charts.setOnLoadCallback(drawChartAll);\n"
-@page  += drawChart('All', allFiles, 'Schema count', 'Values', 'Branch gh-pages count of files grouped by file type', 'all', width, height)
+@page += drawChart('All', allFiles, 'Schema count', 'Values', 'Branch gh-pages count of files grouped by file type', 'all', width, height)
 # histogram
-@page  += "
+@page += "
           google.charts.setOnLoadCallback(drawChartHistogram);\n"
 @page += drawChartHistogram(logdata)
 # set the JavaScript Callback
-pageone.map.with_index do |chart, i|
-  @page1  += "
+pageone.map do |chart|
+  @page1 += "
           google.charts.setOnLoadCallback(drawChart#{chart[1]});\n"
 end
 # create JavaScript chart functions for page 1
