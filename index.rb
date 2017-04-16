@@ -133,7 +133,7 @@ log = `git log --pretty=format:"%ad" --date=short > log.txt`
 file = File.open('log.txt', 'r')
 logdata = file.read
 file.close
-logdata = logdata.lines.group_by{|x| x.strip}.map{|k,v| [k,v.size]}
+logdata = logdata.lines.group_by{|x| x.strip}.map{|k, v| [k,v.size]}
 logdata.unshift(['Date', 'Amount'])
 #
 Dir.glob("**/*").map do |x|
@@ -251,16 +251,16 @@ pagebuild
 # create JavaScript chart function for home page
 # set the JavaScript Callback
 @page  += "
-          google.charts.setOnLoadCallback(drawChartAll);\n";
+          google.charts.setOnLoadCallback(drawChartAll);\n"
 @page  += drawChart('All', allFiles, 'Schema count', 'Values', 'Branch gh-pages count of files grouped by file type', 'all')
 # histogram
 @page  += "
-          google.charts.setOnLoadCallback(drawChartHistogram);\n";
+          google.charts.setOnLoadCallback(drawChartHistogram);\n"
 @page += drawChartHistogram(logdata)
 # set the JavaScript Callback
 pageone.map.with_index do |chart, i|
   @page1  += "
-          google.charts.setOnLoadCallback(drawChart#{chart[1]});\n";
+          google.charts.setOnLoadCallback(drawChart#{chart[1]});\n"
 end
 # create JavaScript chart functions for page 1
 pageone.map do |chart|
