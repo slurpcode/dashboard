@@ -23,6 +23,7 @@
           div[id^="chart_div"] > div > div { margin: auto; }
          .footer { background-color: rgba(49,37,152,0.8); min-height: 200px; color: #fff !important; }
          .footer ul a { color: #fff !important; }
+         .selected { background-color: aliceblue; font-weight: bold; }
          pre { white-space: pre-wrap; //css3
              white-space: moz-pre-wrap; //firefox
              white-space: -pre-wrap; //opera 4-6
@@ -59,7 +60,7 @@
           google.charts.setOnLoadCallback(drawChartHistogram);
 
           function drawChartHistogram(){
-            var data = google.visualization.arrayToDataTable([["Date", "Amount"], ["2017-04-17", 5], ["2017-04-16", 2], ["2017-04-11", 1], ["2017-03-29", 6], ["2017-03-24", 2], ["2017-03-22", 1], ["2017-02-11", 2], ["2017-01-27", 1], ["2017-01-24", 4], ["2016-12-25", 1], ["2016-12-24", 1], ["2016-12-22", 5], ["2016-12-20", 1], ["2016-12-19", 4], ["2016-12-18", 1], ["2016-11-09", 2], ["2016-11-08", 14], ["2016-11-07", 4]]);
+            var data = google.visualization.arrayToDataTable([["Date", "Amount"], ["2017-04-17", 6], ["2017-04-16", 2], ["2017-04-11", 1], ["2017-03-29", 6], ["2017-03-24", 2], ["2017-03-22", 1], ["2017-02-11", 2], ["2017-01-27", 1], ["2017-01-24", 4], ["2016-12-25", 1], ["2016-12-24", 1], ["2016-12-22", 5], ["2016-12-20", 1], ["2016-12-19", 4], ["2016-12-18", 1], ["2016-11-09", 2], ["2016-11-08", 14], ["2016-11-07", 4]]);
             var options = {
               title: 'Histogram of commits by amount',
               legend: { position: 'top', maxLines: 2 },
@@ -97,18 +98,18 @@
       <pre>
         <code>
           
-github.com/AlDanial/cloc v 1.72  T=0.28 s (78.5 files/s, 44637.3 lines/s)
+github.com/AlDanial/cloc v 1.72  T=0.25 s (89.5 files/s, 51051.1 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
 CSS                              4              7             24           7326
 JavaScript                       4            582            205           1614
-HTML                             2            159             16           1073
+HTML                             2            159             16           1107
 XSD                             10             73             40           1029
-Ruby                             1              5             30            292
+Ruby                             1              5             30            309
 Markdown                         1             11              0             18
 -------------------------------------------------------------------------------
-SUM:                            22            837            315          11352
+SUM:                            22            837            315          11403
 -------------------------------------------------------------------------------
 
         </code>
@@ -132,5 +133,21 @@ SUM:                            22            837            315          11352
       <script src='bootstrap/js/jquery.min.js'></script>
       <!-- Latest compiled and minified JavaScript -->
       <script src='bootstrap/js/bootstrap.min.js'></script>
+      <script>
+        $(document).ready(function () {
+           'use strict';
+           var last = $(location).attr('href').split('/').slice(-1)[0].split('.')[0].replace(/index/, '');
+           var tab = 1;
+           if (last !== '') {
+             tab = parseInt(last) + 1;
+           }
+           $('.navbar-nav li:nth-child(' + tab + ')').addClass('selected');
+           tab--;
+           if (tab === 0) {
+             tab = '';
+           }
+           $('.nuchecker a').attr('href', 'https://validator.w3.org/nu/?doc=http%3A%2F%2Fthebeast.me%2Fdashboard-2%2Findex' + tab + '.html');
+        });
+      </script>
     </body>
 </html>

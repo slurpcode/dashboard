@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # chart size variables
-width = 400; height=330;
+width = 400; height = 330;
 # declare variables
 extension=[]; version=[]; xmlns=[]; complexType=[]; element=[]; sequence=[]; simpleContent=[]; xsextension=[]; attribute=[]; elementstring=[]; elementshort=[];
 elementfloat=[]; attributestring=[]; elementbyte=[]; xsimport=[]; elementref=[]; xschoice=[]; complexContent=[]; annotation=[]; documentation=[];
@@ -14,7 +14,7 @@ Dir.glob('schema/*.xsd').map.with_index do |schema, i|
   filename = schema.split('/').last
   file = File.open(schema, 'r'); data = file.read; file.close;
 
-  version            << data.gsub(/(.*<xs:schema.*?version=")(.*?)(">.*<\/xs:schema>)/m,'\2').strip
+  version            << data.gsub(/(.*<xs:schema.*?version=")(.*?)(">.*<\/xs:schema>)/m, '\2').strip
   xmlns              << [filename, data.scan(/xmlns[=:]/).size         ]
   xmlnsds            << [filename, data.scan(/xmlns:ds=/).size         ]
   complexType        << [filename, data.scan(/<xs:complexType/).size   ]
@@ -176,6 +176,7 @@ $pagetemp = <<-EOS
           div[id^="chart_div"] > div > div { margin: auto; }
          .footer { background-color: rgba(49,37,152,0.8); min-height: 200px; color: #fff !important; }
          .footer ul a { color: #fff !important; }
+         .selected { background-color: aliceblue; font-weight: bold; }
          pre { white-space: pre-wrap; //css3
              white-space: moz-pre-wrap; //firefox
              white-space: -pre-wrap; //opera 4-6
@@ -315,6 +316,22 @@ $pagetemp = "
       <script src='bootstrap/js/jquery.min.js'></script>
       <!-- Latest compiled and minified JavaScript -->
       <script src='bootstrap/js/bootstrap.min.js'></script>
+      <script>
+        $(document).ready(function () {
+           'use strict';
+           var last = $(location).attr('href').split('/').slice(-1)[0].split('.')[0].replace(/index/, '');
+           var tab = 1;
+           if (last !== '') {
+             tab = parseInt(last) + 1;
+           }
+           $('.navbar-nav li:nth-child(' + tab + ')').addClass('selected');
+           tab--;
+           if (tab === 0) {
+             tab = '';
+           }
+           $('.nuchecker a').attr('href', 'https://validator.w3.org/nu/?doc=http%3A%2F%2Fthebeast.me%2Fdashboard-2%2Findex' + tab + '.html');
+        });
+      </script>
     </body>
 </html>"
 # finish building all the pages
