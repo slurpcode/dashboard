@@ -186,7 +186,7 @@ $pagetemp = <<-EOS
         </style>
         <!--Load the AJAX API-->
         <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
-        <script type='text/javascript' src="https://www.google.com/jsapi"></script>
+        <script type='text/javascript' src='https://www.google.com/jsapi'></script>
         <script type='text/javascript'>
           // Load the Visualization API and the corechart package.
           google.charts.load('current', {'packages':['corechart']});
@@ -249,7 +249,7 @@ pageone.map do |chart|
 end
 # create JavaScript chart functions for page 1
 pageone.map do |chart|
-    @page1 += drawChart("#{chart[1]}", chart[0], "#{chart[2]}", "#{chart[3]}", "#{chart[4]}", "#{chart[5]}", width, height)
+    @page1 += drawChart(chart[1], chart[0], chart[2], chart[3], chart[4], chart[5], width, height)
 end
 # continue common page
 $pagetemp = "
