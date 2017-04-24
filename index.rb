@@ -10,7 +10,7 @@ typebase64Binary=[]; mixedtrue=[]; typeID=[]; processContentslax=[]; namespace=[
 attributeGroup=[]; targetNamespace=[]; elementFormDefault=[]; attributeFormDefault=[]; doctype=[]; attlist=[]; entity=[]; basebase64Binary=[];
 blockDefaultsubstitution=[]; typedsKeyInfoType=[]; elementrefsamlp=[]; elementrefsaml=[]; xmlnsds=[]; xmllangen=[];
 # loop over schema files
-Dir.glob('schema/*.xsd').map.with_index do |schema, i|
+Dir.glob('schema/*.xsd').map do |schema|
   filename = schema.split('/').last
   file = File.open(schema, 'r'); data = file.read; file.close;
 
