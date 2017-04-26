@@ -70,6 +70,10 @@ version = version.group_by{|x| x}.map{|k, v| [k, v.size]}
 def charttitle(charttype)
   "Branch gh-pages count of #{charttype} grouped by file"
 end
+# common function to escape double quotes
+def escape(s)
+  s.gsub('"', '\"')
+end
 # page one data structure
 v = 'Values'
 pageone = [ [version, 'version', 'version count', v, 'Branch count of schema grouped by version', 'version'],
@@ -150,20 +154,20 @@ allFiles = extension.flatten.group_by{|x| x}.map{|k, v| [k, v.size]}
 # Create pages
 @page = ''; @page1 = '';
 # start common page region
-$pagetemp = <<-EOS
+$pagetemp = %(
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
     <head>
-        <meta charset='UTF-8'>
-        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other
              head content must come *after* these tags -->
         <title>Analytics Dashboard</title>
         <!-- Latest compiled and minified CSS -->
-        <link rel='stylesheet' href='bootstrap/css/bootstrap.min.css'>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
         <!-- Optional theme -->
-        <link rel='stylesheet' href='bootstrap/css/bootstrap-theme.min.css'>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
         <style>
           h2 { text-align: center; font-size: 19pt; background-color: rgba(49,37,152,0.8);
                color: #fff; border-radius: 1pt 1pt 1pt 1pt; padding: 14px; }
@@ -185,44 +189,43 @@ $pagetemp = <<-EOS
          }
         </style>
         <!--Load the AJAX API-->
-        <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
-        <script type='text/javascript' src='https://www.google.com/jsapi'></script>
-        <script type='text/javascript'>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
           // Load the Visualization API and the corechart package.
-          google.charts.load('current', {'packages':['corechart']});
-EOS
+          google.charts.load("current", {"packages":["corechart"]});)
 
 def drawChart(whichChart, data, chartstring, chartnumber, charttitle, chartdiv, width, height)
-        "
+        %(
           function drawChart#{whichChart}() {
             // Create the data table.
             var data = new google.visualization.DataTable();
-            data.addColumn('string', '#{chartstring}');
-            data.addColumn('number', '#{chartnumber}');
+            data.addColumn("string", "#{escape(chartstring)}");
+            data.addColumn("number", "#{chartnumber}");
             data.addRows(#{data});
             // Set chart options
-            var options = {'title': '#{charttitle}',
+            var options = {"title": "#{escape(charttitle)}",
                            is3D: true,
-                           'width': #{width},
-                           'height': #{height},
-                           'titleTextStyle': { 'color': 'black' } };
+                           "width": #{width},
+                           "height": #{height},
+                           "titleTextStyle": { "color": "black" } };
             // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div_#{chartdiv}'));
+            var chart = new google.visualization.PieChart(document.getElementById("chart_div_#{chartdiv}"));
             chart.draw(data, options);
-          }\n"
+          }\n)
 end
 
 def drawChartHistogram(data)
-        "
+        %(
           function drawChartHistogram(){
             var data = google.visualization.arrayToDataTable(#{data});
             var options = {
-              title: 'Histogram of commits by amount',
-              legend: { position: 'top', maxLines: 2 },
+              title: "Histogram of commits by amount",
+              legend: { position: "top", maxLines: 2 },
             };
-            var chart = new google.visualization.Histogram(document.getElementById('chart_div_hist'));
+            var chart = new google.visualization.Histogram(document.getElementById("chart_div_hist"));
             chart.draw(data, options);
-        }\n"
+        }\n)
 end
 
 # buld all the website pages
@@ -252,88 +255,88 @@ pageone.map do |chart|
     @page1 += drawChart(chart[1], chart[0], chart[2], chart[3], chart[4], chart[5], width, height)
 end
 # continue common page
-$pagetemp = "
+$pagetemp = %(
       </script>
     </head>
     <body>
       <!-- Static navbar -->
-      <nav class='navbar navbar-default'>
-        <div class='container-fluid'>
-          <div class='navbar-header'>
-            <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'>
-              <span class='sr-only'>Toggle navigation</span>
-              <span class='icon-bar'></span>
-              <span class='icon-bar'></span>
-              <span class='icon-bar'></span>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
               </button>
-            <a class='navbar-brand' href='#' id='head1'>Analytics Dashboard</a>
+            <a class="navbar-brand" href="#" id="head1">Analytics Dashboard</a>
           </div>
-          <div id='navbar' class='navbar-collapse collapse'>
-            <ul class='nav navbar-nav'>
-              <li class=''><a href='index.html'>Home</a></li>
-              <li class=''><a href='index1.html'>Charts</a></li>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="index1.html">Charts</a></li>
             </ul>
           </div>
         </div>
       </nav>
-      <div class='container-fluid'>\n"
+      <div class="container-fluid">\n)
 pagebuild
 # homepage
-@page += "
+@page += %(
       <h2>Featured Statistics</h2>
       <pre>
         <code>
           #{clocdata}
         </code>
       </pre>
-      <div class='row'>
-        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_all'></div>
-        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_hist' style='width: 600px; height: 400px;'></div>
-      </div>\n"
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3" id="chart_div_all"></div>
+        <div class="col-sm-6 col-md-4 col-lg-3" id="chart_div_hist" style="width: 600px; height: 400px;"></div>
+      </div>\n)
 #
-@page1 += "
-      <div class='row'>\n"
+@page1 += %(
+      <div class="row">\n)
 # add chart divs to page 1
 pageone.map do |chart|
-  @page1 += "
-        <div class='col-sm-6 col-md-4 col-lg-3' id='chart_div_#{chart[5]}'></div>\n"
+  @page1 += %(
+        <div class="col-sm-6 col-md-4 col-lg-3" id="chart_div_#{chart[5]}"></div>\n)
 end
-@page1 += "
-      </div>"
+@page1 += '
+      </div>'
 # finish common page region.
-$pagetemp = "
+$pagetemp = %(
       </div>
-      <footer class='footer'>
-        <div class='container'>
-          <ul class='list-unstyled'>
-            <li><a href='#head1'>Back to top</a></li>
-            <li><a href='index.html'>Home</a></li>
-            <li><a href='index1.html'>Charts</a></li>
+      <footer class="footer">
+        <div class="container">
+          <ul class="list-unstyled">
+            <li><a href="#head1">Back to top</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index1.html">Charts</a></li>
           </ul>
         </div>
       </footer>
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-      <script src='bootstrap/js/jquery.min.js'></script>
+      <script src="bootstrap/js/jquery.min.js"></script>
       <!-- Latest compiled and minified JavaScript -->
-      <script src='bootstrap/js/bootstrap.min.js'></script>
+      <script src="bootstrap/js/bootstrap.min.js"></script>
       <script>
         $(document).ready(function () {
-           'use strict';
-           var last = $(location).attr('href').split('/').slice(-1)[0].split('.')[0].replace(/index/, '');
+           "use strict";
+           var last = $(location).attr("href").split("/").slice(-1)[0].split(".")[0].replace(/index/, "");
            var tab = 1;
-           if (last !== '') {
+           if (last !== "") {
              tab = parseInt(last) + 1;
            }
-           $('.navbar-nav li:nth-child(' + tab + ')').addClass('selected');
+           $(".navbar-nav li:nth-child(" + tab + ")").addClass("selected");
            tab--;
            if (tab === 0) {
-             tab = '';
+             tab = "";
            }
-           $('.nuchecker a').attr('href', 'https://validator.w3.org/nu/?doc=http%3A%2F%2Fthebeast.me%2Fdashboard-2%2Findex' + tab + '.html');
+           $(".nuchecker a").attr("href", "https://validator.w3.org/nu/?doc=http%3A%2F%2Fthebeast.me%2Fdashboard-2%2Findex" + tab + ".html");
         });
       </script>
     </body>
-</html>"
+</html>)
 # finish building all the pages
 pagebuild
 # write all the HTML pages to files
