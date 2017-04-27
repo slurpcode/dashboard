@@ -67,7 +67,7 @@ Dir.glob('schema/*.xsd').map do |schema|
 end
 version = version.group_by{|x| x}.map{|k, v| [k, v.size]}
 #
-def charttitle(charttype)
+def chart_title(charttype)
   "Branch gh-pages count of #{charttype} grouped by file"
 end
 # common function to escape double quotes
@@ -77,55 +77,55 @@ end
 # page one data structure
 v = 'Values'
 pageone = [ [version, 'version', 'version count', v, 'Branch count of schema grouped by version', 'version'],
-            [xmlns, 'xmlns', 'xmlns count', v, charttitle('xmlns'), 'xmlns'],
-            [complexType, 'complexType', 'complexType count', v, charttitle('xs:complexType'), 'complexType'],
-            [element, 'element', 'element count', v, charttitle('xs:element'), 'element'],
-            [sequence, 'sequence', 'sequence count', v, charttitle('xs:sequence'), 'sequence'],
-            [simpleContent, 'simpleContent', 'simpleContent count', v, charttitle('xs:simpleContent'), 'simpleContent'],
-            [attributeGroup, 'attributeGroup', 'attributeGroup count', v, charttitle('xs:attributeGroup'), 'attributeGroup'],
-            [xsextension, 'extension', 'extension count', v, charttitle('xs:extension'), 'xsextension'],
-            [attribute, 'attribute', 'attribute count', v, charttitle('xs:attribute'), 'attribute'],
-            [elementstring, 'elementstring', 'element type="xs:string"', v, charttitle('xs:element type="xs:string"'), 'elementstring'],
-            [elementshort , 'elementshort', 'xs:element type="xs:short"', v, charttitle('xs:element type="xs:short"'), 'elementshort'],
-            [elementfloat, 'elementfloat', 'xs:element type="xs:float"', v, charttitle('xs:element type="xs:float"'), 'elementfloat'],
-            [attributestring, 'attributestring', 'xs:attribute type="xs:string"', v, charttitle('xs:attribute type="xs:string"'), 'attributestring'],
-            [elementbyte, 'elementbyte', 'xs:element type="xs:byte"', v, charttitle('xs:element type="xs:byte"'), 'elementbyte'],
-            [xsimport, 'xsimport', 'xs:import', v, charttitle('xs:import'), 'xsimport'],
-            [elementref, 'xselementref', 'xs:element ref=', v, charttitle('xs:element ref='), 'elementref'],
-            [xschoice, 'xschoice', 'xs:choice', v, charttitle('xs:choice'), 'xschoice'],
-            [complexContent, 'complexContent', 'xs:complexContent', v, charttitle('xs:complexContent'), 'complexContent'],
-            [annotation, 'annotation', 'xs:annotation', v, charttitle('xs:annotation'), 'annotation'],
-            [documentation, 'documentation', 'xs:documentation', v, charttitle('xs:documentation'), 'documentation'],
-            [xsany, 'any', 'xs:any', v, charttitle('xs:any'), 'xsany'],
-            [xsenumeration, 'xsenumeration', 'xs:enumeration', v, charttitle('xs:enumeration'), 'xsenumeration'],
-            [xsanyAttribute, 'xsanyAttribute', 'xs:anyAttribute', v, charttitle('xs:anyAttribute'), 'xsanyAttribute'],
-            [minOccurs0, 'minOccurs0', 'minOccurs="0"', v, charttitle('minOccurs="0"'), 'minOccurs0'],
-            # [minOccurs1, 'minOccurs1', 'minOccurs="1"', v, charttitle('minOccurs="1"'), 'minOccurs1'],
-            [maxOccursunbounded, 'maxOccursunbounded', 'maxOccurs="unbounded"', v, charttitle('maxOccurs="unbounded"'), 'maxOccursunbounded'],
-            [useoptional, 'useoptional', 'use="optional"', v, charttitle('use="optional"'), 'useoptional'],
-            [userequired, 'userequired', 'use="required"', v, charttitle('use="required"'), 'userequired'],
-            [typeanyURI, 'typeanyURI', 'type="anyURI"', v , charttitle('type="anyURI"'), 'typeanyURI'],
-            [typebase64Binary, 'typebase64Binary', 'type="base64Binary"', v, charttitle('type="base64Binary"'), 'typebase64Binary'],
-            [mixedtrue, 'mixedtrue', 'mixed="true"', v, charttitle('mixed="true"'), 'mixedtrue'],
-            [typeID, 'typeID', 'type="ID"', v, charttitle('type="ID"'), 'typeID'],
-            [processContentslax, 'processContentslax', 'processContents="lax"', v, charttitle('processContents="lax"'), 'processContentslax'],
-            [namespace, 'namespace', 'namespace="..."', v, charttitle('namespace="..."'), 'namespace'],
-            [abstracttrue, 'abstracttrue', 'abstract="true"', v, charttitle('abstract="true"'), 'abstracttrue'],
-            [typedateTime, 'typedateTime', 'type="dateTime"', v, charttitle('type="dateTime"'), 'typedateTime'],
-            [typeNCName, 'typeNCName', 'type="NCName"', v, charttitle('type="NCName"'), 'typeNCName'],
-            [restriction, 'restriction', 'xs:restriction', v, charttitle('xs:restriction'), 'restriction'],
-            [targetNamespace, 'targetNamespace', 'targetNamespace', v, charttitle('targetNamespace'), 'targetNamespace'],
-            [elementFormDefault, 'elementFormDefault', 'elementFormDefault', v, charttitle('elementFormDefault'), 'elementFormDefault'],
-            [attributeFormDefault, 'attributeFormDefault', 'attributeFormDefault', v, charttitle('attributeFormDefault'), 'attributeFormDefault'],
-            [doctype, 'doctype', 'doctype', v, charttitle('<!DOCTYPE'), 'doctype'],
-            [attlist, 'attlist', 'attlist', v, charttitle('<!ATTLIST'), 'attlist'],
-            [entity, 'entity', 'entity', v, charttitle('<!ENTITY'), 'entity'],
-            [basebase64Binary, 'basebase64Binary', 'base="base64Binary"', v, charttitle('base="base64Binary"'), 'basebase64Binary'],
-            [blockDefaultsubstitution, 'blockDefaultsubstitution', 'blockDefault="substitution"', v, charttitle('blockDefault="substitution"'), 'blockDefaultsubstitution'],
-            [typedsKeyInfoType, 'typedsKeyInfoType', 'type="ds:KeyInfoType"', v, charttitle('type="ds:KeyInfoType"'), 'typedsKeyInfoType' ],
-            [elementrefsamlp, 'elementrefsamlp', '<xs:element ref="samlp:', v, charttitle('<xs:element ref="samlp:'), 'elementrefsamlp'],
-            [elementrefsaml, 'elementrefsaml', '<xs:element ref="saml:', v, charttitle('<xs:element ref="saml:'), 'elementrefsaml'],
-            [xmlnsds, 'xmlnsds', 'xmlns:ds=', v, charttitle('xmlns:ds='), 'xmlnsds']
+            [xmlns, 'xmlns', 'xmlns count', v, chart_title('xmlns'), 'xmlns'],
+            [complexType, 'complexType', 'complexType count', v, chart_title('xs:complexType'), 'complexType'],
+            [element, 'element', 'element count', v, chart_title('xs:element'), 'element'],
+            [sequence, 'sequence', 'sequence count', v, chart_title('xs:sequence'), 'sequence'],
+            [simpleContent, 'simpleContent', 'simpleContent count', v, chart_title('xs:simpleContent'), 'simpleContent'],
+            [attributeGroup, 'attributeGroup', 'attributeGroup count', v, chart_title('xs:attributeGroup'), 'attributeGroup'],
+            [xsextension, 'extension', 'extension count', v, chart_title('xs:extension'), 'xsextension'],
+            [attribute, 'attribute', 'attribute count', v, chart_title('xs:attribute'), 'attribute'],
+            [elementstring, 'elementstring', 'element type="xs:string"', v, chart_title('xs:element type="xs:string"'), 'elementstring'],
+            [elementshort , 'elementshort', 'xs:element type="xs:short"', v, chart_title('xs:element type="xs:short"'), 'elementshort'],
+            [elementfloat, 'elementfloat', 'xs:element type="xs:float"', v, chart_title('xs:element type="xs:float"'), 'elementfloat'],
+            [attributestring, 'attributestring', 'xs:attribute type="xs:string"', v, chart_title('xs:attribute type="xs:string"'), 'attributestring'],
+            [elementbyte, 'elementbyte', 'xs:element type="xs:byte"', v, chart_title('xs:element type="xs:byte"'), 'elementbyte'],
+            [xsimport, 'xsimport', 'xs:import', v, chart_title('xs:import'), 'xsimport'],
+            [elementref, 'xselementref', 'xs:element ref=', v, chart_title('xs:element ref='), 'elementref'],
+            [xschoice, 'xschoice', 'xs:choice', v, chart_title('xs:choice'), 'xschoice'],
+            [complexContent, 'complexContent', 'xs:complexContent', v, chart_title('xs:complexContent'), 'complexContent'],
+            [annotation, 'annotation', 'xs:annotation', v, chart_title('xs:annotation'), 'annotation'],
+            [documentation, 'documentation', 'xs:documentation', v, chart_title('xs:documentation'), 'documentation'],
+            [xsany, 'any', 'xs:any', v, chart_title('xs:any'), 'xsany'],
+            [xsenumeration, 'xsenumeration', 'xs:enumeration', v, chart_title('xs:enumeration'), 'xsenumeration'],
+            [xsanyAttribute, 'xsanyAttribute', 'xs:anyAttribute', v, chart_title('xs:anyAttribute'), 'xsanyAttribute'],
+            [minOccurs0, 'minOccurs0', 'minOccurs="0"', v, chart_title('minOccurs="0"'), 'minOccurs0'],
+            # [minOccurs1, 'minOccurs1', 'minOccurs="1"', v, chart_title('minOccurs="1"'), 'minOccurs1'],
+            [maxOccursunbounded, 'maxOccursunbounded', 'maxOccurs="unbounded"', v, chart_title('maxOccurs="unbounded"'), 'maxOccursunbounded'],
+            [useoptional, 'useoptional', 'use="optional"', v, chart_title('use="optional"'), 'useoptional'],
+            [userequired, 'userequired', 'use="required"', v, chart_title('use="required"'), 'userequired'],
+            [typeanyURI, 'typeanyURI', 'type="anyURI"', v , chart_title('type="anyURI"'), 'typeanyURI'],
+            [typebase64Binary, 'typebase64Binary', 'type="base64Binary"', v, chart_title('type="base64Binary"'), 'typebase64Binary'],
+            [mixedtrue, 'mixedtrue', 'mixed="true"', v, chart_title('mixed="true"'), 'mixedtrue'],
+            [typeID, 'typeID', 'type="ID"', v, chart_title('type="ID"'), 'typeID'],
+            [processContentslax, 'processContentslax', 'processContents="lax"', v, chart_title('processContents="lax"'), 'processContentslax'],
+            [namespace, 'namespace', 'namespace="..."', v, chart_title('namespace="..."'), 'namespace'],
+            [abstracttrue, 'abstracttrue', 'abstract="true"', v, chart_title('abstract="true"'), 'abstracttrue'],
+            [typedateTime, 'typedateTime', 'type="dateTime"', v, chart_title('type="dateTime"'), 'typedateTime'],
+            [typeNCName, 'typeNCName', 'type="NCName"', v, chart_title('type="NCName"'), 'typeNCName'],
+            [restriction, 'restriction', 'xs:restriction', v, chart_title('xs:restriction'), 'restriction'],
+            [targetNamespace, 'targetNamespace', 'targetNamespace', v, chart_title('targetNamespace'), 'targetNamespace'],
+            [elementFormDefault, 'elementFormDefault', 'elementFormDefault', v, chart_title('elementFormDefault'), 'elementFormDefault'],
+            [attributeFormDefault, 'attributeFormDefault', 'attributeFormDefault', v, chart_title('attributeFormDefault'), 'attributeFormDefault'],
+            [doctype, 'doctype', 'doctype', v, chart_title('<!DOCTYPE'), 'doctype'],
+            [attlist, 'attlist', 'attlist', v, chart_title('<!ATTLIST'), 'attlist'],
+            [entity, 'entity', 'entity', v, chart_title('<!ENTITY'), 'entity'],
+            [basebase64Binary, 'basebase64Binary', 'base="base64Binary"', v, chart_title('base="base64Binary"'), 'basebase64Binary'],
+            [blockDefaultsubstitution, 'blockDefaultsubstitution', 'blockDefault="substitution"', v, chart_title('blockDefault="substitution"'), 'blockDefaultsubstitution'],
+            [typedsKeyInfoType, 'typedsKeyInfoType', 'type="ds:KeyInfoType"', v, chart_title('type="ds:KeyInfoType"'), 'typedsKeyInfoType' ],
+            [elementrefsamlp, 'elementrefsamlp', '<xs:element ref="samlp:', v, chart_title('<xs:element ref="samlp:'), 'elementrefsamlp'],
+            [elementrefsaml, 'elementrefsaml', '<xs:element ref="saml:', v, chart_title('<xs:element ref="saml:'), 'elementrefsaml'],
+            [xmlnsds, 'xmlnsds', 'xmlns:ds=', v, chart_title('xmlns:ds='), 'xmlnsds']
           ]
 # integrate cloc stats via shell command
 `cloc . --ignored=ignored.txt --skip-uniqueness --quiet > cloc.txt`
@@ -195,29 +195,29 @@ $pagetemp = %(
           // Load the Visualization API and the corechart package.
           google.charts.load("current", {"packages":["corechart"]});)
 
-def drawChart(whichChart, data, chartstring, chartnumber, charttitle, chartdiv, width, height)
+def draw_chart(which_chart, data, chart_string, chart_number, chart_title, chart_div, width, height)
         %(
-          function drawChart#{whichChart}() {
+          function drawChart#{which_chart}() {
             // Create the data table.
             var data = new google.visualization.DataTable();
-            data.addColumn("string", "#{escape(chartstring)}");
-            data.addColumn("number", "#{chartnumber}");
+            data.addColumn("string", "#{escape(chart_string)}");
+            data.addColumn("number", "#{chart_number}");
             data.addRows(#{data});
             // Set chart options
-            var options = {"title": "#{escape(charttitle)}",
+            var options = {"title": "#{escape(chart_title)}",
                            is3D: true,
                            "width": #{width},
                            "height": #{height},
                            "titleTextStyle": { "color": "black" } };
             // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById("chart_div_#{chartdiv}"));
+            var chart = new google.visualization.PieChart(document.getElementById("chart_div_#{chart_div}"));
             chart.draw(data, options);
           }\n)
 end
 
-def drawChartHistogram(data)
+def draw_chart_histogram(data)
         %(
-          function drawChartHistogram(){
+          function draw_chart_histogram(){
             var data = google.visualization.arrayToDataTable(#{data});
             var options = {
               title: "Histogram of commits by amount",
@@ -229,22 +229,22 @@ def drawChartHistogram(data)
 end
 
 # buld all the website pages
-def pagebuild
+def page_build
   (0..1).map do |i|
     instance_variable_set("@page#{i > 0 ? i : ''}", instance_variable_get("@page#{i > 0 ? i : ''}") + $pagetemp)
   end
 end
 #
-pagebuild
+page_build
 # create JavaScript chart function for home page
 # set the JavaScript Callback
 @page += "
           google.charts.setOnLoadCallback(drawChartAll);\n"
-@page += drawChart('All', allFiles, 'Schema count', 'Values', 'Branch gh-pages count of files grouped by file type', 'all', width, height)
+@page += draw_chart('All', allFiles, 'Schema count', 'Values', 'Branch gh-pages count of files grouped by file type', 'all', width, height)
 # histogram
 @page += "
-          google.charts.setOnLoadCallback(drawChartHistogram);\n"
-@page += drawChartHistogram(logdata)
+          google.charts.setOnLoadCallback(draw_chart_histogram);\n"
+@page += draw_chart_histogram(logdata)
 # set the JavaScript Callback
 pageone.map do |chart|
   @page1 += "
@@ -252,7 +252,7 @@ pageone.map do |chart|
 end
 # create JavaScript chart functions for page 1
 pageone.map do |chart|
-    @page1 += drawChart(chart[1], chart[0], chart[2], chart[3], chart[4], chart[5], width, height)
+    @page1 += draw_chart(chart[1], chart[0], chart[2], chart[3], chart[4], chart[5], width, height)
 end
 # continue common page
 $pagetemp = %(
@@ -280,7 +280,7 @@ $pagetemp = %(
         </div>
       </nav>
       <div class="container-fluid">\n)
-pagebuild
+page_build
 # homepage
 @page += %(
       <h2>Featured Statistics</h2>
@@ -338,7 +338,7 @@ $pagetemp = %(
     </body>
 </html>)
 # finish building all the pages
-pagebuild
+page_build
 # write all the HTML pages to files
 (0..1).map do |i|
   file = File.open("index#{i > 0 ? i : ''}.html", 'w')
