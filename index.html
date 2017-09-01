@@ -60,7 +60,7 @@
           google.charts.setOnLoadCallback(draw_chart_histogram);
 
           function draw_chart_histogram(){
-            var data = google.visualization.arrayToDataTable([["Date", "Amount"], ["2017-04-26", 1], ["2017-04-24", 1], ["2017-04-23", 1], ["2017-04-20", 1], ["2017-04-19", 1], ["2017-04-17", 6], ["2017-04-16", 2], ["2017-04-11", 1], ["2017-03-29", 6], ["2017-03-24", 2], ["2017-03-22", 1], ["2017-02-11", 2], ["2017-01-27", 1], ["2017-01-24", 4], ["2016-12-25", 1], ["2016-12-24", 1], ["2016-12-22", 5], ["2016-12-20", 1], ["2016-12-19", 4], ["2016-12-18", 1], ["2016-11-09", 2], ["2016-11-08", 14], ["2016-11-07", 4]]);
+            var data = google.visualization.arrayToDataTable([["Date", "Amount"], ["2017-04-27", 1], ["2017-04-26", 1], ["2017-04-24", 1], ["2017-04-23", 1], ["2017-04-20", 1], ["2017-04-19", 1], ["2017-04-17", 6], ["2017-04-16", 2], ["2017-04-11", 1], ["2017-03-29", 6], ["2017-03-24", 2], ["2017-03-22", 1], ["2017-02-11", 2], ["2017-01-27", 1], ["2017-01-24", 4], ["2016-12-25", 1], ["2016-12-24", 1], ["2016-12-22", 5], ["2016-12-20", 1], ["2016-12-19", 4], ["2016-12-18", 1], ["2016-11-09", 2], ["2016-11-08", 14], ["2016-11-07", 4]]);
             var options = {
               title: "Histogram of commits by amount",
               legend: { position: "top", maxLines: 2 },
@@ -98,18 +98,18 @@
       <pre>
         <code>
           
-github.com/AlDanial/cloc v 1.72  T=0.20 s (111.7 files/s, 63766.6 lines/s)
+github.com/AlDanial/cloc v 1.72  T=0.20 s (112.5 files/s, 64231.8 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
 CSS                              4              7             24           7326
 JavaScript                       4            582            205           1614
-HTML                             2            159             16           1107
+HTML                             2            159             16           1109
 XSD                             10             73             40           1029
-Ruby                             1              5             31            311
+Ruby                             1              5             31            310
 Markdown                         1             11              0             18
 -------------------------------------------------------------------------------
-SUM:                            22            837            316          11405
+SUM:                            22            837            316          11406
 -------------------------------------------------------------------------------
 
         </code>
@@ -126,6 +126,7 @@ SUM:                            22            837            316          11405
             <li><a href="#head1">Back to top</a></li>
             <li><a href="index.html">Home</a></li>
             <li><a href="index1.html">Charts</a></li>
+            <li class="nuchecker"><a target="_blank">Valid HTML</a>
           </ul>
         </div>
       </footer>
@@ -136,7 +137,7 @@ SUM:                            22            837            316          11405
       <script>
         $(document).ready(function () {
            "use strict";
-           var last = $(location).attr("href").split("/").slice(-1)[0].split(".")[0].replace(/index/, "");
+           var last = $(location).attr("href").split("/").pop().split(".")[0].replace(/index/, "");
            var tab = 1;
            if (last !== "") {
              tab = parseInt(last) + 1;
@@ -146,7 +147,7 @@ SUM:                            22            837            316          11405
            if (tab === 0) {
              tab = "";
            }
-           $(".nuchecker a").attr("href", "https://validator.w3.org/nu/?doc=http%3A%2F%2Fthebeast.me%2Fdashboard-2%2Findex" + tab + ".html");
+           $(".nuchecker a").attr("href", "https://validator.w3.org/nu/?doc=http%3A%2F%2Fthebeast.me%2Fdashboard%2Findex" + tab + ".html");
         });
       </script>
     </body>

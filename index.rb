@@ -142,9 +142,7 @@ logdata.unshift(%w[Date Amount])
 #
 Dir.glob('**/*').map do |x|
   ext = File.extname(x)
-  if ext == ''
-    ext = 'folders'
-  end
+  ext = 'folders' if ext == ''
   extension << ext
   # sz = File.size(x)
   # sizes << sz
@@ -312,6 +310,7 @@ $pagetemp = %(
             <li><a href="#head1">Back to top</a></li>
             <li><a href="index.html">Home</a></li>
             <li><a href="index1.html">Charts</a></li>
+            <li class="nuchecker"><a target="_blank">Valid HTML</a>
           </ul>
         </div>
       </footer>
@@ -322,7 +321,7 @@ $pagetemp = %(
       <script>
         $(document).ready(function () {
            "use strict";
-           var last = $(location).attr("href").split("/").slice(-1)[0].split(".")[0].replace(/index/, "");
+           var last = $(location).attr("href").split("/").pop().split(".")[0].replace(/index/, "");
            var tab = 1;
            if (last !== "") {
              tab = parseInt(last) + 1;
@@ -332,7 +331,7 @@ $pagetemp = %(
            if (tab === 0) {
              tab = "";
            }
-           $(".nuchecker a").attr("href", "https://validator.w3.org/nu/?doc=http%3A%2F%2Fthebeast.me%2Fdashboard-2%2Findex" + tab + ".html");
+           $(".nuchecker a").attr("href", "https://validator.w3.org/nu/?doc=http%3A%2F%2Fthebeast.me%2Fdashboard%2Findex" + tab + ".html");
         });
       </script>
     </body>
