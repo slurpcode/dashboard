@@ -310,7 +310,7 @@ $pagetemp = %(
             <li><a href="#head1">Back to top</a></li>
             <li><a href="index.html">Home</a></li>
             <li><a href="index1.html">Charts</a></li>
-            <li class="nuchecker"><a target="_blank">Valid HTML</a>
+            <li class="nuchecker"><a target="_blank" rel="noopener">Valid HTML</a>
           </ul>
         </div>
       </footer>

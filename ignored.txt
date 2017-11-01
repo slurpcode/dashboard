@@ -1,4 +1,6 @@
 .: --exclude-dir=1
+./.gitignore: listed in $Not_Code_Extension{gitignore}
+./.idea/dashboard.iml: language unknown (#3)
 ./LICENSE: language unknown (#3)
 ./bootstrap/css/bootstrap-theme.css.map: language unknown (#3)
 ./bootstrap/css/bootstrap-theme.min.css.map: language unknown (#3)
