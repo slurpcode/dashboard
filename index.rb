@@ -152,8 +152,7 @@ allFiles = extension.flatten.group_by{|x| x}.map{|k, v| [k, v.size]}
 # Create pages
 @page = ''; @page1 = '';
 # start common page region
-$pagetemp = %(
-<!DOCTYPE html>
+$pagetemp = %(<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -204,6 +203,7 @@ def draw_chart(which_chart, data, chart_string, chart_number, chart_title, chart
             // Set chart options
             var options = {"title": "#{escape(chart_title)}",
                            is3D: true,
+                           "pieSliceText": "value",
                            "width": #{width},
                            "height": #{height},
                            "titleTextStyle": { "color": "black" } };
@@ -310,7 +310,7 @@ $pagetemp = %(
             <li><a href="#head1">Back to top</a></li>
             <li><a href="index.html">Home</a></li>
             <li><a href="index1.html">Charts</a></li>
-            <li class="nuchecker"><a target="_blank" rel="noopener">Valid HTML</a>
+            <li class="nuchecker"><a target="_blank" rel="noopener">Valid HTML</a></li>
           </ul>
         </div>
       </footer>
