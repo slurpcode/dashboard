@@ -13,7 +13,7 @@ blockDefaultsubstitution=[]; typedsKeyInfoType=[]; elementrefsamlp=[]; elementre
 Dir.glob('schema/*.xsd').map do |schema|
   filename = schema.split('/').last
   file = File.open(schema, 'r'); data = file.read; file.close;
-
+  filename = filename.split('.').first
   version            << data.gsub(/(.*<xs:schema.*?version=")(.*?)(">.*<\/xs:schema>)/m, '\2').strip
   xmlns              << [filename, data.scan(/xmlns[=:]/).size         ]
   xmlnsds            << [filename, data.scan(/xmlns:ds=/).size         ]
