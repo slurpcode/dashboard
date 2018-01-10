@@ -1,5 +1,10 @@
 #!/usr/bin/env ruby
 
+# function
+def ii(i)
+  i.positive? ? i : ''
+end
+
 # chart size variables
 width = 400; height = 330;
 # declare variables
@@ -229,7 +234,7 @@ end
 # buld all the website pages
 def page_build
   (0..1).map do |i|
-    instance_variable_set("@page#{i > 0 ? i : ''}", instance_variable_get("@page#{i > 0 ? i : ''}") + $pagetemp)
+    instance_variable_set("@page#{ii i}", instance_variable_get("@page#{ii i}") + $pagetemp)
   end
 end
 #
@@ -347,7 +352,7 @@ $pagetemp = %(
 page_build
 # write all the HTML pages to files
 (0..1).map do |i|
-  file = File.open("index#{i > 0 ? i : ''}.html", 'w')
-  file.write(instance_variable_get("@page#{i > 0 ? i : ''}"))
+  file = File.open("index#{ii i}.html", 'w')
+  file.write(instance_variable_get("@page#{ii i}"))
   file.close
 end
