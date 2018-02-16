@@ -183,7 +183,7 @@ $pagetemp = %(<!DOCTYPE html>
          .footer { background-color: rgba(49,37,152,0.8); min-height: 200px; color: #fff !important; }
          .footer ul a { color: #fff !important; }
          .selected { background-color: aliceblue; font-weight: bold; }
-         pre { white-space: pre-wrap; white-space: moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; }
+         pre { white-space: pre-wrap; }
         </style>
         <!--Load the AJAX API-->
         <script src="https://www.gstatic.com/charts/loader.js"></script>
