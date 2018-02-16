@@ -24,17 +24,12 @@
          .footer { background-color: rgba(49,37,152,0.8); min-height: 200px; color: #fff !important; }
          .footer ul a { color: #fff !important; }
          .selected { background-color: aliceblue; font-weight: bold; }
-         pre { white-space: pre-wrap; //css3
-             white-space: moz-pre-wrap; //firefox
-             white-space: -pre-wrap; //opera 4-6
-             white-space: -o-pre-wrap; //opera 7
-             word-wrap: break-word; //internet explorer
-         }
+         pre { white-space: pre-wrap; white-space: moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; }
         </style>
         <!--Load the AJAX API-->
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-        <script type="text/javascript">
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://www.google.com/jsapi"></script>
+        <script>
           // Load the Visualization API and the corechart package.
           google.charts.load("current", {"packages":["corechart"]});
           google.charts.setOnLoadCallback(drawChartversion);
