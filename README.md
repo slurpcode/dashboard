@@ -23,7 +23,6 @@ For Mac OS you can use [Homebrew](https://brew.sh/) to install cloc:
 brew install cloc
 ```
 
-
 # Contributions
 
 Fork and pull request. Simple.
