@@ -316,7 +316,7 @@ $pagetemp = %(
             <li><a href="#head1">Back to top</a></li>
             <li><a href="index.html">Home</a></li>
             <li><a href="index1.html">Charts</a></li>
-            <li class="nuchecker"><a target="_blank" rel="noopener">Valid HTML</a></li>
+            <li class="nuchecker"><a href="#" rel="noopener">Valid HTML</a></li>
           </ul>
         </div>
       </footer>
@@ -337,7 +337,7 @@ $pagetemp = %(
            if (tab === 0) {
              tab = "";
            }
-           $(".nuchecker a").attr("href", "https://validator.w3.org/nu/?doc=http%3A%2F%2Fthebeast.me%2Fdashboard%2Findex" + tab + ".html");
+           $(".nuchecker a").attr("href", "https://validator.w3.org/nu/?doc=https%3A%2F%2Fslurpcode.github.io%2Fdashboard%2Findex" + tab + ".html");
         });
       </script>
       <script async defer src="https://buttons.github.io/buttons.js"></script>

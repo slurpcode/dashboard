@@ -39,7 +39,7 @@
             var data = new google.visualization.DataTable();
             data.addColumn("string", "Schema count");
             data.addColumn("number", "Values");
-            data.addRows([[".html", 2], ["folders", 6], [".css", 4], [".map", 4], [".js", 4], [".woff", 1], [".eot", 1], [".woff2", 1], [".ttf", 1], [".svg", 1], [".txt", 3], [".md", 1], [".xsd", 10], [".rb", 1]]);
+            data.addRows([[".html", 2], ["folders", 6], [".css", 4], [".map", 4], [".js", 4], [".woff", 1], [".eot", 1], [".woff2", 1], [".ttf", 1], [".svg", 1], [".txt", 3], [".iml", 1], [".md", 1], [".xsd", 10], [".rb", 1]]);
             // Set chart options
             var options = {"title": "Branch gh-pages count of files grouped by file type",
                            is3D: true,
@@ -55,7 +55,7 @@
           google.charts.setOnLoadCallback(draw_chart_histogram);
 
           function draw_chart_histogram(){
-            var data = google.visualization.arrayToDataTable([["Date", "Amount"], ["2018-02-16", 1], ["2018-01-10", 1], ["2018-01-08", 1], ["2018-01-04", 1], ["2018-01-02", 1], ["2017-11-01", 1], ["2017-09-01", 1], ["2017-04-27", 1], ["2017-04-26", 1], ["2017-04-24", 1], ["2017-04-23", 1], ["2017-04-20", 1], ["2017-04-19", 1], ["2017-04-17", 6], ["2017-04-16", 2], ["2017-04-11", 1], ["2017-03-29", 6], ["2017-03-24", 2], ["2017-03-22", 1], ["2017-02-11", 2], ["2017-01-27", 1], ["2017-01-24", 4], ["2016-12-25", 1], ["2016-12-24", 1], ["2016-12-22", 5], ["2016-12-20", 1], ["2016-12-19", 4], ["2016-12-18", 1], ["2016-11-09", 2], ["2016-11-08", 14], ["2016-11-07", 4]]);
+            var data = google.visualization.arrayToDataTable([["Date", "Amount"], ["2021-03-05", 2], ["2018-02-16", 2], ["2018-01-10", 1], ["2018-01-08", 1], ["2018-01-04", 1], ["2018-01-02", 1], ["2017-11-01", 1], ["2017-09-01", 1], ["2017-04-27", 1], ["2017-04-26", 1], ["2017-04-24", 1], ["2017-04-23", 1], ["2017-04-20", 1], ["2017-04-19", 1], ["2017-04-17", 6], ["2017-04-16", 2], ["2017-04-11", 1], ["2017-03-29", 6], ["2017-03-24", 2], ["2017-03-22", 1], ["2017-02-11", 2], ["2017-01-27", 1], ["2017-01-24", 4], ["2016-12-25", 1], ["2016-12-24", 1], ["2016-12-22", 5], ["2016-12-20", 1], ["2016-12-19", 4], ["2016-12-18", 1], ["2016-11-09", 2], ["2016-11-08", 14], ["2016-11-07", 4]]);
             var options = {
               title: "Histogram of commits by amount",
               legend: { position: "top", maxLines: 2 },
@@ -93,19 +93,20 @@
       <pre>
         <code>
           
-github.com/AlDanial/cloc v 1.76  T=1.05 s (24.7 files/s, 12417.0 lines/s)
+github.com/AlDanial/cloc v 1.88  T=0.14 s (197.3 files/s, 91497.8 lines/s)
 -------------------------------------------------------------------------------
 Language                     files          blank        comment           code
 -------------------------------------------------------------------------------
 CSS                              4              7             24           7326
 JavaScript                       4            582            205           1614
-HTML                             2            157             16           1164
+HTML                             2            157             16           1165
 XSD                             10             73             40           1029
-XML                              4              0              0            437
 Ruby                             1              5             32            316
-Markdown                         1             11              0             18
+SVG                              1              0              0            288
+XML                              5              0              0             77
+Markdown                         1             10              0             18
 -------------------------------------------------------------------------------
-SUM:                            26            835            317          11904
+SUM:                            28            834            317          11833
 -------------------------------------------------------------------------------
 
         </code>
@@ -128,7 +129,7 @@ SUM:                            26            835            317          11904
             <li><a href="#head1">Back to top</a></li>
             <li><a href="index.html">Home</a></li>
             <li><a href="index1.html">Charts</a></li>
-            <li class="nuchecker"><a target="_blank" rel="noopener">Valid HTML</a></li>
+            <li class="nuchecker"><a href="#" rel="noopener">Valid HTML</a></li>
           </ul>
         </div>
       </footer>
@@ -149,7 +150,7 @@ SUM:                            26            835            317          11904
            if (tab === 0) {
              tab = "";
            }
-           $(".nuchecker a").attr("href", "https://validator.w3.org/nu/?doc=http%3A%2F%2Fthebeast.me%2Fdashboard%2Findex" + tab + ".html");
+           $(".nuchecker a").attr("href", "https://validator.w3.org/nu/?doc=https%3A%2F%2Fslurpcode.github.io%2Fdashboard%2Findex" + tab + ".html");
         });
       </script>
       <script async defer src="https://buttons.github.io/buttons.js"></script>

@@ -1,12 +1,11 @@
 .: --exclude-dir=1
 ./.gitignore: listed in $Not_Code_Extension{gitignore}
-./.idea/dashboard.iml: language unknown (#3)
+./.idea/.gitignore: listed in $Not_Code_Extension{gitignore}
 ./LICENSE: language unknown (#3)
 ./bootstrap/css/bootstrap-theme.css.map: language unknown (#3)
 ./bootstrap/css/bootstrap-theme.min.css.map: language unknown (#3)
 ./bootstrap/css/bootstrap.css.map: language unknown (#3)
 ./bootstrap/css/bootstrap.min.css.map: language unknown (#3)
-./bootstrap/fonts/glyphicons-halflings-regular.svg: language unknown (#3)
 ./cloc.txt: zero sized file
 ./ignored.txt: listed in $Not_Code_Extension{txt}
 ./log.txt: listed in $Not_Code_Extension{txt}
